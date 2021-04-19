@@ -34,11 +34,13 @@ def create_app(test_config=None):
 
   @app.route('/books')
   def retrieve_books():
-    selection = Book.query.all()
+    selection = Book.query.order_by(Book.id).all()
     current_books = paginate_books(request, selection)
 
     if len(current_books) == 0:
       abort(404)
+
+  
 
     return jsonify({
       'success': True,
@@ -132,6 +134,38 @@ def create_app(test_config=None):
     except:
       abort(422)
 
+
+  @app.errorhandler(404)
+  def not_found(error):
+      return jsonify({
+          "success": False, 
+          "error": 404,
+          "message": "Not found"
+          }), 404
+
+  @app.errorhandler(422)
+  def unprocessable(error):
+      return jsonify({
+          "success": False, 
+          "error": 422,
+          "message": "unprocessable"
+          }), 422
+
+  @app.errorhandler(400)
+  def badrequest(error):
+      return jsonify({
+          "success": False, 
+          "error": 400,
+          "message": "bad request"
+          }), 400
+
+  @app.errorhandler(405)
+  def not_allowed(error):
+      return jsonify({
+          "success": False, 
+          "error": 405,
+          "message": "method not allowed"
+          }), 405
 
   return app
 
