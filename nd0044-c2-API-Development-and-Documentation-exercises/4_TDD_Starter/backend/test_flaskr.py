@@ -54,6 +54,27 @@ class BookTestCase(unittest.TestCase):
     # @TODO: Write tests for search - at minimum two
     #        that check a response when there are results and when there are none
 
+    def test_get_book_search_with_results(self):
+        res = self.client().post('/books', json={'search': 'Novel'})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['total_books'])
+        self.assertEqual(len(data['books']), 4)
+    
+    def test_get_book_search_without_results(self):
+        res = self.client().post('/books', json={'search': 'applejacks'})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['total_books'], 0)
+        self.assertEqual(len(data['books']), 0)
+
+
+
+
     def test_update_book_rating(self):
         res = self.client().patch('/books/5', json={'rating': 1})
         data = json.loads(res.data)
