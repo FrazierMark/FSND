@@ -3,7 +3,6 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import random
-
 from models import setup_db, Question, Category
 
 QUESTIONS_PER_PAGE = 10
@@ -13,6 +12,7 @@ def create_app(test_config=None):
   app = Flask(__name__)
   setup_db(app)
   cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+  
 
   @app.after_request
   def after_request(response):
@@ -22,10 +22,8 @@ def create_app(test_config=None):
 
 
   def get_categories():
-    "Retrieve all categories of trivia questions."
-    categories = Category.query.all()
-    categories_list = [category.format() for category in categories]
-    return categories_list
+    formatted_categories = [category.format() for category in Category.query.all()]
+    return jsonify({"categories": formatted_categories})
 
   def paginate_questions(request, selection):
     page = request.args.get('page', 1, type=int)
