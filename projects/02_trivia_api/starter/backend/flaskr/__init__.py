@@ -22,8 +22,12 @@ def create_app(test_config=None):
 
 
   def get_categories():
-    formatted_categories = [category.format() for category in Category.query.all()]
-    return jsonify({"categories": formatted_categories})
+    categories = Category.query.all()
+    categories_dict = {}
+    for category in categories:
+      categories_dict[category.id] = category.type
+    return categories_dict
+  
 
   def paginate_questions(request, selection):
     page = request.args.get('page', 1, type=int)
