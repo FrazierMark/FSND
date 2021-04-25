@@ -12,51 +12,47 @@ def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
   setup_db(app)
-  
-  
-  '''
-  DONE: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
-  '''
   cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-
-  '''
-  DONE: Use the after_request decorator to set Access-Control-Allow
-  '''
   @app.after_request
   def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
     response.headers.add('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS')
     return response
 
-  
 
-  '''
-  @TODO: 
-  Create an endpoint to handle GET requests 
-  for all available categories.
-  '''
-  @app.route('/categories')
   def get_categories():
     "Retrieve all categories of trivia questions."
     categories = Category.query.all()
-    return jsonify(categories)
+    categories_list = [category.format() for category in categories]
+    return categories_list
+
+  def paginate_questions(request, selection):
+    page = request.args.get('page', 1, type=int)
+    start =  (page - 1) * QUESTIONS_PER_PAGE
+    end = start + QUESTIONS_PER_PAGE
+
+    questions = [question.format() for question in selection]
+    paginated_questions = questions[start:end]
+    return paginated_questions
 
 
+  @app.route('/questions')
+  def retrieve_questions():
+    selection = Question.query.all()
+    paginated_questions = paginate_questions(request, selection)
 
+    if len(paginated_questions) == 0:
+      abort(404)
 
-  '''
-  @TODO: 
-  Create an endpoint to handle GET requests for questions, 
-  including pagination (every 10 questions). 
-  This endpoint should return a list of questions, 
-  number of total questions, current category, categories. 
+    return jsonify({
+      'success': True,
+      'questions': paginated_questions,
+      'total_questions': len(Question.query.all()),
+      'current_categories': None,
+      'categories': get_categories(),
+    })
 
-  TEST: At this point, when you start the application
-  you should see questions and categories generated,
-  ten questions per page and pagination at the bottom of the screen for three pages.
-  Clicking on the page numbers should update the questions. 
-  '''
 
   '''
   @TODO: 
