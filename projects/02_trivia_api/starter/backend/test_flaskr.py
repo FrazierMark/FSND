@@ -18,6 +18,13 @@ class TriviaTestCase(unittest.TestCase):
         self.database_path = "postgresql://{}@{}/{}".format('frazier','localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
 
+        self.new_question = {
+            'question': 'What tall is a 1ft cat?',
+            'answer': 'Most likely 1ft',
+            'category': 'Science',
+            'difficulty': 1
+        }
+
         # binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -51,18 +58,30 @@ class TriviaTestCase(unittest.TestCase):
     #     self.assertEqual(data['success'], False)
     #     self.assertEqual(data['message'], 'resource not found')
 
-    def test_delete_question(self):
-        res = self.client().delete('/questions/9')
+    # def test_delete_question(self):
+    #     res = self.client().delete('/questions/9')
+        
+    #     print(f'HERE > {res}')
+
+    #     data = json.loads(res.data)
+
+    #     question = Question.query.filter(Question.id == 9).one_or_none()
+
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertEqual(data['deleted'], 9)
+    #     self.assertTrue(data['total_questions'])
+    #     self.assertTrue(len(data['questions']))
+    #     self.assertEqual(question, None)
+
+
+    def test_422_if_question_creation_fails(self):
+        res = self.client().post('/questions', json=self.new_question)
         data = json.loads(res.data)
+        pass
 
-        question = Question.query.filter(Question.id == 9).one_or_none()
 
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], 9)
-        self.assertTrue(data['total_question'])
-        self.assertTrue(len(data['questions']))
-        self.assertEqual(question, None)
+
 
 
 

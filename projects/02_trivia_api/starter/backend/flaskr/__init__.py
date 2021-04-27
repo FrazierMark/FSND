@@ -21,7 +21,7 @@ def create_app(test_config=None):
     return response
 
 
-  def get_categories():
+  def get_all_categories():
     #query to Category returns rows, that then are able to be accessed via methods
     categories = Category.query.all()
     categories_dict = {}
@@ -29,8 +29,21 @@ def create_app(test_config=None):
       categories_dict[category.id] = category.type
     return categories_dict
   
+  @app.route('/categories')
+  def get_categories():
+    #query to Category returns rows, that then are able to be accessed via methods
+    categories = Category.query.all()
+    categories_dict = {}
+    for category in categories:
+      categories_dict[category.id] = category.type
+
+    return jsonify({
+      'categories': categories_dict
+    })
+  
 
   def paginate_questions(request, selection):
+    "Function to paginate questions, 10 Question per page."
     page = request.args.get('page', 1, type=int)
     start =  (page - 1) * QUESTIONS_PER_PAGE
     end = start + QUESTIONS_PER_PAGE
@@ -53,37 +66,60 @@ def create_app(test_config=None):
       'questions': paginated_questions,
       'total_questions': len(Question.query.all()),
       'current_categories': None,
-      'categories': get_categories(),
+      'categories': get_all_categories(),
     })
 
   @app.route('/questions/<int:question_id>', methods=['DELETE'])
   def delete_question(question_id):
+    question = Question.query.filter(Question.id == question_id).one_or_none()
+    if question is None:
+      abort(404)
+    
     try:
-      question = Question.query.filter(Question.id == question_id).one_or_none()
-
-      if question is None:
-        abort(404)
-      #deletes selected question by id.
       question.delete()
-      #retrieves all questions for pagination
-      selection = Question.order_by(Question.id).all()
-      current_questions = paginate_questions(request, selection)
 
+    except Exception as e:
+      abort(422)
+
+    else:
+      selection = Question.query.all()
+      current_questions = paginate_questions(request, selection)
       return jsonify({
         'success': True,
-        'deleted': quesiton_id,
+        'deleted': question_id,
         'questions': current_questions,
         'total_questions': len(Question.query.all())
+      })
+
+  @app.route('/questions', methods=['POST'])
+  def create_new_question():
+    "Add a new trivia question to Database"
+    # Sumbitted info from the client via ajax
+    body = request.get_json()
+
+    new_question = body.get('question', None)
+    new_answer = body.get('answer', None)
+    new_category = body.get('category', None)
+    new_difficulty = body.get('dificulty', None)
+    
+    try:
+      # create a new question entry and insert to db
+      question = Question(question=new_question, answer=new_answer, category=new_category, difficulty=new_difficulty)
+      question.insert()
+
+      selection = Question.query.all()
+      current_questions = paginate_questions(request, selection)
+
+      return jsonfiy({
+        'success': True,
+        'created': question.id,
+        'questions': current_questions,
+        'total_quesitons': len(Question.query.all())
       })
     except:
       abort(422)
 
 
-
-
-  # TEST: When you click the trash icon next to a question, the question will be removed.
-  # This removal will persist in the database and when you refresh the page. 
-  
 
   # @TODO: 
   # Create an endpoint to POST a new question, 
