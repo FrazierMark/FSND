@@ -22,8 +22,7 @@ class TriviaTestCase(unittest.TestCase):
             'question': 'What tall is a 1ft cat?',
             'answer': 'Most likely 1ft',
             'category': 'Science',
-            'difficulty': 1
-        }
+            'difficulty': 1}
 
         # binds the app to the current context
         with self.app.app_context():
@@ -75,10 +74,19 @@ class TriviaTestCase(unittest.TestCase):
     #     self.assertEqual(question, None)
 
 
-    def test_422_if_question_creation_fails(self):
-        res = self.client().post('/questions', json=self.new_question)
+    # def test_422_if_question_creation_fails(self):
+    #     res = self.client().post('/questions', json=self.new_question)
+    #     data = json.loads(res.data)
+    #     pass
+
+    def test_get_question_search_with_results(self):
+        res = self.client().post('/questions/search', json={'searchTerm': 'africa'})
+        print(res)
         data = json.loads(res.data)
-        pass
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['total_questions'])
 
 
 

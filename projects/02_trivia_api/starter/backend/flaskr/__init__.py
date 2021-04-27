@@ -11,13 +11,12 @@ def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
   setup_db(app)
-  cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-  
+  cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
   @app.after_request
   def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE,OPTIONS')
     return response
 
 
@@ -96,40 +95,49 @@ def create_app(test_config=None):
     "Add a new trivia question to Database"
     # Sumbitted info from the client via ajax
     body = request.get_json()
+    print(body)
 
     new_question = body.get('question', None)
     new_answer = body.get('answer', None)
     new_category = body.get('category', None)
-    new_difficulty = body.get('dificulty', None)
+    new_difficulty = body.get('difficulty', None)
     
+  
+    # create a new question entry and insert to db
+    question = Question(question=new_question, answer=new_answer, category=new_category, difficulty=new_difficulty)
     try:
-      # create a new question entry and insert to db
-      question = Question(question=new_question, answer=new_answer, category=new_category, difficulty=new_difficulty)
       question.insert()
-
       selection = Question.query.all()
       current_questions = paginate_questions(request, selection)
-
-      return jsonfiy({
+      
+      return jsonify({
         'success': True,
-        'created': question.id,
+        'created': new_question,
         'questions': current_questions,
         'total_quesitons': len(Question.query.all())
-      })
+        })
+
+    except Exception as e:
+      abort(422)
+
+  @app.route('/questions/search', methods= ['POST'])
+  def search_questions():
+    search = request.get_json().get('searchTerm', None)
+    try:
+      search_query_res = Question.query.filter(Question.question.ilike('%{}%'.format(search))).all()
+      formatted_questions = paginate_questions(request, search_query_res)
+
+      return jsonify({
+            'success': True,
+            'questions': formatted_questions,
+            'total_questions': len(current_questions),
+            'current_category': None,
+          })
     except:
+      print(sys.exc_info())
       abort(422)
 
 
-
-  # @TODO: 
-  # Create an endpoint to POST a new question, 
-  # which will require the question and answer text, 
-  # category, and difficulty score.
-
-  # TEST: When you submit a question on the "Add" tab, 
-  # the form will clear and the question will appear at the end of the last page
-  # of the questions list in the "List" tab.  
-  
 
   
   # @TODO: 
