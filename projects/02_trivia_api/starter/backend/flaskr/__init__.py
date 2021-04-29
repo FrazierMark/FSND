@@ -139,17 +139,22 @@ def create_app(test_config=None):
       abort(422)
 
 
+  @app.route('/categories/<int:category_id>/questions', methods = ['GET'])
+  def search_questions_by_category(category_id):
 
-  
-  # @TODO: 
-  # Create a POST endpoint to get questions based on a search term. 
-  # It should return any questions for whom the search term 
-  # is a substring of the question. 
+    retrieved_category = Category.query.get(Category.type).filter(Category.id == category_id)
 
-  # TEST: Search by any phrase. The questions list will update to include 
-  # only question that include that string within their question. 
-  # Try using the word "title" to start. 
-  
+    if retrieved_category is None:
+      abort(404)
+
+    questions_by_category = Question.query.get(Question.question).filter(Question.category == retrieved_category)
+    
+    if questions_by_category is None:
+      abort(404)
+    
+    
+
+
 
   
   # @TODO: 
