@@ -3,6 +3,7 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import random
+import sys
 from models import setup_db, Question, Category
 
 QUESTIONS_PER_PAGE = 10
@@ -130,7 +131,7 @@ def create_app(test_config=None):
       return jsonify({
             'success': True,
             'questions': formatted_questions,
-            'total_questions': len(current_questions),
+            'total_questions': len(formatted_questions),
             'current_category': None,
           })
     except:
