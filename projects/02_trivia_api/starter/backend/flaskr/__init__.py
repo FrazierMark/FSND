@@ -142,28 +142,25 @@ def create_app(test_config=None):
   @app.route('/categories/<int:category_id>/questions', methods = ['GET'])
   def search_questions_by_category(category_id):
 
-    retrieved_category = Category.query.get(Category.type).filter(Category.id == category_id)
-
-    if retrieved_category is None:
+    retrieved_questions = Question.query.filter_by(category=category_id).all()
+    
+    if retrieved_questions is None:
       abort(404)
 
-    questions_by_category = Question.query.get(Question.question).filter(Question.category == retrieved_category)
-    
-    if questions_by_category is None:
-      abort(404)
-    
-    
+    try:
+      formatted_questions = paginate_questions(request, retrieved_questions)
 
+      return jsonify({
+            'success': True,
+            'questions': formatted_questions,
+            'total_questions': len(formatted_questions),
+            'current_category': category_id,
+          })
 
+    except:
+      print(sys.exc_info())
+      abort(422)
 
-  
-  # @TODO: 
-  # Create a GET endpoint to get questions based on category. 
-
-  # TEST: In the "List" tab / main screen, clicking on one of the 
-  # categories in the left column will cause only questions of that 
-  # category to be shown. 
-  
 
 
   
