@@ -161,6 +161,17 @@ def create_app(test_config=None):
       print(sys.exc_info())
       abort(422)
 
+  @app.route('/quizzes', methods = ['POST'])
+  def play_game():
+    data = request.get_json()
+    
+    previous_questions = data.get('previous_questions', None)
+    quiz_category = data.get('quiz_category', None)
+    # grab a question from the quiz category in db,
+    # that has not been already used...(not in previous_questions)
+    
+    # send above info in the form of current_question...?
+
 
 
   
