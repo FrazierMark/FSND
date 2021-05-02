@@ -86,7 +86,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['total_questions'])
 
-    def test_search_questions_by_category():
+    def test_search_questions_by_category(self):
         res = self.client().get('/categoryies/2/questions')
         data = json.loads(res.data)
 
@@ -96,7 +96,19 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['questions'])
         self.assertTrue(data['current_category'])
 
-
+    def test_play_game(self):
+        res = self.client().post('quizzes', json={
+            'previous_questions': [2, 5],
+            'quiz_category': {
+                'type': 'History',
+                'id': 4
+            }
+        })
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['question'])
+        
 
 
 
