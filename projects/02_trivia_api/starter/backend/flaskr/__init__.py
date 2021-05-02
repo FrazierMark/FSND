@@ -164,9 +164,39 @@ def create_app(test_config=None):
   @app.route('/quizzes', methods = ['POST'])
   def play_game():
     data = request.get_json()
-    
-    previous_questions = data.get('previous_questions', None)
+
+    previous_questions = data.get('previous_questions', [])
     quiz_category = data.get('quiz_category', None)
+    not_asked = []
+
+    if quiz_category['id'] == 0:
+      category_questions = Question.query.all()
+    else:
+      category_questions = Question.query.filter(Question.category == quiz_category['id']).all()
+
+    # loop through all category questions and add not_asked questions to list
+    for question in category_questions:
+      if question.id not in previous_questions:
+        not_asked.append(question.format())
+
+
+    # get random not-asked question from list
+    random_category_question = random.choice(not_asked)
+    print(random_category_question)
+    # add this question to previous_questions list
+    previous_questions.append(random_category_question)
+    print(previous_questions)
+    try:
+      return jsonify({
+        'success': True,
+        'previousQuestions': previous_questions,
+        'currentQuestion': random_category_question,
+        })
+    
+    except:
+      abort(422)
+
+
     # grab a question from the quiz category in db,
     # that has not been already used...(not in previous_questions)
     
