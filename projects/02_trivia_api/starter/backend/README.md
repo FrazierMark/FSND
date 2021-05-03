@@ -65,7 +65,7 @@ GET ...
 POST ...
 DELETE ...
 
-GET '/api/v1.0/categories'
+GET '/categories'
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
 - Request Arguments: None
 - Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
@@ -75,8 +75,13 @@ GET '/api/v1.0/categories'
 '4' : "History",
 '5' : "Entertainment",
 '6' : "Sports"}
-
 ```
+
+###ENDPOINTS
+### GET '/questions'
+- Fetches a list of question objects, success value, total number of books, current_category, and categoies/
+- Results are paginated in groups of 10. Include a request argument to choose page number, starting from 1. 
+-Sample: `curl http://127.0.0.1:5000/questions`
 
 
 ## Testing
