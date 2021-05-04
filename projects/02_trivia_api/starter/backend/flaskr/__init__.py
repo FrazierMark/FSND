@@ -196,9 +196,16 @@ def create_app(test_config=None):
     except:
       abort(422)
 
+    
 
-  
-  # @TODO: 
+  @app.errorhandler(404)
+  def not_found(error):
+    return jsonify({
+      'success': False,
+      'error': 404,
+      'message': 'Resource Not Found'
+    }), 404
+
   # Create error handlers for all expected errors 
   
   
