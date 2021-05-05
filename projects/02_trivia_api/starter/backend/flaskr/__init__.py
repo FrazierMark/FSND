@@ -206,7 +206,7 @@ def create_app(test_config=None):
       'message': 'Resource Not Found'
     }), 404
 
-    @app.errorhandler(422)
+  @app.errorhandler(422)
   def unprocessable(error):
     return jsonify({
       "success": False, 
@@ -222,6 +222,13 @@ def create_app(test_config=None):
       "message": "Bad Request"
       }), 400
   
+  @app.errorhandler(500)
+  def bad_request(error):
+    return jsonify({
+      "success": False, 
+      "error": 500,
+      "message": "Internal Server Error"
+      }), 500
   
   return app
 
