@@ -59,11 +59,34 @@ One note before you delve into your tasks: for each endpoint you are expected to
 ```
 This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
 
+## API Reference
+
+### Getting Started
+- Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, `http://127.0.0.1:5000/`, which is set as a proxy in the frontend configuration. 
+- Authentication: This version of the application does not require authentication or API keys. 
+
+### Error Handling
+Errors are returned as JSON objects in the following format:
+```
+{
+    "success": False, 
+    "error": 400,
+    "message": "bad request"
+}
+```
+The API will return four error types when requests fail:
+- 400: Bad Request
+- 404: Resource Not Found
+- 422: Not Processable
+- 500: Internal Server Error 
+
+
 Endpoints
 GET '/categories'
 GET '/questions'
 POST '/questions'
 DELETE '/questions/<int:question_id>'
+POST '/quizzes'
 
 ###ENDPOINTS
 
@@ -79,7 +102,8 @@ DELETE '/questions/<int:question_id>'
 '6' : "Sports"}
 
 ### GET '/questions'
-- Fetches a list of question objects, success value, total number of books, current_category, and all categories return in a dictionary where keys are the ids and the value is the corresponding string of the category
+- Fetches a list of question objects; success value, total number of questions, current_category,
+  and all categories return in a dictionary where keys are the ids and the value is the corresponding string of the category
 - Request Arguments: None
 - Results are paginated in groups of 10. Include a request argument to choose page number, starting from 1. 
 -Sample: `curl http://127.0.0.1:5000/questions`
@@ -223,6 +247,37 @@ DELETE '/questions/<int:question_id>'
   "total_questions": 18
 }
 
+### POST '/quizzes'
+- Fetches a question object; the quiz_category (id) and previous_questions.
+- Returns a jsonfied random question object; success value, previous questions, and current (random) question.
+
+-Sample: 
+    curl -d '{"previous_questions": [2],"quiz_category": {"type":"Geography","id": "2"}}'
+    -H 'Content-Type: application/json' 
+    -X POST http://127.0.0.1:5000/quizzes
+ex.
+{
+  "currentQuestion": {
+    "answer": "Mona Lisa", 
+    "category": 2, 
+    "difficulty": 3, 
+    "id": 17, 
+    "question": "La Giaconda is better known as what?"
+  }, 
+  "previousQuestions": [
+    2, 
+    {
+      "answer": "Mona Lisa", 
+      "category": 2, 
+      "difficulty": 3, 
+      "id": 17, 
+      "question": "La Giaconda is better known as what?"
+    }
+  ], 
+  "success": true
+}
+
+
 
 ## Testing
 To run the tests, run
@@ -232,3 +287,7 @@ createdb trivia_test
 psql trivia_test < trivia.psql
 python test_flaskr.py
 ```
+
+#### Authors
+Mark Frazier
+Udacity

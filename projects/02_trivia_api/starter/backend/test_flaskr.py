@@ -79,12 +79,17 @@ class TriviaTestCase(unittest.TestCase):
 
     def test_get_question_search_with_results(self):
         res = self.client().post('/questions/search', json={'searchTerm': 'africa'})
-        print(res)
+        
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['total_questions'])
+    
+    def test_422_if_get_question_search_fails(self):
+        res = self.slient().post('/questions/search', json={'seachTerm':'africa'})
+        data = json.loads(res.data)
+        pass
 
     def test_search_questions_by_category(self):
         res = self.client().get('/categoryies/2/questions')
@@ -95,6 +100,11 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_questions'])
         self.assertTrue(data['questions'])
         self.assertTrue(data['current_category'])
+
+    def test_422_if_search_question_by_category_fails(self):
+        res = self.client().get('/questions/2/questions')
+        data = json.load(res.data).decode('utf-8')
+        pass
 
     def test_play_game(self):
         res = self.client().post('quizzes', json={
@@ -109,6 +119,18 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['previousQuestions'])
         self.assertTrue(data['currentQuestion'])
+    
+    def test_422_if_play_quizzes_fails(self):
+        res = self.client().post('quizzes', json={
+            'previous_questions': [2, 5],
+            'quiz_category': {
+                'type': 'History',
+                'id': 4
+            }    
+        })
+        data = json.loads(res.data)
+        pass
+
         
 
 
