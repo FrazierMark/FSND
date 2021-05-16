@@ -3,7 +3,7 @@ import json
 from flask import request, _request_ctx_stack
 from functools import wraps
 from jose import jwt
-from urllib.request import urlopen
+from urllib.request import URLopener
 
 
 AUTH0_DOMAIN = 'm-mark-frazier.us.auth0.com'
@@ -122,8 +122,6 @@ def verify_decode_jwt(token):
                 'code': 'invalid_header',
                 'description': 'Unable to find the appropriate key.'
             }, 400)
-
-    raise Exception('Not Implemented')
 
 
 def requires_auth(permission=''):

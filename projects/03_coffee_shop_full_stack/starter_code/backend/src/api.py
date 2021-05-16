@@ -23,30 +23,19 @@ cors = CORS(app)
 
 #db_drop_and_create_all()
 
-
-# '''
-# @TODO implement endpoint
-#     GET /drinks
-#         it should be a public endpoint
-#         it should contain only the drink.short() data representation
-#     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-#         or appropriate status code indicating reason for failure
-# '''
-
 @app.route('/drinks', methods=['GET'])
 def retrieve_drinks():
-    all_drinks = Drink.query.all()
-    drinks = [drink.short() for drink in all_drinks]
-    if all_drinks is None:
-        abort(404)
-
-    return jsonify({
+    try:
+        all_drinks = Drink.query.all()
+        drinks = [drink.short() for drink in all_drinks]
+        if all_drinks is None:
+            abort(404)
+        return jsonify({
         "success": True,
         "drinks": drinks,
-    }), 200
-
-
-
+    })
+    except AuthError:
+        abort(422)
 
 # @TODO implement endpoint
 #     GET /drinks-detail
@@ -55,6 +44,21 @@ def retrieve_drinks():
 #     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
 #         or appropriate status code indicating reason for failure
 
+@app.route('/drinks-detail', methods=['GET'])
+@requires_auth('get:drinks-detail')
+def retrieve_long_drinks(jwt):
+    try:
+        all_drinks = Drink.query.all()
+        drinks = [drink.long() for drink in all_drinks]
+        if all_drinks is None:
+            abort(404)
+    
+        return jsonify({
+            "success": True,
+            "drinks": drinks,
+        })
+    except AuthError:
+        abort(422)
 
 
 # @TODO implement endpoint
@@ -126,22 +130,11 @@ def bad_request(error):
     "message": "Internal Server Error"
     }), 500
 
+@app.errorhandler(AuthError)
+def authError(error):
+    return jsonify({
+        "success": False, 
+        "error": error.error["code"],
+        "message": error.error["description"]
+    }), error.status_code
 
-# @TODO implement error handlers using the @app.errorhandler(error) decorator
-#     each error handler should return (with approprate messages):
-#              jsonify({
-#                     "success": False,
-#                     "error": 404,
-#                     "message": "resource not found"
-#                     }), 404
-
-
-
-# @TODO implement error handler for 404
-#     error handler should conform to general task above
-
-
-
-
-# @TODO implement error handler for AuthError
-#     error handler should conform to general task above
