@@ -28,8 +28,6 @@ db_drop_and_create_all()
     can be used to initialize a clean database
     !!NOTE you can change the database_filename variable to have multiple verisons of a database
 '''
-
-
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
@@ -38,10 +36,8 @@ def db_drop_and_create_all():
         title='water',
         recipe='[{"name": "water", "color": "blue", "parts": 1}]'
     )
+    drink.insert()
 
-
-drink.insert()
-# ROUTES
 
 '''
 Drink
