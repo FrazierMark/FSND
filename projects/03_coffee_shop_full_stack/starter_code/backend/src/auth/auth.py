@@ -3,7 +3,7 @@ import json
 from flask import request, _request_ctx_stack
 from functools import wraps
 from jose import jwt
-from urllib.request import URLopener
+from urllib.request import urlopen
 
 
 AUTH0_DOMAIN = 'm-mark-frazier.us.auth0.com'
@@ -53,10 +53,10 @@ def get_token_auth_header():
 
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
-                        raise AuthError({
-                            'code': 'invalid_claims',
-                            'description': 'Permissions not included in JWT.'
-                        }, 400)
+        raise AuthError({
+            'code': 'invalid_claims',
+            'description': 'Permissions not included in JWT.'
+        }, 400)
 
     if permission not in payload['permissions']:
         raise AuthError({
@@ -68,23 +68,18 @@ def check_permissions(permission, payload):
 
 
 def verify_decode_jwt(token):
-    # Get the public key from Auth0
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
-
-    # Get data in the header
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
-
-    # kid == key-id
     if 'kid' not in unverified_header:
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization malformed.'
         }, 401)
-
     for key in jwks['keys']:
-        rsa_key = {
+        if key['kid'] == unverified_header['kid']:
+            rsa_key = {
                 'kty': key['kty'],
                 'kid': key['kid'],
                 'use': key['use'],
@@ -96,12 +91,13 @@ def verify_decode_jwt(token):
             payload = jwt.decode(
                 token,
                 rsa_key,
-                algoriths=ALGORITHMS,
+                algorithms=ALGORITHMS,
                 audience=API_AUDIENCE,
                 issuer='https://' + AUTH0_DOMAIN + '/'
             )
+
             return payload
-        
+
         except jwt.ExpiredSignatureError:
             raise AuthError({
                 'code': 'token_expired',
@@ -125,16 +121,18 @@ def verify_decode_jwt(token):
 
 
 def requires_auth(permission=''):
+    """Gets a auth token from request header, verify the token, and check if the user has the requested permission
+    Args:
+        string: permission(i.e. 'post:drink')
+    Returns:
+        the decorator which passes the decoded payload to the decorated method
+    """
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
             token = get_token_auth_header()
-            try:
-                payload = verify_decode_jwt(token)
-            except:
-                abort(401)
+            payload = verify_decode_jwt(token)
             check_permissions(permission, payload)
             return f(payload, *args, **kwargs)
-
         return wrapper
     return requires_auth_decorator

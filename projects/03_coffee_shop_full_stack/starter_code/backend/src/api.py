@@ -46,19 +46,16 @@ def retrieve_drinks():
 
 @app.route('/drinks-detail', methods=['GET'])
 @requires_auth('get:drinks-detail')
-def retrieve_long_drinks(jwt):
-    try:
-        all_drinks = Drink.query.all()
-        drinks = [drink.long() for drink in all_drinks]
-        if all_drinks is None:
-            abort(404)
-    
-        return jsonify({
-            "success": True,
-            "drinks": drinks,
-        })
-    except AuthError:
-        abort(422)
+def retrieve_long_drinks(payload):
+    all_drinks = Drink.query.all()
+    drinks = [drink.long() for drink in all_drinks]
+    if (len(drinks) < 1):
+        abort (404)
+
+    return jsonify({
+        "success": True,
+        "drinks": drinks,
+    })
 
 
 # @TODO implement endpoint
