@@ -15,13 +15,7 @@ app = Flask(__name__)
 setup_db(app)
 cors = CORS(app)
 
-
-#@TODO uncomment the following line to initialize the datbase
-# !! NOTE THIS WILL DROP ALL RECORDS AND START YOUR DB FROM SCRATCH
-# !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
-# !! Running this funciton will add one
-
-#db_drop_and_create_all()
+db_drop_and_create_all()
 
 @app.route('/drinks', methods=['GET'])
 def retrieve_drinks():
@@ -37,20 +31,13 @@ def retrieve_drinks():
     except AuthError:
         abort(422)
 
-# @TODO implement endpoint
-#     GET /drinks-detail
-#         it should require the 'get:drinks-detail' permission
-#         it should contain the drink.long() data representation
-#     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-#         or appropriate status code indicating reason for failure
-
 @app.route('/drinks-detail', methods=['GET'])
 @requires_auth('get:drinks-detail')
 def retrieve_long_drinks(payload):
     all_drinks = Drink.query.all()
     drinks = [drink.long() for drink in all_drinks]
     if (len(drinks) < 1):
-        abort (404)
+        abort(404)
 
     return jsonify({
         "success": True,
@@ -60,11 +47,39 @@ def retrieve_long_drinks(payload):
 
 # @TODO implement endpoint
 #     POST /drinks
-#         it should create a new row in the drinks table
-#         it should require the 'post:drinks' permission
+#       it should require the 'post:drinks' permission
+#        it should create a new row in the drinks table
 #         it should contain the drink.long() data representation
 #     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
 #         or appropriate status code indicating reason for failure
+
+@app.route('/drinks', methods=['POST'])
+@requires_auth('post:drinks')
+def create_new_drank(token):
+    "If permission granted, will add drink to database."
+    body = request.get_json()
+    if body is None:
+        abort(404)
+
+    new_title = body.get('title', None)
+    new_recipe = body.get('recipe', None)
+    # json.dumps() method that converts dictionary objects of Python into JSON string data format.
+    new_drank = Drink(title=new_title, recipe=json.dumps(new_recipe))
+
+    try:
+        new_drank.insert()
+        new_drank = Drink.query.filter_by(id=new_drank.id)
+        formatted_drank = [drink.long() for drink in new_drank]
+
+        return jsonify({
+            "success": True,
+            "drinks": formatted_drank,
+        })
+    except AuthError:
+        abort(422)
+    
+
+
 
 
 
