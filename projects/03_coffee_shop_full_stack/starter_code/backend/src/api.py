@@ -45,14 +45,6 @@ def retrieve_long_drinks(payload):
     })
 
 
-# @TODO implement endpoint
-#     POST /drinks
-#       it should require the 'post:drinks' permission
-#        it should create a new row in the drinks table
-#         it should contain the drink.long() data representation
-#     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
-#         or appropriate status code indicating reason for failure
-
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drinks')
 def create_new_drank(token):
@@ -80,16 +72,39 @@ def create_new_drank(token):
     
 
 
+@app.route('/drinks/<int:drink_id>', methods=['PATCH'])
+@requires_auth('patch:drinks')
+def edit_drinks(payload, drink_id):
+    "API endpoint to edit drink in database."
+    body = request.get_json()
+    if body is None:
+        abort(404)
 
+    new_title = body.get('title')
+    new_recipe = body.get('recipe')
+    drink_needs_edit = Drink.query.get(Drink.id)
 
+    if new_title:
+        drink_needs_edit.title = new_title
+    if new_recipe:
+        drink_needs_edit.recipe = new_recipe
+    drink_needs_edit.update()
+    try:
+        edited_drink = Drink.query.filter(id == drink_id).one_or_none()
+        return jsonify({
+            "success": True,
+            "drinks": [drink.long() for drink in edited_drink]
+        })
+    except AuthError:
+        abort(422)
 
 
 # @TODO implement endpoint
 #     PATCH /drinks/<id>
+#         it should require the 'patch:drinks' permission
 #         where <id> is the existing model id
 #         it should respond with a 404 error if <id> is not found
 #         it should update the corresponding row for <id>
-#         it should require the 'patch:drinks' permission
 #         it should contain the drink.long() data representation
 #     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the updated drink
 #         or appropriate status code indicating reason for failure
