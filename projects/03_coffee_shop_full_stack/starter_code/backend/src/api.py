@@ -79,18 +79,21 @@ def edit_drinks(payload, drink_id):
     body = request.get_json()
     if body is None:
         abort(404)
-
+    if body.get('title') is None:
+        new_title = body.get('')
     new_title = body.get('title')
     new_recipe = body.get('recipe')
-    drink_needs_edit = Drink.query.get(Drink.id)
+    drink_needs_edit = Drink.query.filter(Drink.id == drink_id).one_or_none()
 
     if new_title:
         drink_needs_edit.title = new_title
     if new_recipe:
         drink_needs_edit.recipe = new_recipe
-    drink_needs_edit.update()
+    drink = drink_needs_edit
+    
     try:
-        edited_drink = Drink.query.filter(id == drink_id).one_or_none()
+        drink.update()
+        edited_drink = Drink.query.filter_by(id=id).one_or_none()
         return jsonify({
             "success": True,
             "drinks": [drink.long() for drink in edited_drink]
