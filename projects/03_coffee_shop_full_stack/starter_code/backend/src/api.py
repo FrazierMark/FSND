@@ -77,28 +77,30 @@ def create_new_drank(token):
 def edit_drinks(payload, drink_id):
     "API endpoint to edit drink in database."
     body = request.get_json()
-    if body is None:
-        abort(404)
-    if body.get('title') is None:
-        new_title = body.get('')
-    new_title = body.get('title')
-    new_recipe = body.get('recipe')
-    drink_needs_edit = Drink.query.filter(Drink.id == drink_id).one_or_none()
-
-    if new_title:
-        drink_needs_edit.title = new_title
-    if new_recipe:
-        drink_needs_edit.recipe = new_recipe
-    drink = drink_needs_edit
-    
     try:
-        drink.update()
-        edited_drink = Drink.query.filter_by(id=id).one_or_none()
+        drink_needs_edit = Drink.query.filter_by(id = int(drink_id)).one_or_none()
+        if drink_needs_edit is None:
+            print('Nothing here......')
+            abort(404)
+         # check if title has been updated from frontend, then update in db
+        if body.get('title'):
+            title = body['title']
+            drink_needs_edit.title = title   
+        # check if recipe has been updated from frontend, then update in db
+        if body.get('recipe'):
+            getrecipe = body['recipe']
+            recipe = [getrecipe]
+            recipe = json.dumps(getrecipe)
+            drink_needs_edit.recipe = recipe
+
+        drink_needs_edit.update()
+        edited_drink = Drink.query.filter_by(id = int(drink_id)).one_or_none()
         return jsonify({
             "success": True,
-            "drinks": [drink.long() for drink in edited_drink]
+            "drinks": [edited_drink.long()]
         })
     except AuthError:
+        print(sys.exc_info)
         abort(422)
 
 
