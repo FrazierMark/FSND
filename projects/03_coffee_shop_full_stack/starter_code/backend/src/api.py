@@ -75,25 +75,26 @@ def create_new_drank(token):
 @app.route('/drinks/<int:drink_id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
 def edit_drinks(payload, drink_id):
-    "API endpoint to edit drink in database."
+    "API endpoint to edit drink in database if permission granted."
     body = request.get_json()
     try:
         drink_needs_edit = Drink.query.filter_by(id = int(drink_id)).one_or_none()
         if drink_needs_edit is None:
-            print('Nothing here......')
+            print('Nothing here....')
             abort(404)
-         # check if title has been updated from frontend, then update in db
+         # check if title has been updated from frontend, then update variable
         if body.get('title'):
             title = body['title']
             drink_needs_edit.title = title   
-        # check if recipe has been updated from frontend, then update in db
+        # check if recipe has been updated from frontend, then update variable
         if body.get('recipe'):
             getrecipe = body['recipe']
             recipe = [getrecipe]
             recipe = json.dumps(getrecipe)
             drink_needs_edit.recipe = recipe
-
+        # update db
         drink_needs_edit.update()
+        # retrieve edited object and return to frontend
         edited_drink = Drink.query.filter_by(id = int(drink_id)).one_or_none()
         return jsonify({
             "success": True,
@@ -103,18 +104,25 @@ def edit_drinks(payload, drink_id):
         print(sys.exc_info)
         abort(422)
 
+@app.route('/drinks/<int:drink_id>', methods=['DELETE'])
+@requires_auth('delete:drinks')
+def delete_drink(payload, drink_id):
+    "API endpoint to delete drink in database if permission granted."
+    try:
+        drink_to_delete = Drink.query.filter_by(id = int(drink_id)).one_or_none()
+        if drink_to_delete is None:
+            abort(404)
 
-# @TODO implement endpoint
-#     PATCH /drinks/<id>
-#         it should require the 'patch:drinks' permission
-#         where <id> is the existing model id
-#         it should respond with a 404 error if <id> is not found
-#         it should update the corresponding row for <id>
-#         it should contain the drink.long() data representation
-#     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the updated drink
-#         or appropriate status code indicating reason for failure
+        drink_to_delete.delete()
 
+        return jsonify({
+            "success": True,
+            "delete": drink_id
+        })
 
+    except AuthError:
+        print(sys.exc_info)
+        abort(422)
 
 # @TODO implement endpoint
 #     DELETE /drinks/<id>
