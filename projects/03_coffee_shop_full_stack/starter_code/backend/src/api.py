@@ -19,6 +19,7 @@ db_drop_and_create_all()
 
 @app.route('/drinks', methods=['GET'])
 def retrieve_drinks():
+    # Retrieves all drinks from the db
     try:
         all_drinks = Drink.query.all()
         drinks = [drink.short() for drink in all_drinks]
@@ -34,6 +35,7 @@ def retrieve_drinks():
 @app.route('/drinks-detail', methods=['GET'])
 @requires_auth('get:drinks-detail')
 def retrieve_long_drinks(payload):
+    # Retrieves all drinks w/ recipes from db if permission is granted
     all_drinks = Drink.query.all()
     drinks = [drink.long() for drink in all_drinks]
     if (len(drinks) < 1):
@@ -48,7 +50,7 @@ def retrieve_long_drinks(payload):
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drinks')
 def create_new_drank(token):
-    "If permission granted, will add drink to database."
+    """If permission granted, will add drink to database."""
     body = request.get_json()
     if body is None:
         abort(404)
@@ -123,19 +125,6 @@ def delete_drink(payload, drink_id):
     except AuthError:
         print(sys.exc_info)
         abort(422)
-
-# @TODO implement endpoint
-#     DELETE /drinks/<id>
-#         where <id> is the existing model id
-#         it should respond with a 404 error if <id> is not found
-#         it should delete the corresponding row for <id>
-#         it should require the 'delete:drinks' permission
-#     returns status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
-#         or appropriate status code indicating reason for failure
-
-
-# Error Handling
-# Example error handling for unprocessable entity
 
 
 @app.errorhandler(404)
