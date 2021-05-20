@@ -19,7 +19,7 @@ db_drop_and_create_all()
 
 @app.route('/drinks', methods=['GET'])
 def retrieve_drinks():
-    # Retrieves all drinks from the db
+    # Retrieves all drinks from the db, no permissions required
     try:
         all_drinks = Drink.query.all()
         drinks = [drink.short() for drink in all_drinks]
@@ -143,13 +143,13 @@ def unprocessable(error):
     "message": "Unprocessable"
     }), 422
 
-@app.errorhandler(400)
+@app.errorhandler(403)
 def bad_request(error):
     return jsonify({
     "success": False, 
-    "error": 400,
-    "message": "Bad Request"
-    }), 400
+    "error": 403,
+    "message": "Forbidden"
+    }), 403
 
 @app.errorhandler(500)
 def bad_request(error):
@@ -158,6 +158,14 @@ def bad_request(error):
     "error": 500,
     "message": "Internal Server Error"
     }), 500
+
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({
+    "success": False, 
+    "error": 400,
+    "message": "Bad Request"
+    }), 400
 
 @app.errorhandler(AuthError)
 def authError(error):

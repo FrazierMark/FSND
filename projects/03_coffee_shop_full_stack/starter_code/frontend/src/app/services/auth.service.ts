@@ -69,6 +69,7 @@ export class AuthService {
   }
 
   logout() {
+    window.history.replaceState(null, null, ' ');
     this.token = '';
     this.payload = null;
     this.set_jwt();
