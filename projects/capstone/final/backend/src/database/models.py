@@ -16,26 +16,26 @@ def setup_db(app):
     db.app = app
     db.init_app(app)
 
-# def db_drop_and_create_all():
-#     db.drop_all()
-#     db.create_all()
-#     # add one demo row which is helping in POSTMAN test
-#     drink = Drink(
-#         title='water',
-#         recipe='[{"name": "water", "color": "blue", "parts": 1}]'
-#     )
-#     drink.insert()
+def db_drop_and_create_all():
+    db.drop_all()
+    db.create_all()
+    # add one demo row which is helping in POSTMAN test
+    drink = Drink(
+        title='water',
+        recipe='[{"name": "water", "color": "blue", "parts": 1}]'
+    )
+    drink.insert()
 
 
-# class Drink(db.Model):
-#     # Drink, persistent drink entity, extends the base SQLAlchemy Model
-#     # Autoincrementing, unique primary key
-#     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
-#     # String Title
-#     title = Column(String(80), unique=True)
-#     # the ingredients blob - this stores a lazy json blob
-#     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-#     recipe = Column(String(180), nullable=False)
+class Drink(db.Model):
+    # Drink, persistent drink entity, extends the base SQLAlchemy Model
+    # Autoincrementing, unique primary key
+    id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    # String Title
+    title = Column(String(80), unique=True)
+    # the ingredients blob - this stores a lazy json blob
+    # the required datatype is [{'color': string, 'name':string, 'parts':number}]
+    recipe = Column(String(180), nullable=False)
 
 
 #     def short(self):
