@@ -1,6 +1,9 @@
 import React, { useState, useEffect, Component } from 'react';
 import Header from "./components/Header";
 import './App.scss'
+import { Canvas, useFrame } from '@react-three/fiber';
+import CameraModel from './components/CameraModel';
+
 
 import logo from './logo.svg';
 import {
@@ -9,28 +12,26 @@ import {
   Switch
 } from 'react-router-dom'
 
-function App() {
-  const [currentTime, setCurrentTime] = useState(0);
-
-  useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    });
-  }, []);
- 
- 
- 
+const App = () => {
   return (
-    <div className="App">
-      <Header path />
-      <Router>
-        <Switch>
-          {/* <Route path="/" exact component={QuestionView} /> */}
-          
-        </Switch>
-      </Router>
-    </div>
-  );
+    <>
+    <Header />
+    <Canvas
+    colorManagement
+    shadowMap
+    camera={{ position: [10, 0, 80], fov: 50 }}>
+    
+      
+    <ambientLight intensity={0.5} />
+    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+    <pointLight position={[-10, -10, -10]} />
+
+    <CameraModel position={[-1.2, 0, 0]} />
+    <CameraModel position={[1.2, 0, 0]} />
+    
+  </Canvas>
+  </>
+  )
 }
 
 export default App;
