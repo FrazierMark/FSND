@@ -7,15 +7,19 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import CamerasView from './components/CamerasView';
 
 
-const App = () => {
+export default function App() {
   return (
     <>
-    <Header />
-    <LandingPage/>
-    </>
-  )
-}
+    <Header/>
+    <Switch>
+      
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/CamerasView" component={CamerasView} />
+      </Switch>
 
-export default App;
+    </>
+  );
+}

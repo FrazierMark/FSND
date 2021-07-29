@@ -12,16 +12,9 @@ import {
 } from 'react-router-dom'
 
 
-const LandingPage = () => {
+const CamerasView = () => {
   return (
-    <>
-    <Header />
-    <div className="App">
-      <h1>
-        <GlitchText>Welcome</GlitchText>
-      </h1>
-    </div>
-
+    
     <Canvas
     colorManagement
     shadowMap
@@ -37,8 +30,8 @@ const LandingPage = () => {
     <Terrain/>
 
   </Canvas>
-  </>
+ 
   )
 }
 
-export default LandingPage;
+export default CamerasView;
