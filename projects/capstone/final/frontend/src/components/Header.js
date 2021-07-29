@@ -23,10 +23,13 @@ const Header = () => {
         <nav>
         <ul>
             <li>
+            <NavLink to="/"> Home </NavLink> 
+            </li>
+            <li>
               <NavLink to="/CameraPage"> Cameras </NavLink>
             </li>
             <li>
-            <NavLink to="/"> Home </NavLink> 
+              <NavLink to="/CameraPage"> Lenses </NavLink>
             </li>
             <li>
               <a href='/'> Film </a>
