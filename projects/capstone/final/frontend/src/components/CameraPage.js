@@ -25,6 +25,7 @@ const CameraPage = () => {
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
     <pointLight position={[-10, -10, -10]} />
 
+    <CameraModel position={[-4.2, 0, 40]} />
     <CameraModel position={[-2.2, 0, 40]} />
 
     <Terrain/>

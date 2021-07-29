@@ -9,7 +9,7 @@ function Terrain() {
     const terrain = useRef();
   
     useFrame(() => {
-    //   terrain.current.position.z += 0.4;
+      terrain.current.position.z += 0.4;
     });
     // Returns a mesh at GROUND_HEIGHT below the player. Scaled to 5000, 5000 with 128 segments.
     // X Rotation is -Math.PI / 2 which is 90 degrees in radians.

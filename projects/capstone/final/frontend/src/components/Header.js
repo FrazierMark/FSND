@@ -1,13 +1,9 @@
 import React from "react";
 import GlitchText from "./GlitchText";
-import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom'
+
+
+
 
 const Header = () => {
   
@@ -17,7 +13,7 @@ const Header = () => {
         <div className='logo'>Grainy Days Camera Store</div>
         <div className="Glitch">
       <h1>
-        <GlitchText>Welcome</GlitchText>
+        <GlitchText>welcome</GlitchText>
       </h1>
       </div>
         <nav>
@@ -29,16 +25,16 @@ const Header = () => {
               <NavLink to="/CameraPage"> Cameras </NavLink>
             </li>
             <li>
-              <NavLink to="/CameraPage"> Lenses </NavLink>
+              <NavLink to="/LensPage"> Lenses </NavLink>
             </li>
             <li>
-              <a href='/'> Film </a>
+            <NavLink to="/FilmPage" className='btn'> Film </NavLink>
             </li>
             <li className='btn'>
-              <a href='/' > Cart </a>
+              <a href='/CartPage' > Cart </a>
             </li>
             <li className='btn'>
-              <a href='/' > Checkout </a>
+              <a href='/CheckoutPage' > Checkout </a>
             </li>
           </ul>
         </nav>

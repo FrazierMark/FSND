@@ -1,20 +1,13 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-
-import Header from "./Header";
 import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
 import Terrain from './Terrain';
 
 
-const LandingPage = () => {
+const FilmPage = () => {
   return (
+    
     <Canvas
     colorManagement
     shadowMap
@@ -25,16 +18,17 @@ const LandingPage = () => {
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
     <pointLight position={[-10, -10, -10]} />
 
-    
-    <FilmModel position={[-4.2, 0, 40]} />
-    
+    <CameraModel position={[-4.2, 0, 40]} />
+    <CameraModel position={[-2.2, 0, 40]} />
+    <CameraModel position={[-0.2, 0, 40]} />
+    <CameraModel position={[2.2, 0, 40]} />
 
-    
     <Terrain/>
+
   </Canvas>
-  
-  
+ 
   )
 }
 
-export default LandingPage;
+export default FilmPage
+;
