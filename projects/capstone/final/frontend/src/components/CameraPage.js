@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom'
 
 
-const CamerasView = () => {
+const CameraPage = () => {
   return (
     
     <Canvas
@@ -34,4 +34,5 @@ const CamerasView = () => {
   )
 }
 
-export default CamerasView;
+export default CameraPage
+;

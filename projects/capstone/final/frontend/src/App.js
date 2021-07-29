@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Header from "./components/Header";
 import './App.scss'
 import LandingPage from './components/LandingPage';
+import Terrain from './components/Terrain';
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
-import CamerasView from './components/CamerasView';
+import CameraPage from './components/CameraPage';
 
 
 export default function App() {
@@ -15,9 +16,8 @@ export default function App() {
     <>
     <Header/>
     <Switch>
-      
         <Route path="/" exact component={LandingPage} />
-        <Route path="/CamerasView" component={CamerasView} />
+        <Route path="/CameraPage" component={CameraPage} />
       </Switch>
 
     </>

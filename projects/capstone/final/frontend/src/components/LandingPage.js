@@ -4,12 +4,13 @@ import Header from "./Header";
 import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
-import Terrain from './Terrain';
+
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
+import Terrain from './Terrain';
 
 
 const LandingPage = () => {
@@ -28,8 +29,8 @@ const LandingPage = () => {
     <FilmModel position={[-0.2, 0, 40]} />
     <LensModel position={[2.2, 0, 40]} />
 
+    
     <Terrain/>
-
   </Canvas>
   
   
