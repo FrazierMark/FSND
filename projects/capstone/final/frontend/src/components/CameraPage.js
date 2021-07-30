@@ -13,7 +13,7 @@ const text = "Cameras" ;
 const CameraPage = () => {
   const [rotation, setRotation] = useState([0, 0, 0, 0]);
   const [opts, setOpts] = useState({
-    font: "Trocchi",
+    font: "BlinkMacSystemFont",
     fontSize: 3,
     color: "#fff",
     maxWidth: 100,

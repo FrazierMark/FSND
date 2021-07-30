@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Camera } from 'three'
 import {OrbitControls, Html } from '@react-three/drei';
+import GlitchText from "./GlitchText";
 
 function CameraModel(props) {
   // This reference will give us direct access to the mesh
@@ -23,11 +24,15 @@ function CameraModel(props) {
       onPointerOut={(e) => setHover(false)}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      <Html distanceFactor={10}>
-        <div class="content">
+      <Html distanceFactor={5}>
+        <h1>
+        <GlitchText>Price</GlitchText>
+      </h1>
+        
+        {/* <div class="content">
           hello <br />
           world
-        </div>
+        </div> */}
       </Html>
     
     </mesh>
