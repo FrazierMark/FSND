@@ -36,6 +36,9 @@ const Header = () => {
             <li className='btn'>
               <a href='/CheckoutPage' > Checkout </a>
             </li>
+            <li className='btn'>
+              <a href='/route to auth0' > Sign In </a>
+            </li>
           </ul>
         </nav>
       </div>
