@@ -25,9 +25,8 @@ export default function App() {
         <Route path="/FilmPage" component={FilmPage} />
         <Route path="/CartPage" component={CartPage} />
         <Route path="/CheckoutPage" component={CheckoutPage} />
-
       </Switch>
-
+    
     </>
   );
 }

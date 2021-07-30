@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Camera } from 'three'
+import {OrbitControls, Html } from '@react-three/drei';
 
 function CameraModel(props) {
   // This reference will give us direct access to the mesh
@@ -22,6 +23,13 @@ function CameraModel(props) {
       onPointerOut={(e) => setHover(false)}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      <Html distanceFactor={10}>
+        <div class="content">
+          hello <br />
+          world
+        </div>
+      </Html>
+    
     </mesh>
   )
 }

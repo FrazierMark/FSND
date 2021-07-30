@@ -7,7 +7,7 @@ import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import { Text } from "troika-three-text";
 import fonts from "./fonts";
-// import {OrbitControls } from '@react-three/drei';
+import {OrbitControls } from '@react-three/drei';
 
 
 extend({ Text });
