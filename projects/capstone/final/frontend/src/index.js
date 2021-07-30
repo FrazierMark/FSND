@@ -4,12 +4,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from "history";
+import { Auth0Provider } from "@auth0/auth0-react";
+import LandingPage from './components/LandingPage';
 
 const rootElement = document.getElementById("root");
 const customHistory = createBrowserHistory({
   // basename: config.urlBasename || ""
 });
 ReactDOM.render(
+  <Auth0Provider
+    domain="m-mark-frazier.us.auth0.com"
+    clientId="DS68qv0tEXGHUqxizctdrlVJZRGEISjN"
+    redirectUri='https://localhost:3000/'
+  >
+  
   <Router history={customHistory}>
     <Route
       component={({ history }) => {
@@ -17,7 +25,8 @@ ReactDOM.render(
         return <App />;
       }}
     />
-  </Router>,
+  </Router>
+  </Auth0Provider>,
   rootElement
 );
 

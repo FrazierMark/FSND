@@ -8,7 +8,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'm-mark-frazier.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'coffee'
+API_AUDIENCE = 'grainy'
 
 ## AuthError Exception
 '''

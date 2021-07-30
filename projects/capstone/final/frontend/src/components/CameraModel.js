@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Camera } from 'three'
+import { useFrame } from '@react-three/fiber'
 import {OrbitControls, Html } from '@react-three/drei';
 import GlitchText from "./GlitchText";
 
