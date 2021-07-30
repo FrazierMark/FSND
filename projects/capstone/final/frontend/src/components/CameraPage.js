@@ -7,18 +7,15 @@ import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import {OrbitControls, Html } from '@react-three/drei';
 import fonts from "./fonts";
-
 const text = "Cameras" ;
-
-
 
 
 const CameraPage = () => {
   const [rotation, setRotation] = useState([0, 0, 0, 0]);
   const [opts, setOpts] = useState({
-    font: "Segoe UI",
-    fontSize: 5,
-    color: "#99ccff",
+    font: "Trocchi",
+    fontSize: 3,
+    color: "#fff",
     maxWidth: 100,
     lineHeight: 1,
     letterSpacing: 0,
@@ -37,7 +34,7 @@ const CameraPage = () => {
      
      <text
      position-x={0}
-     position-y={10}
+     position-y={5}
       position-z={-20}
       rotation={rotation}
       {...opts}
