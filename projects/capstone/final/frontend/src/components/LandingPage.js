@@ -7,9 +7,10 @@ import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import { Text } from "troika-three-text";
 import fonts from "./fonts";
+// import {OrbitControls } from '@react-three/drei';
 
 
-// extend({ Text });
+extend({ Text });
 
 const text =
   "Lorem ipsum dolor sit" ;
@@ -28,13 +29,15 @@ const LandingPage = () => {
     textAlign: "justify",
     materialType: "MeshPhongMaterial"
   });
-  
+
   return (
     <Canvas
     colorManagement
     shadowMap
     camera={{ position: [0, 0, 60], fov: 50 }}>
     
+    <fog attach="fog" args={['#ff6161', 10, 500]} />
+    <OrbitControls />
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
