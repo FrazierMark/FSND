@@ -2932,6 +2932,13 @@
     "hoopy" "^0.1.4"
     "tryer" "^1.0.1"
 
+"bidi-js@^1.0.2":
+  "integrity" "sha512-rzSy/k7WdX5zOyeHHCOixGXbCHkyogkxPKL2r8QtzHmVQDiWCXUWa18bLdMWT9CYMLOYTjWpTHawuev2ouYJVw=="
+  "resolved" "https://registry.npmjs.org/bidi-js/-/bidi-js-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "require-from-string" "^2.0.2"
+
 "big.js@^5.2.2":
   "integrity" "sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ=="
   "resolved" "https://registry.npmjs.org/big.js/-/big.js-5.2.2.tgz"
@@ -11465,7 +11472,7 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
-"three@>=0.126":
+"three@>=0.103.0", "three@>=0.126":
   "integrity" "sha512-OSPPKcGvFSiGkG3jFrwwC76PBV/ZSrGxpBbg28bW8s9GU8r/y2spNGtEXHEb/CVqo0Ctf5Lx2rVaxQZB6OasaA=="
   "resolved" "https://registry.npmjs.org/three/-/three-0.130.1.tgz"
   "version" "0.130.1"
@@ -11590,6 +11597,25 @@
   "integrity" "sha1-WIeWa7WCpFA6QetST301ARgVphM="
   "resolved" "https://registry.npmjs.org/trim-newlines/-/trim-newlines-1.0.0.tgz"
   "version" "1.0.0"
+
+"troika-three-text@^0.42.0":
+  "integrity" "sha512-bI9tCNwYDxcAi04NN0g0exOCrvNur9YfA2adR3AZgKHq+FIzxFIOem9LJ8kVwvo4smR+/hAv8N8pcRvXTek21w=="
+  "resolved" "https://registry.npmjs.org/troika-three-text/-/troika-three-text-0.42.0.tgz"
+  "version" "0.42.0"
+  dependencies:
+    "bidi-js" "^1.0.2"
+    "troika-three-utils" "^0.42.0"
+    "troika-worker-utils" "^0.42.0"
+
+"troika-three-utils@^0.42.0":
+  "integrity" "sha512-IimGItKTN4PxeXEL4uWSF20kHZU1J1jXHD0gYQflX3QOFSven7HBG7nEqHcWavbZkB3AeRfR6NB3294GIt3uGA=="
+  "resolved" "https://registry.npmjs.org/troika-three-utils/-/troika-three-utils-0.42.0.tgz"
+  "version" "0.42.0"
+
+"troika-worker-utils@^0.42.0":
+  "integrity" "sha512-eTfX/vBNC7zMD+sSIDzbQAVwbhotbCz71IimZe0rFqPvAXkvLpKfH2YcWd1Ho42PII1O9Gl4QxxTV8ulRmDilQ=="
+  "resolved" "https://registry.npmjs.org/troika-worker-utils/-/troika-worker-utils-0.42.0.tgz"
+  "version" "0.42.0"
 
 "true-case-path@^1.0.2":
   "integrity" "sha512-m6s2OdQe5wgpFMC+pAJ+q9djG82O2jcHPOI6RNg1yy9rCYR+WD6Nbpl32fDpfC56nirdRy+opFa/Vk7HYhqaew=="

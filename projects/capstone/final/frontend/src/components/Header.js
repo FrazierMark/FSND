@@ -12,9 +12,9 @@ const Header = () => {
       <div className='header-inner'>
         <div className='logo'>Grainy Days Camera Store</div>
         <div className="Glitch">
-      <h1>
+      {/* <h1>
         <GlitchText>welcome</GlitchText>
-      </h1>
+      </h1> */}
       </div>
         <nav>
         <ul>
