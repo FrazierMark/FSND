@@ -13,7 +13,7 @@ import {OrbitControls } from '@react-three/drei';
 extend({ Text });
 
 const text =
-  "Lorem ipsum dolor sit" ;
+  "Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit" ;
   
 
 
@@ -21,7 +21,7 @@ const LandingPage = () => {
   const [rotation, setRotation] = useState([0, 0, 0, 0]);
   const [opts, setOpts] = useState({
     font: "Philosopher",
-    fontSize: 12,
+    fontSize: 5,
     color: "#99ccff",
     maxWidth: 300,
     lineHeight: 1,
@@ -34,7 +34,7 @@ const LandingPage = () => {
     <Canvas
     colorManagement
     shadowMap
-    camera={{ position: [0, 0, 60], fov: 50 }}>
+    camera={{ position: [0, 0, 50], fov: 50 }}>
     
     <fog attach="fog" args={['#ff6161', 10, 500]} />
     <OrbitControls />
@@ -44,13 +44,13 @@ const LandingPage = () => {
     <pointLight position={[-10, -10, -10]} />
 
     
-    <FilmModel position={[-4.2, 0, 40]} />
+    <FilmModel position={[-4.2, 0, 20]} />
 
 
         pixelRatio={window.devicePixelRatio}
     
         <text
-          position-z={-180}
+          position-z={30}
           rotation={rotation}
           {...opts}
           text={text}

@@ -23,7 +23,7 @@ function CameraModel(props) {
       onPointerOut={(e) => setHover(false)}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      <Html distanceFactor={5}>
+      <Html distanceFactor={10}>
         <h1>
         <GlitchText>Price</GlitchText>
       </h1>
