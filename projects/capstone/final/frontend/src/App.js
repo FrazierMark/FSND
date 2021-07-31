@@ -12,6 +12,7 @@ import LandingPage from './components/LandingPage';
 import FilmPage from './components/FilmPage'
 import CartPage from './components/CartPage';
 import CheckoutPage from './components/CheckoutPage';
+import CreateProduct from './components/CreateProduct';
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/FilmPage" component={FilmPage} />
         <Route path="/CartPage" component={CartPage} />
         <Route path="/CheckoutPage" component={CheckoutPage} />
+        <Route path="/CreateProduct" component={CreateProduct} />
       </Switch>
     
     </>

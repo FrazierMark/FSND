@@ -7,15 +7,15 @@ import {OrbitControls} from '@react-three/drei';
 import fonts from "./fonts";
 import BlockText from './BlockText';
 
-const text = "Cameras" ;
 
+const text = "Cameras" ;
 
 
 function Jumbo() {
   const ref = useRef()
   return (
     <group ref={ref}>
-      <BlockText hAlign="right" position={[-22, 5, -30]} children="CAMERA" />
+      <BlockText hAlign="right" position={[-22, 5, -30]} children="Create Product" />
       {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
       {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
@@ -23,7 +23,7 @@ function Jumbo() {
 }
 
 
-const CameraPage = () => {
+const CreateProduct = () => {
   const [rotation, setRotation] = useState([0, 0, 0, 0]);
   const [opts, setOpts] = useState({
     font: "BlinkMacSystemFont",
@@ -87,5 +87,5 @@ const CameraPage = () => {
   )
 }
 
-export default CameraPage
+export default CreateProduct
 ;
