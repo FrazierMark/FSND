@@ -8,6 +8,7 @@ import Terrain from './Terrain';
 import { Text } from "troika-three-text";
 import fonts from "./fonts";
 import {OrbitControls } from '@react-three/drei';
+import RefactoredForm from "./RefactoredForm";
 
 
 extend({ Text });
@@ -45,8 +46,7 @@ const LandingPage = () => {
 
     
     <FilmModel position={[-4.2, 0, 20]} />
-
-
+    
         pixelRatio={window.devicePixelRatio}
     
         <text
@@ -62,6 +62,7 @@ const LandingPage = () => {
             <meshPhongMaterial attach="material" color={opts.color} />
           ) : null}
         </text>
+
 
         <pointLight position={[-100, 0, -160]} />
         <pointLight position={[0, 0, -170]} />

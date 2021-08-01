@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three'
-import React, { useRef, useEffect, useMemo, useLayoutEffect, useState, Suspense } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';

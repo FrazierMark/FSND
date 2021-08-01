@@ -5,11 +5,10 @@ import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
 import Terrain from './Terrain';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
+import { Particles } from './Particles';
+import {OrbitControls} from '@react-three/drei';
+import { Html } from "@react-three/drei";
+import { Content } from "./Content";
 
 
 const CartPage = () => {
@@ -34,7 +33,11 @@ const CartPage = () => {
 
 
     <Terrain/>
-
+    <Particles/>
+    <OrbitControls/>
+    <Html >
+          <Content />
+        </Html>
   </Canvas>
  
   )
