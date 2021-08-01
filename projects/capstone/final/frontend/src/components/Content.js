@@ -37,7 +37,7 @@ export const Content = () => {
                         <label>I agree to the Terms and Conditions</label>
                         </div></div>
                         <div class="ui success message">
-    <div class="content">
+    <div class="content2">
         <div class="header">Form Completed
         </div>
         <p>You&#x27;re all signed up for the newsletter</p>
