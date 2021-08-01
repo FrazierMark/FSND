@@ -9,6 +9,8 @@ import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
 import { Html } from "@react-three/drei";
 import { Content } from "./Content";
+import FormSuccess from "./Testform"
+
 
 
 const CartPage = () => {
@@ -38,6 +40,10 @@ const CartPage = () => {
     <Html >
           <Content />
         </Html>
+    <Html>
+      <FormSuccess/>
+    </Html>
+
   </Canvas>
  
   )

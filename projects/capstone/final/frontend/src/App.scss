@@ -2,6 +2,15 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #21282a;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+}
+
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -11,16 +20,21 @@ body {
   background: radial-gradient(at 50% 60%, #3fc5d3 0%, #272730 40%, #171720 80%, #070710 100%);
   transition: 0.4s ease-in-out;
 }
-
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
+
+// html,
+// body,
+// #root {
+//   width: 100%;
+//   height: 100%;
+//   margin: 0;
+//   padding: 0;
+//   overflow: hidden;
+// }
 
 .scrollArea {
   position: absolute;
@@ -120,17 +134,6 @@ header {
   z-index: 1000;
 }
 
-.loading-bar-container {
-  width: 100px;
-  height: 32px;
-  background: #272727;
-}
-
-.loading-bar {
-  height: 32px;
-  background: #4657f1;
-}
-
 .content {
   padding-top: 10px;
   transform: translate3d(50%, 0, 0);
@@ -139,4 +142,29 @@ header {
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
+}
+
+.container2 {
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.content2 {
+  display: flex;
+  gap: 5em;
+  width: 100%;
+  padding-top: 3em;
+  position: relative;
+}
+
+.content2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  transform: scaleX(1);
 }

@@ -16,8 +16,8 @@ export const Content = () => {
   });
 
   return (
-    <a.div className="container" style={containerStyles}>
-      <div className="content">
+    <a.div className="container2" style={containerStyles}>
+      <div className="content2">
         <a.h1 style={textStyles}>
           See you on the
           <br /> flip side
@@ -36,6 +36,13 @@ export const Content = () => {
                         <input type="checkbox" class="hidden" readonly="" tabindex="0"/>
                         <label>I agree to the Terms and Conditions</label>
                         </div></div>
+                        <div class="ui success message">
+    <div class="content">
+        <div class="header">Form Completed
+        </div>
+        <p>You&#x27;re all signed up for the newsletter</p>
+        </div></div>
+        <button class="ui button">Submit</button>
                         <button type="submit" class="ui button">Submit</button></form>
       </div>
     </a.div>
