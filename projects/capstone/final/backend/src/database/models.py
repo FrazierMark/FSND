@@ -35,7 +35,7 @@ class Camera(db.Model):
     sensor = Column(String(180), nullable=False)
     mount = Column(String(180), nullable=False)
 
-    def long(self):
+    def format(self):
         return{
             'id': self.id,
             'brand': self.brand,

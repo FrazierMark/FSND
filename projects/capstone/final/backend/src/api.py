@@ -35,7 +35,7 @@ def get_cameras():
     # Retrieves all cameras from the db, no permissions required
     try:
         all_cameras = Camera.query.all()
-        cameras = [camera.long() for camera in all_cameras]
+        cameras = [camera.format() for camera in all_cameras]
         print(all_cameras)
         if all_cameras is None:
             abort(404)
@@ -68,23 +68,27 @@ def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
     body = request.get_json()
     if body is None:
         abort(404)
-    print("Hello World TEST")
+
     print(body)
 
     new_brand = body.get('brand', None)
     new_model = body.get('model', None)
     new_sensor = body.get('sensor', None)
     new_mount = body.get('mount', None)
+    
     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
     new_camera = Camera(brand=new_brand, model=new_model, sensor=new_sensor, mount=new_mount)
-
+    
     try:
         new_camera.insert()
         new_camera = Camera.query.filter_by(id=new_camera.id)
+        print(new_camera)
+
+        added_camera = [camera.format() for camera in new_camera]
 
         return jsonify({
             "success": True,
-            "camera": new_camera,
+            "camera": added_camera,
         })
     except AuthError:
         abort(422)
