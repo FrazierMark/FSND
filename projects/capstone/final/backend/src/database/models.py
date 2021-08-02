@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import Column, String, Integer
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, model
 import json
 
 database_filename = "database.db"
@@ -19,23 +19,20 @@ def setup_db(app):
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
-    # add one demo row which is helping in POSTMAN test
-    drink = Drink(
-        title='water',
-        recipe='[{"name": "water", "color": "blue", "parts": 1}]'
-    )
-    drink.insert()
+   
 
 
-class Drink(db.Model):
+class Camera(db.Model):
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     # String Title
-    title = Column(String(80), unique=True)
+    brand = Column(String(80), unique=True)
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    recipe = Column(String(180), nullable=False)
+    model = Column(String(180), nullable=True)
+    sensor = Column(String(180), nullable=True)
+    mount = Column(String(180), nullable=True)
 
 
 #     def short(self):

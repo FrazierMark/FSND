@@ -40,9 +40,9 @@ const CartPage = () => {
     <Html >
           <Content />
         </Html>
-    <Html>
+    {/* <Html>
       <FormSuccess/>
-    </Html>
+    </Html> */}
 
   </Canvas>
  

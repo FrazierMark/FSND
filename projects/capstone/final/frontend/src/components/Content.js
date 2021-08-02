@@ -42,8 +42,7 @@ export const Content = () => {
         </div>
         <p>You&#x27;re all signed up for the newsletter</p>
         </div></div>
-        <button class="ui button">Submit</button>
-                        <button type="submit" class="ui button">Submit</button></form>
+        <button class="ui button">Submit</button></form>
       </div>
     </a.div>
   );
