@@ -8,6 +8,9 @@ import fonts from "./fonts";
 import BlockText from './BlockText';
 import { Text } from "troika-three-text";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Html } from "@react-three/drei";
+import CreateCamera from "./CreateProductForm"
+
 extend({ Text });
 
 const Create = () => (
@@ -88,7 +91,9 @@ const CreateProduct = () => {
       ) : null}
       </text>
 
-
+      <Html>
+      <CreateCamera/>
+    </Html>
 
 
 

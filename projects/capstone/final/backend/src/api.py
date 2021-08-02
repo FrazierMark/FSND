@@ -17,38 +17,34 @@ setup_db(app)
 cors = CORS(app)
 
 
-db_drop_and_create_all()
+# db_drop_and_create_all()
 
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
 
 
-@app.route('/CameraPage')
-def get_cameras():
-    #Query to Camera Table 
-    cameras = Camera.query.all()
 
-
-
-# @app.route("/", defaults={'path':''})
+# @app.route("/CameraPage", defaults={'path':''})
 # def serve(path):
 #     return send_from_directory(app.static_folder,'index.html')
 
-# @app.route('/drinks', methods=['GET'])
-# def retrieve_drinks():
-#     # Retrieves all drinks from the db, no permissions required
-#     try:
-#         all_drinks = Drink.query.all()
-#         drinks = [drink.short() for drink in all_drinks]
-#         if all_drinks is None:
-#             abort(404)
-#         return jsonify({
-#         "success": True,
-#         "drinks": drinks,
-#     })
-#     except AuthError:
-#         abort(422)
+
+@app.route('/CameraPage', methods=['GET'])
+def get_cameras():
+    # Retrieves all cameras from the db, no permissions required
+    try:
+        all_cameras = Camera.query.all()
+        cameras = [camera.long() for camera in all_cameras]
+        print(all_cameras)
+        if all_cameras is None:
+            abort(404)
+        return jsonify({
+        "success": True,
+        "cameras": cameras,
+    })
+    except AuthError:
+        abort(422)
 
 # @app.route('/drinks-detail', methods=['GET'])
 # @requires_auth('get:drinks-detail')
@@ -65,16 +61,47 @@ def get_cameras():
 #     })
 
 
-# @app.route('/drinks', methods=['POST'])
-# @requires_auth('post:drinks')
-# def create_new_drank(token):
+@app.route('/CreateProduct', methods=['POST'])
+# @requires_auth('post:cameras')
+def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
+    """If permission granted, will add drink to database."""
+    body = request.get_json()
+    if body is None:
+        abort(404)
+    print("Hello World TEST")
+    print(body)
+
+    new_brand = body.get('brand', None)
+    new_model = body.get('model', None)
+    new_sensor = body.get('sensor', None)
+    new_mount = body.get('mount', None)
+    # json.dumps() method that converts dictionary objects of Python into JSON string data format.
+    new_camera = Camera(brand=new_brand, model=new_model, sensor=new_sensor, mount=new_mount)
+
+    try:
+        new_camera.insert()
+        new_camera = Camera.query.filter_by(id=new_camera.id)
+
+        return jsonify({
+            "success": True,
+            "camera": new_camera,
+        })
+    except AuthError:
+        abort(422)
+    
+
+# @app.route('/CreateProduct', methods=['POST'])
+# @requires_auth('post:cameras')
+# def create_new_camera(token):
 #     """If permission granted, will add drink to database."""
 #     body = request.get_json()
 #     if body is None:
 #         abort(404)
 
-#     new_title = body.get('title', None)
-#     new_recipe = body.get('recipe', None)
+#     new_brand = body.get('brand', None)
+#     new_model = body.get('model', None)
+#     new_model = body.get('model', None)
+    
 #     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
 #     new_drank = Drink(title=new_title, recipe=json.dumps(new_recipe))
 

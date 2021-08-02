@@ -6,6 +6,8 @@ import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';
 import fonts from "./fonts";
 import BlockText from './BlockText';
+import { Html } from "@react-three/drei";
+import Cameras from "./GetCameras"
 
 const text = "Cameras" ;
 
@@ -78,7 +80,9 @@ const CameraPage = () => {
     <OrbitControls />
     <Terrain/>
     
-    
+    <Html>
+      <Cameras/>
+    </Html>
 
     
   </Canvas>
