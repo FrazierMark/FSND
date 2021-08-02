@@ -168,3 +168,45 @@ header {
   border-bottom: 1px solid #fff;
   transform: scaleX(1);
 }
+
+footer {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  padding: 50px;
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    nav {
+      ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        li {
+          list-style: none;
+          margin: 0 20px;
+          &.btn {
+            a {
+              color: #fff;
+              font-weight: 600;
+              background: #3fb7d2;
+              padding: 15px 28px;
+              border-radius: 10px;
+            }
+          }
+          a {
+            text-transform: capitalize;
+            text-decoration: none;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

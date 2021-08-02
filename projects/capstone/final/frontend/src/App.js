@@ -13,12 +13,14 @@ import FilmPage from './components/FilmPage'
 import CartPage from './components/CartPage';
 import CheckoutPage from './components/CheckoutPage';
 import CreateProduct from './components/CreateProduct';
+import Footer from './components/Footer'
 
 
 export default function App() {
   return (
     <>
     <Header/>
+    
     <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/CameraPage" component={CameraPage} />
@@ -28,7 +30,7 @@ export default function App() {
         <Route path="/CheckoutPage" component={CheckoutPage} />
         <Route path="/CreateProduct" component={CreateProduct} />
       </Switch>
-    
+      <Footer/>
     </>
   );
 }

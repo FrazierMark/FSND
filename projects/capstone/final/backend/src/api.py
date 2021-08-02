@@ -8,7 +8,7 @@ import sys
 from flask_cors import CORS
 import time
 
-from .database.models import setup_db
+from .database.models import db_drop_and_create_all, setup_db, Camera
 from .auth.auth import AuthError, requires_auth
 
 
@@ -17,11 +17,18 @@ setup_db(app)
 cors = CORS(app)
 
 
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
+
+
+@app.route('/CameraPage')
+def get_cameras():
+    #Query to Camera Table 
+    cameras = Camera.query.all()
+
 
 
 # @app.route("/", defaults={'path':''})
