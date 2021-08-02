@@ -36,7 +36,7 @@ def get_cameras():
     try:
         all_cameras = Camera.query.all()
         cameras = [camera.format() for camera in all_cameras]
-        print(all_cameras)
+        
         if all_cameras is None:
             abort(404)
         return jsonify({
@@ -64,7 +64,7 @@ def get_cameras():
 @app.route('/CreateProduct', methods=['POST'])
 # @requires_auth('post:cameras')
 def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
-    """If permission granted, will add drink to database."""
+    """If permission granted, will add Camera will be added to DB."""
     body = request.get_json()
     if body is None:
         abort(404)
@@ -81,8 +81,9 @@ def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
     
     try:
         new_camera.insert()
-        new_camera = Camera.query.filter_by(id=new_camera.id)
-        print(new_camera)
+        print(new_camera.id)
+        new_camera = Camera.query.filter_by(id= int(new_camera.id))
+        
 
         added_camera = [camera.format() for camera in new_camera]
 

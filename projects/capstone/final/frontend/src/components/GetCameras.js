@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable from './DataTable'
+import { CompressedPixelFormat } from 'three';
 
 export default class Cameras extends Component {
 
@@ -11,13 +12,15 @@ export default class Cameras extends Component {
 
     componentDidMount() {
         axios.get('http://127.0.0.1:5000/CameraPage')
-            .then(res => {
-                this.setState({ usersCollection: res.data });
+        .then(res => {
+            this.setState({ usersCollection: res.data });
             })
+            
             .catch(function (error) {
                 console.log(error);
             })
     }
+
 
     dataTable() {
         return this.state.camerasCollection.map((data, i) => {
@@ -40,6 +43,7 @@ export default class Cameras extends Component {
                             </tr>
                         </thead>
                         <tbody>
+                            
                             {this.dataTable()}
                         </tbody>
                     </table>
