@@ -21,6 +21,7 @@ def db_drop_and_create_all():
     db.create_all()
    
 
+#Camera DB Model
 
 class Camera(db.Model):
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
@@ -30,68 +31,33 @@ class Camera(db.Model):
     brand = Column(String(80), unique=True)
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    model = Column(String(180), nullable=True)
-    sensor = Column(String(180), nullable=True)
-    mount = Column(String(180), nullable=True)
+    model = Column(String(180), nullable=False)
+    sensor = Column(String(180), nullable=False)
+    mount = Column(String(180), nullable=False)
 
+    def __init__(self, brand, model, sensor, mount):
+        self.brand = brand
+        self.model = model
+        self.sensor = sensor
+        self.mount = mount
+    
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
-#     def short(self):
-#         # short form representation of the Drink model
-#         print(json.loads(self.recipe))
-#         short_recipe = [{'color': r['color'], 'parts': r['parts']} for r in json.loads(self.recipe)]
-#         return {
-#             'id': self.id,
-#             'title': self.title,
-#             'recipe': short_recipe
-#         }
-
-#     def long(self):
-#         # long form representation of the Drink model
-#         return {
-#             'id': self.id,
-#             'title': self.title,
-#             'recipe': json.loads(self.recipe)
-#         }
-
-#     '''
-#     insert()
-#         inserts a new model into a database
-#         the model must have a unique name
-#         the model must have a unique id or null id
-#         EXAMPLE
-#             drink = Drink(title=req_title, recipe=req_recipe)
-#             drink.insert()
-#     '''
-
-#     def insert(self):
-#         db.session.add(self)
-#         db.session.commit()
-
-#     '''
-#     delete()
-#         deletes a new model into a database
-#         the model must exist in the database
-#         EXAMPLE
-#             drink = Drink(title=req_title, recipe=req_recipe)
-#             drink.delete()
-#     '''
-
-#     def delete(self):
-#         db.session.delete(self)
-#         db.session.commit()
-
-#     '''
-#     update()
-#         updates a new model into a database
-#         the model must exist in the database
-#         EXAMPLE
-#             drink = Drink.query.filter(Drink.id == id).one_or_none()
-#             drink.title = 'Black Coffee'
-#             drink.update()
-#     '''
 
     def update(self):
         db.session.commit()
 
-    def __repr__(self):
-        return json.dumps(self.short())
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def format(self):
+        return {
+        'id': self.id,
+        'brand': self.brand,
+        'model': self.model,
+        'sensor': self.sensor,
+        'mount': self.mount
+        }
