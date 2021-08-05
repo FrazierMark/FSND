@@ -10,34 +10,33 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 14,
-    },
-  }))(TableCell);
+// const td = withStyles((theme) => ({
+//     head: {
+//       backgroundColor: theme.palette.common.black,
+//       color: theme.palette.common.white,
+//     },
+//     body: {
+//       fontSize: 14,
+//     },
+//   }))(TableCell);
   
-  const StyledTableRow = withStyles((theme) => ({
-    root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      },
-    },
-  }))(TableRow);
+//   const StyledTableRow = withStyles((theme) => ({
+//     root: {
+//       '&:nth-of-type(odd)': {
+//         backgroundColor: theme.palette.action.hover,
+//       },
+//     },
+//   }))(TableRow);
 
-  const useStyles = makeStyles({
-    table: {
-      minWidth: 700,
-    },
-  });
+//   const useStyles = makeStyles({
+//     table: {
+//       minWidth: 700,
+//     },
+//   });
   
   
 
 const GetCameras = () => {
-    const classes = useStyles();
     const [camera, setCamera] = useState([]);
 
     const getCameraData = async () => {
@@ -55,35 +54,33 @@ const GetCameras = () => {
     }, []);
     return (
     <div className="Cameras">
-        <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Camera</StyledTableCell>
-            <StyledTableCell align="right">Brand</StyledTableCell>
-            <StyledTableCell align="right">Model</StyledTableCell>
-            <StyledTableCell align="right">Sensor</StyledTableCell>
-            <StyledTableCell align="right">Mount</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+      <table>
+        <thead>
+          <tr>
+            <th>Camera</th>
+            <th align="right">Brand</th>
+            <th align="right">Model</th>
+            <th align="right">Sensor</th>
+            <th align="right">Mount</th>
+          </tr>
+        </thead>
+        <tbody>
+
         {camera.map((item) => {
             return (
-            <StyledTableRow key={item.index}>
-              <StyledTableCell component="th" scope="row">
-                {item.brand}
-              </StyledTableCell>
-              <StyledTableCell align="right">{item.model}</StyledTableCell>
-              <StyledTableCell align="right">{item.sensor}</StyledTableCell>
-              <StyledTableCell align="right">{item.sensor}</StyledTableCell>
-              <StyledTableCell align="right">{item.mount}</StyledTableCell>
-            </StyledTableRow>
+            <tr> {item.index}
+            
+                <th> {item.brand} </th>
+                <td align="right">{item.model}</td>
+                <td align="right">{item.sensor}</td>
+                <td align="right">{item.sensor}</td>
+                <td align="right">{item.mount}</td>
+            
+            </tr>
           );
         })}
-            
-        </TableBody>
-      </Table>
-    </TableContainer>
+        </tbody>
+      </table>
     </div>
     );
 };
