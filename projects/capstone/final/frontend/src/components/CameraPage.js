@@ -80,7 +80,11 @@ const CameraPage = () => {
     <OrbitControls />
     <Terrain/>
     
-    <Html position={[-20, 0, 0]}>
+    <Html position={[-20, 0, 0]}
+    style={{
+      width: "50px",
+    }}
+>
       <GetCameras/>
     </Html>
 

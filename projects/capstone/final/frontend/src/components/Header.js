@@ -18,17 +18,13 @@ const useStyles = makeStyles({
   },
 });
 
-function Hook() {
-  const classes = useStyles();
-  return <Button className={classes.root}>Styled with Hook API</Button>;
-}
 
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return <button
-    className='btn'
+    class='logbtn'
   onClick={() => loginWithRedirect()}>Log In</button>;
 };
 
@@ -36,7 +32,9 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
 
   return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
+    <button
+    class='logbtn'
+    onClick={() => logout({ returnTo: window.location.origin })}>
       Log Out
     </button>
   );
@@ -66,12 +64,12 @@ const Header = () => {
               <NavLink to="/LensPage"> Lenses </NavLink>
             </li>
             <li>
-            <NavLink to="/FilmPage" className='btn'> Film </NavLink>
+            <NavLink to="/FilmPage" > Film </NavLink>
             </li>
-            <li className='btn'>
+            <li class='btn'>
               <a href='/CartPage' > Cart </a>
             </li>
-            <li className='btn'>
+            <li class='btn'>
               <a href='/CheckoutPage' > Checkout </a>
             </li>
             <li>

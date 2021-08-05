@@ -21,7 +21,7 @@ const GetCameras = () => {
     return (
       <Table striped bordered hover variant="dark" size="sm">
         <thead>
-          <tr>
+          <tr class width="570">
             <th width="570" align="right">Brand</th>
             <th width="170" align="right">Model</th>
             <th width="170" align="right">Sensor</th>
