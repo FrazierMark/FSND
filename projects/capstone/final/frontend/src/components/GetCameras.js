@@ -1,81 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import DataTable from './DataTable'
 
 
-export default class Cameras extends Component {
+const getCameras = () => {
+const [camera, setCamera] = useState([])
 
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-          kind: '',
-          data: []
-        };
-      }
-
-    componentDidMount() {
-        axios.get('http://127.0.0.1:5000/CameraPage')
-        .then(({ data })=> {
-            console.log(data)
-            this.setState({ 
-            kind: data.kind, 
-            data: data.data.children
-          });
-        })
-        .catch((err)=> {})
+    const getCameraData = async () => {
+        try {
+            const data = await axios.get('http://127.0.0.1:5000/CameraPage');
+        console.log(data.data.cameras);
+        setCamera(data.data.cameras)
+    } catch (e){
+        console.log(e)
     }
-        
-//     render() {
-//       const child = this.state.data.map((el, index) => {
-//         return <div key={index}>
-//           <p>Title - { el.data.cameras }</p>
-//         </div>
-//       });
-  
-//       return <div>
-//         <p>{ this.state.kind }</p>
-//         <div>{ child }</div>
-//       </div>;
-//     }
-//   }
-
-    renderTableData() {
-        const { id, brand, model, sensor, mount } =
-            this.state.data.map((data, i) => {           
-            return (
-                <tr key={i}>
-                    <td>ID {data.data.id}</td>
-                    <td>{brand}</td>
-                    <td>{model}</td>
-                    <td>{sensor}</td>
-                    <td>{mount}</td>
-                </tr>
-            )   
-        })
-    }
-
-    render() {
-        return (
-           <div>
-              <h1 id='title'>React Dynamic Table</h1>
-              <table id='cameras'>
-                 <tbody>
-                    {/* <tr>{this.renderTableHeader()}</tr> */}
-                    {this.renderTableData()}
-                 </tbody>
-              </table>
-           </div>
-        )
-     }
-  }
+};
+    
+    useEffect(() => {
+        getCameraData();
+    }, []);
+    return (
+    <div className="Cameras">
+        <h1> TEST </h1>
+        {camera.map((item) => {
+            return <p>{item.name}</p>
+        })}
+    </div>
+    );
+};
 
 
-
-//     renderTableHeader() {
-        
-//         let header = Object.keys(this.state.cameras[0])
-//         return header.map((key, index) => {
-//            return <th key={index}>{key.toUpperCase()}</th>
-//         })
-//      }
+export default getCameras;
