@@ -17,7 +17,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: radial-gradient(at 50% 60%, #3fc5d3 0%, #272730 40%, #171720 80%, #070710 100%);
+  background: radial-gradient(at 50% 60%, #3fc5d3 0%, #272730 70%, #171720 90%, #070710 100%);
   transition: 0.4s ease-in-out;
 }
 canvas {
@@ -26,15 +26,6 @@ canvas {
   height: 100vh;
 }
 
-// html,
-// body,
-// #root {
-//   width: 100%;
-//   height: 100%;
-//   margin: 0;
-//   padding: 0;
-//   overflow: hidden;
-// }
 
 .scrollArea {
   position: absolute;

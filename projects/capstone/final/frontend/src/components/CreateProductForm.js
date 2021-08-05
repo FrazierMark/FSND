@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../stylesheets/CreateProductForm.css';
 
 // create-camera-product
 
