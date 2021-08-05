@@ -40,22 +40,12 @@ export default class Cameras extends Component {
 //     }
 //   }
 
-
-//     renderTableHeader() {
-        
-//         let header = Object.keys(this.state.cameras[0])
-//         return header.map((key, index) => {
-//            return <th key={index}>{key.toUpperCase()}</th>
-//         })
-//      }
-
     renderTableData() {
-        const { id, brand, model, sensor, mount } = 
-            this.state.data.map((data, i) => {
-            
+        const { id, brand, model, sensor, mount } =
+            this.state.data.map((data, i) => {           
             return (
-                <tr key={id}>
-                    <td>{id}</td>
+                <tr key={i}>
+                    <td>ID {data.data.id}</td>
                     <td>{brand}</td>
                     <td>{model}</td>
                     <td>{sensor}</td>
@@ -65,17 +55,27 @@ export default class Cameras extends Component {
         })
     }
 
-//     render() {
-//         return (
-//            <div>
-//               <h1 id='title'>React Dynamic Table</h1>
-//               <table id='cameras'>
-//                  <tbody>
-//                     <tr>{this.renderTableHeader()}</tr>
-//                     {this.renderTableData()}
-//                  </tbody>
-//               </table>
-//            </div>
-//         )
+    render() {
+        return (
+           <div>
+              <h1 id='title'>React Dynamic Table</h1>
+              <table id='cameras'>
+                 <tbody>
+                    {/* <tr>{this.renderTableHeader()}</tr> */}
+                    {this.renderTableData()}
+                 </tbody>
+              </table>
+           </div>
+        )
+     }
+  }
+
+
+
+//     renderTableHeader() {
+        
+//         let header = Object.keys(this.state.cameras[0])
+//         return header.map((key, index) => {
+//            return <th key={index}>{key.toUpperCase()}</th>
+//         })
 //      }
-//   }
