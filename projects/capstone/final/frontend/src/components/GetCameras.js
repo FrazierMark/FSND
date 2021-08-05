@@ -19,13 +19,13 @@ const GetCameras = () => {
         getCameraData();
     }, []);
     return (
-      <Table striped bordered hover variant="dark" size="sm">
+      <table class="table-latitude">
         <thead>
-          <tr class width="570">
-            <th width="570" align="right">Brand</th>
-            <th width="170" align="right">Model</th>
-            <th width="170" align="right">Sensor</th>
-            <th width="170" align="right">Mount</th>
+          <tr >
+            <th >Brand</th>
+            <th >Model</th>
+            <th >Sensor</th>
+            <th >Mount</th>
           </tr>
         </thead>
         <tbody>
@@ -35,17 +35,19 @@ const GetCameras = () => {
             <tr> {item.index}
             
             <td> {item.brand} </td>
-            <td align="right">{item.model}</td>
-            <td align="right">{item.sensor}</td>
-            <td align="right">{item.mount}</td>
+            <td >{item.model}</td>
+            <td >{item.sensor}</td>
+            <td >{item.mount}</td>
             
             </tr>
           );
         })}
         </tbody>
-      </Table>
+      </table>
     );
 };
+
+
 
 
 export default GetCameras;
