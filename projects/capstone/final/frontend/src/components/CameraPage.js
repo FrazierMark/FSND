@@ -5,19 +5,27 @@ import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';
 import fonts from "./fonts";
 import BlockText from './BlockText';
-import { Html } from "@react-three/drei";
+import { Html, useProgress } from "@react-three/drei";
 import GetCameras from "./GetCameras"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+
 const text = "Cameras" ;
 
-const Model = () => {
-  const gltf = useLoader(GLTFLoader, "/Hasselblad.gltf");
-  return (
-  <Suspense fallback={null}>
-    <primitive object={gltf.scene} />
-  </Suspense>
-  )};
+// const Model = () => {
+//   const gltf = useLoader(GLTFLoader, "/Hasselblad-binary.glb");
+//   return (
+//   <Suspense fallback={null}>
+//     <primitive object={gltf.scene} />
+//   </Suspense>
+//   )};
+
+
+
+function Loader() {
+    const { active, progress, errors, item, loaded, total } = useProgress()
+    return <Html center>{progress} % loaded</Html>
+  }
 
 
 
@@ -49,15 +57,18 @@ const CameraPage = () => {
     
     
     <Canvas
+    
     dpr={[1, 2]}
     colorManagement
     shadowMap
     camera={{ position: [0, 0, 30], fov: 50 }}>
-     <fog attach="fog" args={['#ff6161', 10, 500]} />
 
-     <Suspense fallback={null}>
-        <Jumbo />
-    </Suspense>
+    <Suspense fallback={<Loader />}>
+    <fog attach="fog" args={['#ff6161', 10, 500]} />
+
+     
+    <Jumbo />
+    
      
      <text
      position-x={0}
@@ -88,14 +99,13 @@ const CameraPage = () => {
     <OrbitControls />
     <Terrain/>
 
-    <Model />
     
     <Html position={[-20, 0, 0]}>
       <GetCameras/>
     </Html>
 {/* 
     <Model />     */}
-    
+    </Suspense>
   </Canvas>
   
 

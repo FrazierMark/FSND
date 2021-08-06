@@ -1,17 +1,20 @@
 import React, { Suspense, useRef, useState } from 'react'
 import { useFrame, useLoader } from '@react-three/fiber'
-import { Html } from '@react-three/drei';
+import { Html, useProgress } from '@react-three/drei';
 import GlitchText from "./GlitchText";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Hasselblad from './ModelLoader';
+
 
 
 // const Model = () => {
-//   const gltf = useLoader(GLTFLoader, "/Hasselblad.gltf");
+//   const gltf = useLoader(GLTFLoader, "Hasselblad-binary.glb");
 //   return (
 //   <Suspense fallback={null}>
-//     <primitive object={gltf.scene} />
+//     <primitive object={gltf.scene} dispose={null} />
 //   </Suspense>
 //   )};
+
 
 function CameraModel(props) {
   // This reference will give us direct access to the mesh
@@ -27,27 +30,34 @@ function CameraModel(props) {
 
     
     <mesh
+    
       {...props}
       ref={mesh}
       scale={active ? 1.5 : 1}
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
+
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       
+     
       
       <Html distanceFactor={10}>
         <h1>
         <GlitchText>Price</GlitchText>
       </h1>
         
+      
+
         {/* <div class="content">
           hello <br />
           world
         </div> */}
       
       </Html>
+      
+      <Hasselblad />
       
     </mesh>
     
