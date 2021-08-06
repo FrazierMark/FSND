@@ -26,7 +26,7 @@ function CameraModel(props) {
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
-    mesh.current.rotation.x = mesh.current.rotation.y += 0.01
+    mesh.current.rotation.y += 0.01
   })
   return (
 
@@ -40,24 +40,21 @@ function CameraModel(props) {
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
 
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       
-     
       
-      <Html distanceFactor={10}>
+      <Html distanceFactor={50}>
         <h1>
         <GlitchText>Price</GlitchText>
       </h1>
         
       
 
-        {/* <div class="content">
+        <div class="content">
           hello <br />
           world
-        </div> */}
-      
+        </div>
       </Html>
+      
       
       <Model />
       

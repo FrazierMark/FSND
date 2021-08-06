@@ -1,4 +1,4 @@
-import { Canvas, useLoader } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import React, { useRef, useState, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
@@ -9,10 +9,7 @@ import { Html, useProgress } from "@react-three/drei";
 import GetCameras from "./GetCameras"
 
 
-const text = "Cameras" ;
-
-
-
+const text = "Grain Days, Every Day" 
 
 function Loader() {
     const { active, progress, errors, item, loaded, total } = useProgress()
@@ -25,7 +22,7 @@ function Jumbo() {
   const ref = useRef()
   return (
     <group ref={ref}>
-      <BlockText hAlign="right" position={[-22, 5, -30]} children="CAMERA" />
+      <BlockText hAlign="right" position={[-10, 5, -30]} children="CAMERAS" />
       {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
       {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
@@ -61,10 +58,10 @@ const CameraPage = () => {
     
     <Jumbo />
     
-     <text
+     {/* <text
      position-x={0}
-     position-y={5}
-      position-z={-5}
+     position-y={20}
+      position-z={-100}
       height={10}
       width={10}
       rotation={rotation}
@@ -78,24 +75,22 @@ const CameraPage = () => {
       {opts.materialType === "MeshPhongMaterial" ? (
         <meshPhongMaterial attach="material" color={opts.color} />
       ) : null}
-      </text>
+      </text> */}
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-    <pointLight position={[-10, -10, -10]} />
+    <pointLight position={[-10, 0, -10]} />
 
-    <CameraModel position={[-4.2, 0, 0]} />
-    <CameraModel position={[-2.2, 0, 0]} />
+    <CameraModel position={[-17, 5, -25]} />
     
     <OrbitControls />
     <Terrain/>
 
     
-    <Html position={[-20, 0, 0]}>
-      <GetCameras/>
+    <Html position={[-17, -5, 0]}>
+      <GetCameras/> 
     </Html>
-{/* 
-    <Model />     */}
+
     </Suspense>
   </Canvas>
   

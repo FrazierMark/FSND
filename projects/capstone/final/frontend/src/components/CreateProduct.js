@@ -1,6 +1,6 @@
 import { Canvas, extend } from '@react-three/fiber';
 import * as THREE from 'three'
-import React, { useRef, useEffect, useMemo, useLayoutEffect, useState, Suspense } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';
@@ -9,7 +9,9 @@ import BlockText from './BlockText';
 import { Text } from "troika-three-text";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import { Html } from "@react-three/drei";
-import CreateCamera from "./CreateProductForm"
+import CreateCamera from "./CreateProductForm";
+import Loader from "./Loader";
+
 
 extend({ Text });
 
@@ -67,9 +69,9 @@ const CreateProduct = () => {
     camera={{ position: [0, 0, 30], fov: 75 }}>
      <fog attach="fog" args={['#ff6161', 10, 300]} />
 
-     <Suspense fallback={null}>
+     <Suspense fallback={<Loader />}>
         <Jumbo />
-    </Suspense>
+    
      
     
      <text
@@ -94,27 +96,22 @@ const CreateProduct = () => {
       <Html>
       <CreateCamera/>
     </Html>
-
-
-
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
     <pointLight position={[-10, -10, -10]} />
 
     <CameraModel position={[-4.2, 0, 0]} />
-    <CameraModel position={[-2.2, 0, 0]} />
     
     <OrbitControls />
     <Terrain/>
     
     
 
-    
-  </Canvas>
+    </Suspense>
+    </Canvas>
   
   )
 }
-
 export default CreateProduct
 ;
