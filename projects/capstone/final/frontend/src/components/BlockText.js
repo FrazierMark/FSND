@@ -1,7 +1,5 @@
 import * as THREE from 'three'
 import React, { useMemo, useRef, useLayoutEffect } from 'react'
-import { useLoader } from '@react-three/fiber'
-import fonts from "./fonts";
 import typefaceData from "@compai/font-recursive/data/typefaces/normal-400.json";
 
 

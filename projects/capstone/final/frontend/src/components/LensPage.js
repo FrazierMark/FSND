@@ -1,15 +1,11 @@
-import { Canvas, useFrame } from '@react-three/fiber';
-import GlitchText from "./GlitchText";
-import Header from "./Header";
+import React, { Suspense } from "react";
+import { Canvas } from '@react-three/fiber';
 import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
 import Terrain from './Terrain';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
+import Loader from "./Loader"
+
 
 
 const LensPage = () => {
@@ -20,6 +16,7 @@ const LensPage = () => {
     shadowMap
     camera={{ position: [0, 0, 60], fov: 50 }}>
     
+    <Suspense fallback={<Loader />}>
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
@@ -31,6 +28,7 @@ const LensPage = () => {
     <CameraModel position={[-0.2, 0, 40]} />
     <Terrain/>
 
+    </Suspense>
   </Canvas>
  
   )

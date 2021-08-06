@@ -1,5 +1,5 @@
-import { Canvas, useFrame, extend } from '@react-three/fiber';
-import React, { useRef, useEffect, useState, Suspense } from "react";
+import { Canvas, extend } from '@react-three/fiber';
+import React, { useState, Suspense, useRef } from "react";
 import Header from "./Header";
 import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
@@ -8,15 +8,24 @@ import Terrain from './Terrain';
 import { Text } from "troika-three-text";
 import fonts from "./fonts";
 import {OrbitControls } from '@react-three/drei';
-import RefactoredForm from "./RefactoredForm";
+import Loader from './Loader';
+import BlockText from './BlockText';
 
+function Jumbo() {
+  const ref = useRef()
+  return (
+    <group ref={ref}>
+      <BlockText hAlign="right" position={[-20, 5, -10]} children="Welcome" />
+      {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
+      {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
+    </group>
+  )
+}
 
 extend({ Text });
 
 const text =
   "Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit" ;
-  
-
 
 const LandingPage = () => {
   const [rotation, setRotation] = useState([0, 0, 0, 0]);
@@ -36,8 +45,10 @@ const LandingPage = () => {
     colorManagement
     shadowMap
     camera={{ position: [0, 0, 50], fov: 50 }}>
-    
+
+    <Suspense fallback={<Loader />}>
     <fog attach="fog" args={['#ff6161', 10, 500]} />
+    <Jumbo/>
     <OrbitControls />
       
     <ambientLight intensity={0.5} />
@@ -49,7 +60,7 @@ const LandingPage = () => {
     
         pixelRatio={window.devicePixelRatio}
     
-        <text
+        {/* <text
           position-z={30}
           rotation={rotation}
           {...opts}
@@ -61,7 +72,7 @@ const LandingPage = () => {
           {opts.materialType === "MeshPhongMaterial" ? (
             <meshPhongMaterial attach="material" color={opts.color} />
           ) : null}
-        </text>
+        </text> */}
 
 
         <pointLight position={[-100, 0, -160]} />
@@ -69,8 +80,9 @@ const LandingPage = () => {
         <pointLight position={[100, 0, -160]} />
     
   
-    
+        
     <Terrain/>
+    </Suspense>
   </Canvas>
   
   

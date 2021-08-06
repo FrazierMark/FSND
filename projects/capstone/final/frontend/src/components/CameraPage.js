@@ -3,19 +3,13 @@ import React, { useRef, useState, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';
-import fonts from "./fonts";
 import BlockText from './BlockText';
-import { Html, useProgress } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import GetCameras from "./GetCameras"
+import Loader from './Loader';
 
 
 const text = "Grain Days, Every Day" 
-
-function Loader() {
-    const { active, progress, errors, item, loaded, total } = useProgress()
-    return <Html center>{progress} % loaded</Html>
-  }
-
 
 
 function Jumbo() {
