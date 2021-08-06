@@ -1,7 +1,17 @@
-import React, { useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
-import {OrbitControls, Html } from '@react-three/drei';
+import React, { Suspense, useRef, useState } from 'react'
+import { useFrame, useLoader } from '@react-three/fiber'
+import { Html } from '@react-three/drei';
 import GlitchText from "./GlitchText";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
+
+// const Model = () => {
+//   const gltf = useLoader(GLTFLoader, "/Hasselblad.gltf");
+//   return (
+//   <Suspense fallback={null}>
+//     <primitive object={gltf.scene} />
+//   </Suspense>
+//   )};
 
 function CameraModel(props) {
   // This reference will give us direct access to the mesh
@@ -14,6 +24,8 @@ function CameraModel(props) {
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01
   })
   return (
+
+    
     <mesh
       {...props}
       ref={mesh}
@@ -23,6 +35,8 @@ function CameraModel(props) {
       onPointerOut={(e) => setHover(false)}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      
+      
       <Html distanceFactor={10}>
         <h1>
         <GlitchText>Price</GlitchText>
@@ -32,9 +46,11 @@ function CameraModel(props) {
           hello <br />
           world
         </div> */}
+      
       </Html>
-    
+      
     </mesh>
+    
   )
 }
 export default CameraModel

@@ -1,5 +1,4 @@
-import { Canvas } from '@react-three/fiber';
-import * as THREE from 'three'
+import { Canvas, useLoader } from '@react-three/fiber';
 import React, { useRef, useState, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
@@ -8,8 +7,17 @@ import fonts from "./fonts";
 import BlockText from './BlockText';
 import { Html } from "@react-three/drei";
 import GetCameras from "./GetCameras"
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const text = "Cameras" ;
+
+const Model = () => {
+  const gltf = useLoader(GLTFLoader, "/Hasselblad.gltf");
+  return (
+  <Suspense fallback={null}>
+    <primitive object={gltf.scene} />
+  </Suspense>
+  )};
 
 
 
@@ -79,11 +87,14 @@ const CameraPage = () => {
     
     <OrbitControls />
     <Terrain/>
+
+    <Model />
     
     <Html position={[-20, 0, 0]}>
       <GetCameras/>
     </Html>
-
+{/* 
+    <Model />     */}
     
   </Canvas>
   
