@@ -27,7 +27,7 @@ export const Particles = ({ count = 3000 }) => {
         />
       </bufferGeometry>
 
-      <pointsMaterial size={0.015} color={"#1D4ED8"} />
+      <pointsMaterial size={0.25} color={"#1D4ED8"} />
     </points>
   );
 };

@@ -10,6 +10,7 @@ import fonts from "./fonts";
 import {OrbitControls } from '@react-three/drei';
 import Loader from './Loader';
 import BlockText from './BlockText';
+import { Particles } from './Particles';
 
 function Jumbo() {
   const ref = useRef()
@@ -56,11 +57,11 @@ const LandingPage = () => {
     <pointLight position={[-10, -10, -10]} />
 
     
-    <FilmModel position={[-4.2, 0, 20]} />
+    <FilmModel position={[-7.7, 7, -9.1]}/>
     
-        pixelRatio={window.devicePixelRatio}
     
-        {/* <text
+    
+         {/* <text
           position-z={30}
           rotation={rotation}
           {...opts}
@@ -72,15 +73,13 @@ const LandingPage = () => {
           {opts.materialType === "MeshPhongMaterial" ? (
             <meshPhongMaterial attach="material" color={opts.color} />
           ) : null}
-        </text> */}
+        </text>  */}
 
 
         <pointLight position={[-100, 0, -160]} />
         <pointLight position={[0, 0, -170]} />
         <pointLight position={[100, 0, -160]} />
-    
-  
-        
+    <Particles/>
     <Terrain/>
     </Suspense>
   </Canvas>

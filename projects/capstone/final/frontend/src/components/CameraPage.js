@@ -7,6 +7,7 @@ import BlockText from './BlockText';
 import { Html } from "@react-three/drei";
 import GetCameras from "./GetCameras"
 import Loader from './Loader';
+import { Particles } from './Particles';
 
 
 const text = "Grain Days, Every Day" 
@@ -84,7 +85,7 @@ const CameraPage = () => {
     <Html position={[-17, -5, 0]}>
       <GetCameras/> 
     </Html>
-
+    <Particles/>
     </Suspense>
   </Canvas>
   
