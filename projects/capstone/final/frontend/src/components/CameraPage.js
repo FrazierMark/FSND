@@ -7,18 +7,10 @@ import fonts from "./fonts";
 import BlockText from './BlockText';
 import { Html, useProgress } from "@react-three/drei";
 import GetCameras from "./GetCameras"
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 const text = "Cameras" ;
 
-// const Model = () => {
-//   const gltf = useLoader(GLTFLoader, "/Hasselblad-binary.glb");
-//   return (
-//   <Suspense fallback={null}>
-//     <primitive object={gltf.scene} />
-//   </Suspense>
-//   )};
 
 
 
@@ -64,12 +56,11 @@ const CameraPage = () => {
     camera={{ position: [0, 0, 30], fov: 50 }}>
 
     <Suspense fallback={<Loader />}>
-    <fog attach="fog" args={['#ff6161', 10, 500]} />
 
-     
+    <fog attach="fog" args={['#ff6161', 10, 500]} />
+    
     <Jumbo />
     
-     
      <text
      position-x={0}
      position-y={5}

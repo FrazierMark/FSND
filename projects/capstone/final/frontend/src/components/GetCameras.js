@@ -21,11 +21,11 @@ const GetCameras = () => {
     return (
       <table class="table-latitude">
         <thead>
-          <tr >
-            <th >Brand</th>
-            <th >Model</th>
-            <th >Sensor</th>
-            <th >Mount</th>
+          <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Sensor</th>
+            <th>Mount</th>
           </tr>
         </thead>
         <tbody>

@@ -3,17 +3,19 @@ import { useFrame, useLoader } from '@react-three/fiber'
 import { Html, useProgress } from '@react-three/drei';
 import GlitchText from "./GlitchText";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import Hasselblad from './ModelLoader';
 
 
 
-// const Model = () => {
-//   const gltf = useLoader(GLTFLoader, "Hasselblad-binary.glb");
-//   return (
-//   <Suspense fallback={null}>
-//     <primitive object={gltf.scene} dispose={null} />
-//   </Suspense>
-//   )};
+
+const Model = () => {
+  const gltf = useLoader(GLTFLoader, "Hasselblad-binary.glb");
+  return (
+  <Suspense fallback={null}>
+    <primitive object={gltf.scene} 
+    dispose={null}
+    scale={.02, .02, .02}  />
+  </Suspense>
+  )};
 
 
 function CameraModel(props) {
@@ -57,7 +59,7 @@ function CameraModel(props) {
       
       </Html>
       
-      <Hasselblad />
+      <Model />
       
     </mesh>
     
