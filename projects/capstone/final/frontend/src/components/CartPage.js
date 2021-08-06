@@ -19,6 +19,7 @@ const CartPage = () => {
     colorManagement
     shadowMap
     camera={{ position: [0, 0, 60], fov: 50 }}>
+    <fog attach="fog" args={['#ff6161', 1, 600]} />
 
     <Suspense fallback={<Loader />}>
       

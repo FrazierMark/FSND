@@ -5,7 +5,8 @@ import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import Loader from "./Loader"
-
+import { Particles } from './Particles';
+import { OrbitControls } from '@react-three/drei';
 
 
 const LensPage = () => {
@@ -15,6 +16,8 @@ const LensPage = () => {
     colorManagement
     shadowMap
     camera={{ position: [0, 0, 60], fov: 50 }}>
+    <OrbitControls />
+    <fog attach="fog" args={['#ff6161', 10, 500]} />
     
     <Suspense fallback={<Loader />}>
       
@@ -28,6 +31,7 @@ const LensPage = () => {
     <CameraModel position={[-0.2, 0, 40]} />
     <Terrain/>
 
+    <Particles/>
     </Suspense>
   </Canvas>
  

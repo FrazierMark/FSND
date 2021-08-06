@@ -5,6 +5,7 @@ import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import Loader from './Loader';
+import { Particles } from './Particles';
 
 
 const CheckoutPage = () => {
@@ -15,8 +16,9 @@ const CheckoutPage = () => {
     shadowMap
     camera={{ position: [0, 0, 60], fov: 50 }}>
 
-<Suspense fallback={<Loader />}>
-    
+    <Suspense fallback={<Loader />}>
+    <Particles/>
+    <fog attach="fog" args={['#ff6161', 10, 500]} />
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />

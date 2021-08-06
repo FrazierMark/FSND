@@ -6,7 +6,6 @@ import FilmModel from './FilmModel';
 import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import { Text } from "troika-three-text";
-import fonts from "./fonts";
 import {OrbitControls } from '@react-three/drei';
 import Loader from './Loader';
 import BlockText from './BlockText';
@@ -57,7 +56,7 @@ const LandingPage = () => {
     <pointLight position={[-10, -10, -10]} />
 
     
-    <FilmModel position={[-7.7, 7, -9.1]}/>
+    <FilmModel position={[-29, 2.4, -9.1]}/>
     
     
     
