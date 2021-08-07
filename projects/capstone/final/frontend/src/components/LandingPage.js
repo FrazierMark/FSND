@@ -10,6 +10,7 @@ import {OrbitControls } from '@react-three/drei';
 import Loader from './Loader';
 import BlockText from './BlockText';
 import { Particles } from './Particles';
+import Robotman from './Robotman';
 
 function Jumbo() {
   const ref = useRef()
@@ -49,6 +50,7 @@ const LandingPage = () => {
     <Suspense fallback={<Loader />}>
     <fog attach="fog" args={['#ff6161', 10, 500]} />
     <Jumbo/>
+    <Robotman />
     <OrbitControls />
       
     <ambientLight intensity={0.5} />
