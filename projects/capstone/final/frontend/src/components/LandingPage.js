@@ -53,10 +53,11 @@ const LandingPage = () => {
     <Robotman />
     <OrbitControls />
       
-    <ambientLight intensity={0.5} />
+    <ambientLight intensity={10.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
     <pointLight position={[-10, -10, -10]} />
-
+    <pointLight position={[1, 10, 10]} />
+    
     
     <FilmModel position={[-29, 2.4, -9.1]}/>
     
