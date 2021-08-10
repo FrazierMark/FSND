@@ -22,6 +22,35 @@ function Jumbo() {
     </group>
   )
 }
+function KeyLight({ brightness, color }) {
+  return (
+    <rectAreaLight
+      width={3}
+      height={3}
+      color={color}
+      intensity={brightness}
+      position={[-10, -10, -9]}
+      lookAt={[-13, -17, -13]}
+      penumbra={1}
+      castShadow
+    />
+  );
+}
+
+// function FillLight({ brightness, color }) {
+//   return (
+//     <rectAreaLight
+//       width={3}
+//       height={3}
+//       intensity={brightness}
+//       color={color}
+//       position={[2, 1, 4]}
+//       lookAt={[-13, -17, -13]}
+//       penumbra={2}
+//       castShadow
+//     />
+//   );
+// }
 
 extend({ Text });
 
@@ -52,10 +81,11 @@ const LandingPage = () => {
     <Jumbo/>
     <Robotman />
     <OrbitControls />
-      
-    <ambientLight intensity={10.5} />
+    
+    <KeyLight />
+    <ambientLight intensity={40.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-    <pointLight position={[-10, -10, -10]} />
+
     <pointLight position={[1, 10, 10]} />
     
     

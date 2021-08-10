@@ -46,8 +46,6 @@ function Robotman(props) {
         <GlitchText>Price</GlitchText>
       </h1>
         
-      
-
         <div class="content">
           hello <br />
           world
