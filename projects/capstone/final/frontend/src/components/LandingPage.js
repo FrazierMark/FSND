@@ -120,7 +120,7 @@ const LandingPage = () => {
     <pointLight position={[1, 10, 10]} />
     
     
-    <FilmModel position={[-29, 2.4, -9.1]}/>
+    {/* <FilmModel position={[-29, 2.4, -9.1]}/> */}
     
     
     

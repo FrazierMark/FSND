@@ -13,8 +13,8 @@ const Roboman = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.02, .02, .02}
-    position={[-10, -15, -13]}  />
+    scale={.01, .01, .01}
+    position={[-26, -3, -13]}  />
   </Suspense>
   )};
 
@@ -27,7 +27,7 @@ function Robotman(props) {
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
-    // mesh.current.rotation.y += 0.01
+    mesh.current.rotation.x += 0.01
   })
   return (
 
