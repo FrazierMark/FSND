@@ -1,4 +1,4 @@
-import { Canvas, extend } from '@react-three/fiber';
+import { Canvas, extend, useThree } from '@react-three/fiber';
 import React, { useState, Suspense, useRef } from "react";
 import Header from "./Header";
 import CameraModel from './CameraModel';
@@ -11,6 +11,22 @@ import Loader from './Loader';
 import BlockText from './BlockText';
 import { Particles } from './Particles';
 import Robotman from './Robotman';
+import {
+  CameraHelper,
+  DirectionalLightHelper,
+  PointLightHelper,
+  SpotLightHelper,
+  Mesh,
+  CubeTextureLoader,
+} from "three";
+
+import frontImg from "../images/Night Moon 1.png";
+import backImg from "../images/Night Moon 2.png";
+import upImg from "../images/Night Moon 5.png";
+import downImg from "../images/Night Moon 6.png";
+import rightImg from "../images/Night Moon 4.png";
+import leftImg from "../images/Night Moon 3.png";
+
 
 function Jumbo() {
   const ref = useRef()
@@ -51,6 +67,21 @@ function KeyLight({ brightness, color }) {
 //     />
 //   );
 // }
+
+const SkyBox = () => {
+  const { scene } = useThree();
+  const loader = new CubeTextureLoader();
+  const texture = loader.load([
+    frontImg,
+    backImg,
+    upImg,
+    downImg,
+    rightImg,
+    leftImg
+  ]);
+  scene.background = texture;
+  return null;
+};
 
 extend({ Text });
 
@@ -112,6 +143,7 @@ const LandingPage = () => {
         <pointLight position={[0, 0, -170]} />
         <pointLight position={[100, 0, -160]} />
     <Particles/>
+    <SkyBox />
     <Terrain/>
     </Suspense>
   </Canvas>
