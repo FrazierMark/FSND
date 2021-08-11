@@ -114,13 +114,14 @@ const LandingPage = () => {
     <Robotman />
     <OrbitControls />
     
-    <KeyLight />
-    <ambientLight intensity={40.5} />
-    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+    
+    
+    
 
-    <pointLight position={[1, 10, 10]} />
-    
-    
+    <pointLight position={[1, 11, 11]} />
+    <pointLight position={[1, 7, 9]} />
+    <pointLight position={[1, 4, 10]} />
+
     {/* <FilmModel position={[-29, 2.4, -9.1]}/> */}
     
     
@@ -140,10 +141,8 @@ const LandingPage = () => {
         </text>  */}
 
 
-        <pointLight position={[-100, 0, -160]} />
-        <pointLight position={[0, 0, -170]} />
-        <pointLight position={[100, 0, -160]} />
-        <FillLight />
+        {/* <pointLight position={[-100, 0, -160]} /> */}
+        
     <Particles/>
     <SkyBox />
     <Terrain/>
