@@ -70,6 +70,7 @@ function KeyLight({ brightness, color }) {
 
 const SkyBox = () => {
   const { scene } = useThree();
+  // scene.rotation.y = Math.PI/2.1;
   const loader = new CubeTextureLoader();
   const texture = loader.load([
     frontImg,

@@ -14,7 +14,7 @@ const Roboman = () => {
     <primitive object={gltf.scene} 
     dispose={null}
     scale={.01, .01, .01}
-    position={[-26, -3, -13]}  />
+    position={[0, 0, 0]}  />
   </Suspense>
   )};
 
@@ -27,7 +27,7 @@ function Robotman(props) {
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
-    mesh.current.rotation.x += 0.01
+    // mesh.current.rotation.y += 0.01
   })
   return (
 
@@ -41,15 +41,15 @@ function Robotman(props) {
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
       
-      <Html distanceFactor={50}>
+      <Html distanceFactor={40}>
         <h1>
         <GlitchText>Price</GlitchText>
       </h1>
         
-        <div class="content">
+        {/* <div class="content">
           hello <br />
           world
-        </div>
+        </div> */}
       </Html>
       
       
