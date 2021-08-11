@@ -53,20 +53,20 @@ function KeyLight({ brightness, color }) {
   );
 }
 
-// function FillLight({ brightness, color }) {
-//   return (
-//     <rectAreaLight
-//       width={3}
-//       height={3}
-//       intensity={brightness}
-//       color={color}
-//       position={[2, 1, 4]}
-//       lookAt={[-13, -17, -13]}
-//       penumbra={2}
-//       castShadow
-//     />
-//   );
-// }
+function FillLight({ brightness, color }) {
+  return (
+    <rectAreaLight
+      width={3}
+      height={3}
+      intensity={brightness}
+      color={color}
+      position={[2, 1, 4]}
+      lookAt={[-13, -17, -13]}
+      penumbra={2}
+      castShadow
+    />
+  );
+}
 
 const SkyBox = () => {
   const { scene } = useThree();
@@ -143,6 +143,7 @@ const LandingPage = () => {
         <pointLight position={[-100, 0, -160]} />
         <pointLight position={[0, 0, -170]} />
         <pointLight position={[100, 0, -160]} />
+        <FillLight />
     <Particles/>
     <SkyBox />
     <Terrain/>
