@@ -20,12 +20,13 @@ const FilmPage = () => {
     <fog attach="fog" args={['#ff6161', 10, 800]} />
     
     <Suspense fallback={<Loader />}>
-    <ambientLight intensity={0.5} />
-    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-    <pointLight position={[-10, -10, -10]} />
-
+    <ambientLight intensity={5.5} />
     
-    <CameraModel position={[2.2, 0, 40]} />
+    <pointLight position={[1, 11, 11]} />
+    <pointLight position={[1, 4, 10]} />
+    
+    <CameraModel position={[2, 0, 20]} />
+    <FilmModel position={[10, 0, 20]}  />
 
     <Terrain/>
     <Particles/>

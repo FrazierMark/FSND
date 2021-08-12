@@ -1,6 +1,21 @@
-import React, { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Camera } from 'three'
+import React, { Suspense, useRef, useState } from 'react'
+import { useFrame, useLoader } from '@react-three/fiber'
+import { Html, useProgress } from '@react-three/drei';
+import GlitchText from "./GlitchText";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
+const Film = () => {
+  const gltf = useLoader(GLTFLoader, "portra400.glb");
+  return (
+  <Suspense fallback={null}>
+    <primitive object={gltf.scene} 
+    dispose={null}
+    scale={.01, .01, .01}
+    position={[0, 0, 0]}  />
+  </Suspense>
+  )};
+
+
 
 function FilmModel(props) {
   // This reference will give us direct access to the mesh
@@ -10,18 +25,18 @@ function FilmModel(props) {
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
-    mesh.current.rotation.x = mesh.current.rotation.y += 0.01
+    mesh.current.rotation.y += .01 
   })
   return (
     <mesh
       {...props}
       ref={mesh}
-      scale={active ? 10 : 5}
+      scale={active ? 4 : 2}
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      
+      <Film />
     </mesh>
   )
 }
