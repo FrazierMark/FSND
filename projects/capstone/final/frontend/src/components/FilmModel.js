@@ -10,7 +10,7 @@ const Film = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.02, .02, .02}
+    scale={.03, .03, .03}
     position={[0, 0, 0]}  />
   </Suspense>
   )};
@@ -31,7 +31,7 @@ function FilmModel(props) {
     <mesh
       {...props}
       ref={mesh}
-      scale={active ? 4 : 2}
+      scale={active ? 2 : 1}
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>

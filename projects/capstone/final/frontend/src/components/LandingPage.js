@@ -32,7 +32,7 @@ function Jumbo() {
   const ref = useRef()
   return (
     <group ref={ref}>
-      <BlockText hAlign="right" position={[-20, 5, -10]} children="Welcome" />
+      <BlockText hAlign="right" position={[-20, 5, 6]} children="Welcome" />
       {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
       {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
