@@ -75,9 +75,10 @@ def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
     new_model = body.get('model', None)
     new_sensor = body.get('sensor', None)
     new_mount = body.get('mount', None)
+    new_price = body.get('price', None)
     
     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
-    new_camera = Camera(brand=new_brand, model=new_model, sensor=new_sensor, mount=new_mount)
+    new_camera = Camera(brand=new_brand, model=new_model, sensor=new_sensor, mount=new_mount, price=new_price)
     
     try:
         new_camera.insert()

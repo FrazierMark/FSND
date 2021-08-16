@@ -1,16 +1,13 @@
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import CameraModel from './CameraModel';
-import FilmModel from './FilmModel';
-import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
 import { Html } from "@react-three/drei";
 import { Content } from "./Content";
-import FormSuccess from "./Testform"
 import React, { Suspense } from "react";
 import Loader from "./Loader"
-
+import SkyBox from './SkyBox';
 
 const CartPage = () => {
   return (
@@ -28,12 +25,13 @@ const CartPage = () => {
     <pointLight position={[-10, -10, -10]} />
     
   
-    <CameraModel position={[4.2, 0, 40]} />
+    {/* <CameraModel position={[4.2, 0, 40]} /> */}
 
 
     <Terrain/>
     <Particles/>
     <OrbitControls/>
+    <SkyBox />
     <Html >
           <Content />
     </Html>

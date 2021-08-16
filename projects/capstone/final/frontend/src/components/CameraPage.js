@@ -8,6 +8,7 @@ import { Html } from "@react-three/drei";
 import GetCameras from "./GetCameras"
 import Loader from './Loader';
 import { Particles } from './Particles';
+import SkyBox from './SkyBox';
 
 
 const text = "Grain Days, Every Day" 
@@ -42,7 +43,6 @@ const CameraPage = () => {
     
     <Canvas
     
-    dpr={[1, 2]}
     colorManagement
     shadowMap
     camera={{ position: [0, 0, 30], fov: 50 }}>
@@ -79,11 +79,13 @@ const CameraPage = () => {
     
     <OrbitControls />
     <Terrain/>
+    <SkyBox />
 
     
-    <Html position={[-17, -5, 0]}>
+    <Html >
       <GetCameras/> 
     </Html>
+
     <Particles/>
     </Suspense>
   </Canvas>

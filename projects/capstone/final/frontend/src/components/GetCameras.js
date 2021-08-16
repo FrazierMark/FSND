@@ -1,6 +1,8 @@
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
-import Table from 'react-bootstrap/Table'
+import { useSpring, a } from "@react-spring/web";
+import { Html } from "@react-three/drei";
+
 
 const GetCameras = () => {
     const [camera, setCamera] = useState([]);
@@ -19,6 +21,7 @@ const GetCameras = () => {
         getCameraData();
     }, []);
     return (
+
       <table class="table-latitude">
         <thead>
           <tr>
@@ -26,6 +29,7 @@ const GetCameras = () => {
             <th>Model</th>
             <th>Sensor</th>
             <th>Mount</th>
+            <th>Price</th>
           </tr>
         </thead>
         <tbody>
@@ -35,15 +39,17 @@ const GetCameras = () => {
             <tr> {item.index}
             
             <td> {item.brand} </td>
-            <td >{item.model}</td>
-            <td >{item.sensor}</td>
-            <td >{item.mount}</td>
-            
+            <td>{item.model}</td>
+            <td>{item.sensor}</td>
+            <td>{item.mount}</td>
+            <td>{item.price}</td>
+            <td>{"btn"}</td>
             </tr>
           );
         })}
         </tbody>
       </table>
+    
     );
 };
 

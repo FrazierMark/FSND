@@ -1,5 +1,5 @@
 import React, { useState, Suspense, useRef } from "react";
-import { Canvas, extend, useThree } from '@react-three/fiber';
+import { Canvas, extend } from '@react-three/fiber';
 import Terrain from './Terrain';
 import { Text } from "troika-three-text";
 import {OrbitControls } from '@react-three/drei';

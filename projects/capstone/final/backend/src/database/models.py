@@ -3,6 +3,8 @@ from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy, model
 import json
 
+from sqlalchemy.sql.sqltypes import Float
+
 database_filename = "database.db"
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
@@ -34,6 +36,7 @@ class Camera(db.Model):
     model = Column(String(180), nullable=False)
     sensor = Column(String(180), nullable=False)
     mount = Column(String(180), nullable=False)
+    price = Column(Float(), nullable=False)
 
     def format(self):
         return{
@@ -41,14 +44,16 @@ class Camera(db.Model):
             'brand': self.brand,
             'model': self.model,
             'sensor': self.sensor,
-            'mount': self.mount
+            'mount': self.mount,
+            'price': self.price
         }
 
-    def __init__(self, brand, model, sensor, mount):
+    def __init__(self, brand, model, sensor, mount, price):
         self.brand = brand
         self.model = model
         self.sensor = sensor
         self.mount = mount
+        self.price = price
     
     def insert(self):
         db.session.add(self)
@@ -68,5 +73,6 @@ class Camera(db.Model):
         'brand': self.brand,
         'model': self.model,
         'sensor': self.sensor,
-        'mount': self.mount
+        'mount': self.mount,
+        'price': self.price
         }

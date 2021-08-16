@@ -1,5 +1,4 @@
-import React, { useState, Suspense, useRef } from "react";
-import { Canvas, extend, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import {  CubeTextureLoader } from "three";
 
 import frontImg from "../images/Night Moon 1.png";
