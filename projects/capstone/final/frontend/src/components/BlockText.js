@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import React, { useMemo, useRef, useLayoutEffect } from 'react'
-import typefaceData from "@compai/font-recursive/data/typefaces/normal-400.json";
+import typefaceData from "@compai/font-recursive/data/typefaces/normal-300.json";
+
 
 
 

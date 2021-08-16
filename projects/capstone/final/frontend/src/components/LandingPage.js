@@ -38,35 +38,7 @@ function Jumbo() {
     </group>
   )
 }
-function KeyLight({ brightness, color }) {
-  return (
-    <rectAreaLight
-      width={3}
-      height={3}
-      color={color}
-      intensity={brightness}
-      position={[-10, -10, -9]}
-      lookAt={[-13, -17, -13]}
-      penumbra={1}
-      castShadow
-    />
-  );
-}
 
-function FillLight({ brightness, color }) {
-  return (
-    <rectAreaLight
-      width={3}
-      height={3}
-      intensity={brightness}
-      color={color}
-      position={[2, 1, 4]}
-      lookAt={[-13, -17, -13]}
-      penumbra={2}
-      castShadow
-    />
-  );
-}
 
 const SkyBox = () => {
   const { scene } = useThree();
