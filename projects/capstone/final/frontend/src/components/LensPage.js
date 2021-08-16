@@ -12,7 +12,7 @@ function Jumbo() {
   const ref = useRef()
   return (
     <group ref={ref}>
-      <BlockText hAlign="right" position={[-20, 5, -10]} children="Welcome" />
+      <BlockText hAlign="right" position={[-20, 5, -10]} children="Lenses" />
       {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
       {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
@@ -39,6 +39,7 @@ const LensPage = () => {
     <LensModel position={[1, 0, 30]} />
     <Terrain/>
 
+    <Jumbo />
     <Particles/>
     </Suspense>
   </Canvas>

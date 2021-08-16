@@ -8,7 +8,7 @@ import typefaceData from "@compai/font-recursive/data/typefaces/normal-300.json"
 function BlockText({ children, vAlign = 'center', hAlign = 'center', size = 2.5, color = '#000000', ...props }) {
   const font = new THREE.FontLoader().parse(typefaceData);
   const config = useMemo(
-    () => ({ font, size: 30, height: 25, curveSegments: 32, bevelEnabled: true, bevelThickness: 6, bevelSize: 2.5, bevelOffset: 0, bevelSegments: 8 }),
+    () => ({ font, size: 20, height: 10, curveSegments: 5, bevelEnabled: false, bevelThickness: 6, bevelSize: 2.5, bevelOffset: 0, bevelSegments: 8 }),
     [font]
   )
   const mesh = useRef()
