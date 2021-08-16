@@ -1,6 +1,23 @@
-import React, { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Camera } from 'three'
+import React, { Suspense, useRef, useState } from 'react';
+import { useFrame } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber';
+import { Html, useProgress } from '@react-three/drei';
+import GlitchText from "./GlitchText";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
+
+
+const Lens = () => {
+  const gltf = useLoader(GLTFLoader, "nikon_lens.glb");
+  return (
+  <Suspense fallback={null}>
+    <primitive object={gltf.scene} 
+    dispose={null}
+    scale={.02, .02, .02} />
+  </Suspense>
+  )};
+
+
 
 function LensModel(props) {
   // This reference will give us direct access to the mesh
@@ -10,7 +27,7 @@ function LensModel(props) {
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
-    mesh.current.rotation.x = mesh.current.rotation.y += 0.01
+    mesh.current.rotation.x += 0.01
   })
   return (
     <mesh
@@ -20,8 +37,8 @@ function LensModel(props) {
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+
+      <Lens />
     </mesh>
   )
 }

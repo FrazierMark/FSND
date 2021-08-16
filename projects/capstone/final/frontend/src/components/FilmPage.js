@@ -25,7 +25,7 @@ const FilmPage = () => {
     <pointLight position={[1, 11, 11]} />
     <pointLight position={[1, 4, 10]} />
     
-    <CameraModel position={[2, 0, 20]} />
+    
     <FilmModel position={[10, 0, 20]}  />
 
     <Terrain/>

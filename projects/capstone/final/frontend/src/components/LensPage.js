@@ -2,11 +2,11 @@ import React, { Suspense } from "react";
 import { Canvas } from '@react-three/fiber';
 import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
-import LensModel from './CameraModel';
+import LensModel from './LensModel';
 import Terrain from './Terrain';
-import Loader from "./Loader"
+import Loader from './Loader';
 import { Particles } from './Particles';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls } from "@react-three/drei";
 
 
 const LensPage = () => {
@@ -15,7 +15,7 @@ const LensPage = () => {
     <Canvas
     colorManagement
     shadowMap
-    camera={{ position: [0, 0, 60], fov: 50 }}>
+    camera={{ position: [0, 0, 35], fov: 50 }}>
     <OrbitControls />
     <fog attach="fog" args={['#ff6161', 10, 500]} />
     
@@ -26,9 +26,7 @@ const LensPage = () => {
     <pointLight position={[-10, -10, -10]} />
     
     
-    <CameraModel position={[-4.2, 0, 40]} />
-    <CameraModel position={[-2.2, 0, 40]} />
-    <CameraModel position={[-0.2, 0, 40]} />
+    <LensModel position={[1, 0, 30]} />
     <Terrain/>
 
     <Particles/>
@@ -38,5 +36,4 @@ const LensPage = () => {
   )
 }
 
-export default LensPage
-;
+export default LensPage;

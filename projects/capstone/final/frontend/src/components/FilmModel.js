@@ -1,5 +1,5 @@
-import React, { Suspense, useRef, useState } from 'react'
-import { useFrame, useLoader } from '@react-three/fiber'
+import React, { Suspense, useRef, useState } from 'react';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { Html, useProgress } from '@react-three/drei';
 import GlitchText from "./GlitchText";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -10,7 +10,7 @@ const Film = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.01, .01, .01}
+    scale={.02, .02, .02}
     position={[0, 0, 0]}  />
   </Suspense>
   )};
