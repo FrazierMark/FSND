@@ -26,10 +26,10 @@ const GetCameras = () => {
       <table class="table-latitude">
         <thead>
           <tr>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Sensor</th>
-            <th>Mount</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Sku</th>
+            <th>category</th>
             <th>Price</th>
           </tr>
         </thead>
@@ -39,10 +39,10 @@ const GetCameras = () => {
             return (
             <tr> {item.index}
             
-            <td> {item.brand} </td>
-            <td>{item.model}</td>
-            <td>{item.sensor}</td>
-            <td>{item.mount}</td>
+            <td> {item.name} </td>
+            <td>{item.description}</td>
+            <td>{item.sku}</td>
+            <td>{item.category}</td>
             <td>{item.price}</td>
             <td><Button type='submit'>Add to Cart</Button></td>
             </tr>
