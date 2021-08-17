@@ -42,7 +42,7 @@ const GetAllFilm = () => {
             <td>{item.sku}</td>
             <td>{item.category}</td>
             <td>{item.price}</td>
-            <td><Button type='submit'>Add to Cart</Button></td>
+            <td><button >Add To Cart </button></td>
             </tr>
           );
         })}

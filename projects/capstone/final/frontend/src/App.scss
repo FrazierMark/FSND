@@ -158,6 +158,33 @@ header {
   border-bottom: 1px solid #fff;
   transform: scaleX(1);
 }
+button {
+  font-size: 1rem;
+  padding: 0.2rem;
+  margin: 0.1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #3fb7d2;
+  background-color: #ff6161;
+  width: 100%;
+  cursor: pointer;
+}
+button.add {
+  background-color: aqua;
+  width: 1.5rem;
+}
+button.remove {
+  background-color: crimson;
+  width: 1.5rem;
+}
+button.badge {
+  background-color: crimson;
+  border: none;
+  color: rgb(255, 255, 255);
+  width: 1.5rem;
+}
+.text-right {
+  text-align: right;
+}
 
 footer {
   position: absolute;
