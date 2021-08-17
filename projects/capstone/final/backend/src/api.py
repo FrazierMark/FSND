@@ -66,6 +66,23 @@ def get_lenses():
     except AuthError:
         abort(422)
 
+@app.route('/FilmPage', methods=['GET'])
+def get_all_film():
+    # Retrieves all cameras from the db, no permissions required
+    
+    try:
+        all_film = Product.query.filter_by(category = 'film')
+        all_film = [film.format() for film in all_film]
+        
+        if all_film is None:
+            abort(404)
+        return jsonify({
+        "success": True,
+        "all_film": all_film,
+    })
+    except AuthError:
+        abort(422)
+
 # @app.route('/drinks-detail', methods=['GET'])
 # @requires_auth('get:drinks-detail')
 # def retrieve_long_drinks(payload):
