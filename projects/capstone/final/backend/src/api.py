@@ -51,7 +51,7 @@ def get_cameras():
 
 @app.route('/LensPage', methods=['GET'])
 def get_lenses():
-    # Retrieves all cameras from the db, no permissions required
+    # Retrieves all lenses from the db, no permissions required
     
     try:
         all_lenses = Product.query.filter_by(category = 'lens')
@@ -66,9 +66,10 @@ def get_lenses():
     except AuthError:
         abort(422)
 
+
 @app.route('/FilmPage', methods=['GET'])
 def get_all_film():
-    # Retrieves all cameras from the db, no permissions required
+    # Retrieves all film from the db, no permissions required
     
     try:
         all_film = Product.query.filter_by(category = 'film')
