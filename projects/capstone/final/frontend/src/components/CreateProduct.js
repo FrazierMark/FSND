@@ -9,29 +9,11 @@ import BlockText from './BlockText';
 import { Text } from "troika-three-text";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import { Html } from "@react-three/drei";
-import CreateCamera from "./CreateProductForm";
+import CreateProductForm from "./CreateProductForm";
 import Loader from "./Loader";
 
 
 extend({ Text });
-
-const Create = () => (
-    <Form>
-        <Form.Field>
-            <label>First Name</label>
-            <input placeholder='First Name' />
-        </Form.Field>
-        <Form.Field>
-            <label>Last Name</label>
-            <input placeholder='Last Name' />
-        </Form.Field>
-        <Form.Field>
-            <Checkbox label='I agree to the Terms and Conditions' />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-    </Form>
-)
-
 
 
 const text = "Cameras orem ipsum dolor sit amet, consectetur adipiscing elit, sed do e orem ipsum dolor sit amet, consectetur adipiscing elit, sed do e" ;
@@ -94,7 +76,7 @@ const CreateProduct = () => {
       </text>
 
       <Html>
-      <CreateCamera/>
+      <CreateProductForm/>
     </Html>
       
     <ambientLight intensity={0.5} />

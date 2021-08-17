@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // create-camera-product
 
-export default class CreateProductForm extends Component {
+export default class CreateNewCartItemForm extends Component {
 
     constructor(props) {
         super(props)

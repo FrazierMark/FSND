@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button } from 'semantic-ui-react'
 
 
 const GetAllFilm = () => {
+
     const [film, setFilm] = useState([]);
+
+    // const addToCart = (product) => {
+    //     console.log('we are in addtocart')
+    //     setCart([...cart, product]); //using array destructering to append product to cart array
+    // };
 
     const getFilmData = async () => {
         try {
@@ -19,6 +24,8 @@ const GetAllFilm = () => {
     useEffect(() => {
         getFilmData();
     }, []);
+
+    
     return (
 
       <table class="table-latitude">
