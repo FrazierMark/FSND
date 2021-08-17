@@ -1,14 +1,14 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useRef } from "react";
 import { Canvas } from '@react-three/fiber';
-import CameraModel from './CameraModel';
 import FilmModel from './FilmModel';
-import LensModel from './CameraModel';
 import Terrain from './Terrain';
 import Loader from './Loader';
 import { Particles } from './Particles';
 import { OrbitControls } from "@react-three/drei";
 import BlockText from './BlockText';
 import SkyBox from "./SkyBox";
+import { Html } from "@react-three/drei";
+import GetAllFilm from "./GetFilm";
 
 function Jumbo() {
   const ref = useRef()
@@ -40,6 +40,10 @@ const FilmPage = () => {
     <pointLight position={[-10, 0, -10]} />
     <FilmModel position={[-14, 4, -8]}  />
 
+
+    <Html position={[-18, 0, 0]} >
+      <GetAllFilm /> 
+    </Html>
     <Jumbo />
     <Terrain/>
     <Particles/>

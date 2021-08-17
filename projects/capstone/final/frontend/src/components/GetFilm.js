@@ -33,7 +33,7 @@ const GetAllFilm = () => {
         </thead>
         <tbody>
 
-        {lens.map((item) => {
+        {film.map((item) => {
             return (
             <tr> {item.index}
             
@@ -55,4 +55,4 @@ const GetAllFilm = () => {
 
 
 
-export default GetLenses;
+export default GetAllFilm;
