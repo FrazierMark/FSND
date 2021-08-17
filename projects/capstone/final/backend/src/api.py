@@ -1,3 +1,4 @@
+from itertools import product
 import os
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
@@ -8,7 +9,7 @@ import sys
 from flask_cors import CORS
 import time
 
-from .database.models import db_drop_and_create_all, setup_db, Camera
+from .database.models import db_drop_and_create_all, setup_db, Product
 from .auth.auth import AuthError, requires_auth
 
 
@@ -33,8 +34,9 @@ def get_current_time():
 @app.route('/CameraPage', methods=['GET'])
 def get_cameras():
     # Retrieves all cameras from the db, no permissions required
+    
     try:
-        all_cameras = Camera.query.all()
+        all_cameras = Product.query.filter_by(category = 'camera')
         cameras = [camera.format() for camera in all_cameras]
         
         if all_cameras is None:
@@ -61,9 +63,14 @@ def get_cameras():
 #     })
 
 
+
+
+
+
+
 @app.route('/CreateProduct', methods=['POST'])
 # @requires_auth('post:cameras')
-def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
+def create_new_product(): #<<<<<<<<<Token in function when using @requires_auth
     """If permission granted, will add Camera will be added to DB."""
     body = request.get_json()
     if body is None:
@@ -71,26 +78,26 @@ def create_new_camera(): #<<<<<<<<<Token in function when using @requires_auth
 
     print(body)
 
-    new_brand = body.get('brand', None)
-    new_model = body.get('model', None)
-    new_sensor = body.get('sensor', None)
-    new_mount = body.get('mount', None)
+    new_name = body.get('name', None)
+    new_description = body.get('description', None)
+    new_sku = body.get('sku', None)
+    new_category = body.get('category', None)
     new_price = body.get('price', None)
     
     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
-    new_camera = Camera(brand=new_brand, model=new_model, sensor=new_sensor, mount=new_mount, price=new_price)
+    new_product = Product(name=new_name, description=new_description, sku=new_sku, category=new_category, price=new_price)
     
     try:
-        new_camera.insert()
-        print(new_camera.id)
-        new_camera = Camera.query.filter_by(id= int(new_camera.id))
+        new_product.insert()
+        print(new_product.id)
+        new_product = Product.query.filter_by(id= int(new_product.id))
         
 
-        added_camera = [camera.format() for camera in new_camera]
+        added_product = [product.format() for product in new_product]
 
         return jsonify({
             "success": True,
-            "camera": added_camera,
+            "product": added_product,
         })
     except AuthError:
         abort(422)

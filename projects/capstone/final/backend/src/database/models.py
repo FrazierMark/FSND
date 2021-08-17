@@ -25,34 +25,34 @@ def db_drop_and_create_all():
 
 #Camera DB Model
 
-class Camera(db.Model):
+class Product(db.Model):
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     # String Title
-    brand = Column(String(80), nullable=False)
+    name = Column(String(80), nullable=False)
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    model = Column(String(180), nullable=False)
-    sensor = Column(String(180), nullable=False)
-    mount = Column(String(180), nullable=False)
+    description = Column(String(180), nullable=False)
+    sku = Column(String(180), nullable=False)
+    category = Column(String(180), nullable=False)
     price = Column(Float(), nullable=False)
 
     def format(self):
         return{
             'id': self.id,
-            'brand': self.brand,
-            'model': self.model,
-            'sensor': self.sensor,
-            'mount': self.mount,
+            'name': self.name,
+            'description': self.description,
+            'sku': self.sku,
+            'category': self.category,
             'price': self.price
         }
 
-    def __init__(self, brand, model, sensor, mount, price):
-        self.brand = brand
-        self.model = model
-        self.sensor = sensor
-        self.mount = mount
+    def __init__(self, name, description, sku, category, price):
+        self.name = name
+        self.description = description
+        self.sku = sku
+        self.category = category
         self.price = price
     
     def insert(self):
@@ -70,9 +70,60 @@ class Camera(db.Model):
     def format(self):
         return {
         'id': self.id,
-        'brand': self.brand,
-        'model': self.model,
-        'sensor': self.sensor,
-        'mount': self.mount,
+        'name': self.name,
+        'description': self.description,
+        'sku': self.sku,
+        'category': self.category,
         'price': self.price
         }
+
+
+
+
+# class Cart(db.Model):
+#     # Drink, persistent drink entity, extends the base SQLAlchemy Model
+#     # Autoincrementing, unique primary key
+#     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+#     # String Title
+#     user_id = Column(String(80), nullable=False)
+
+#     product_id = 
+
+#     def format(self):
+#         return{
+#             'id': self.id,
+#             'brand': self.brand,
+#             'model': self.model,
+#             'sensor': self.sensor,
+#             'mount': self.mount,
+#             'price': self.price
+#         }
+
+#     def __init__(self, brand, model, sensor, mount, price):
+#         self.brand = brand
+#         self.model = model
+#         self.sensor = sensor
+#         self.mount = mount
+#         self.price = price
+    
+#     def insert(self):
+#         db.session.add(self)
+#         db.session.commit()
+
+
+#     def update(self):
+#         db.session.commit()
+
+#     def delete(self):
+#         db.session.delete(self)
+#         db.session.commit()
+
+#     def format(self):
+#         return {
+#         'id': self.id,
+#         'brand': self.brand,
+#         'model': self.model,
+#         'sensor': self.sensor,
+#         'mount': self.mount,
+#         'price': self.price
+#         }

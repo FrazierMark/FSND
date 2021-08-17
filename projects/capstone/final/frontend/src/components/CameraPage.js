@@ -82,8 +82,8 @@ const CameraPage = () => {
     <SkyBox />
 
     
-    <Html >
-      <GetCameras/> 
+    <Html position={[-18, 0, 0]} >
+      <GetCameras /> 
     </Html>
 
     <Particles/>
