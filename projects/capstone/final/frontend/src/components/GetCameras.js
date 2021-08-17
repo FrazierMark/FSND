@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSpring, a } from "@react-spring/web";
 import { Html } from "@react-three/drei";
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 
 const GetCameras = () => {
@@ -43,7 +44,7 @@ const GetCameras = () => {
             <td>{item.sensor}</td>
             <td>{item.mount}</td>
             <td>{item.price}</td>
-            <td>{"btn"}</td>
+            <td><Button type='submit'>Add to Cart</Button></td>
             </tr>
           );
         })}
