@@ -37,6 +37,7 @@ class Product(db.Model):
     sku = Column(String(180), nullable=False)
     category = Column(String(180), nullable=False)
     price = Column(Float(), nullable=False)
+    carts = db.relationship('Cart', backref='product', lazy=True)
 
     def format(self):
         return{
@@ -87,7 +88,7 @@ class Product(db.Model):
 #     # String Title
 #     user_id = Column(String(80), nullable=False)
 
-#     product_id = 
+#     product_id = Column(Integer(), ForeignKey('product.id'), nullable=False)
 
 #     def format(self):
 #         return{
