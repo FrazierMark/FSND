@@ -18,7 +18,7 @@ setup_db(app)
 cors = CORS(app)
 
 
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 @app.route('/time')
 def get_current_time():
