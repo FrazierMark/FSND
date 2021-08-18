@@ -23,7 +23,7 @@ def db_drop_and_create_all():
     db.create_all()
    
 
-#Camera DB Model
+# Product DB Model
 
 class Product(db.Model):
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
@@ -95,15 +95,14 @@ class Cart(db.Model):
         return{
             'id': self.id,
             'user_id': self.user_id,
+            'product_id': self.product_id
             
         }
 
-    def __init__(self, brand, model, sensor, mount, price):
-        self.brand = brand
-        self.model = model
-        self.sensor = sensor
-        self.mount = mount
-        self.price = price
+    def __init__(self, user_id, product_id):
+        self.user_id = user_id,
+        self.product_id: product_id
+        
     
     def insert(self):
         db.session.add(self)
@@ -120,9 +119,6 @@ class Cart(db.Model):
     def format(self):
         return {
         'id': self.id,
-        'brand': self.brand,
-        'model': self.model,
-        'sensor': self.sensor,
-        'mount': self.mount,
-        'price': self.price
+        'user_id': self.user_id,
+        'product_id': self.product_id,
         }
