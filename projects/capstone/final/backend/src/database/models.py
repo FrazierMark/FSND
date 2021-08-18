@@ -81,50 +81,47 @@ class Product(db.Model):
 
 
 
-# class Cart(db.Model):
-#     # Drink, persistent drink entity, extends the base SQLAlchemy Model
-#     # Autoincrementing, unique primary key
-#     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
-#     # String Title
-#     user_id = Column(String(80), nullable=False)
+class Cart(db.Model):
+    # Drink, persistent drink entity, extends the base SQLAlchemy Model
+    # Autoincrementing, unique primary key
+    id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    # String Title
+    user_id = Column(String(80), nullable=False)
 
-#     product_id = Column(Integer(), ForeignKey('product.id'), nullable=False)
+    product_id = Column(Integer(), ForeignKey('product.id'), nullable=False)
 
-#     def format(self):
-#         return{
-#             'id': self.id,
-#             'brand': self.brand,
-#             'model': self.model,
-#             'sensor': self.sensor,
-#             'mount': self.mount,
-#             'price': self.price
-#         }
+    def format(self):
+        return{
+            'id': self.id,
+            'user_id': self.user_id,
+            
+        }
 
-#     def __init__(self, brand, model, sensor, mount, price):
-#         self.brand = brand
-#         self.model = model
-#         self.sensor = sensor
-#         self.mount = mount
-#         self.price = price
+    def __init__(self, brand, model, sensor, mount, price):
+        self.brand = brand
+        self.model = model
+        self.sensor = sensor
+        self.mount = mount
+        self.price = price
     
-#     def insert(self):
-#         db.session.add(self)
-#         db.session.commit()
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
 
-#     def update(self):
-#         db.session.commit()
+    def update(self):
+        db.session.commit()
 
-#     def delete(self):
-#         db.session.delete(self)
-#         db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
-#     def format(self):
-#         return {
-#         'id': self.id,
-#         'brand': self.brand,
-#         'model': self.model,
-#         'sensor': self.sensor,
-#         'mount': self.mount,
-#         'price': self.price
-#         }
+    def format(self):
+        return {
+        'id': self.id,
+        'brand': self.brand,
+        'model': self.model,
+        'sensor': self.sensor,
+        'mount': self.mount,
+        'price': self.price
+        }
