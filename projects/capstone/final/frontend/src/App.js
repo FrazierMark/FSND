@@ -2,7 +2,6 @@ import React from 'react';
 import Header from "./components/Header";
 import './App.scss'
 import {
-  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
@@ -11,12 +10,20 @@ import LensPage from './components/LensPage';
 import LandingPage from './components/LandingPage';
 import FilmPage from './components/FilmPage'
 import CartPage from './components/CartPage';
-import CheckoutPage from './components/CheckoutPage';
+import ProfilePage from './components/ProfilePage';
 import CreateProduct from './components/CreateProduct';
 import Footer from './components/Footer'
+import Loading from './components/Loading';
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 export default function App() {
+  const { isLoading } = useAuth0()
+  
+  if (isLoading) {
+    return <Loading />
+  };
   return (
     <>
     <Header/>
@@ -27,7 +34,7 @@ export default function App() {
         <Route path="/LensPage" component={LensPage} />
         <Route path="/FilmPage" component={FilmPage} />
         <Route path="/CartPage" component={CartPage} />
-        <Route path="/CheckoutPage" component={CheckoutPage} />
+        <Route path="/ProfilePage" component={ProfilePage} />
         <Route path="/CreateProduct" component={CreateProduct} />
       </Switch>
       <Footer/>
