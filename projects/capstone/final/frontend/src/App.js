@@ -29,13 +29,14 @@ export default function App() {
     <Header/>
     
     <Switch>
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/CameraPage" component={CameraPage} />
-        <Route path="/LensPage" component={LensPage} />
-        <Route path="/FilmPage" component={FilmPage} />
-        <Route path="/CartPage" component={CartPage} />
-        <Route path="/ProfilePage" component={ProfilePage} />
-        <Route path="/CreateProduct" component={CreateProduct} />
+        <Route exact path="/" render={() => { return ( <LandingPage />);}} />
+        <Route exact path="/CameraPage" render={() => { return ( <CameraPage />);}} />
+        <Route exact path="/LensPage" render={() => { return ( <LensPage />);}} />
+        <Route exact path="/FilmPage" render={() => { return ( <FilmPage />);}} />
+        <Route exact path="/CartPage" render={() => { return ( <CartPage />);}} />
+        <Route exact path="/ProfilePage" render={() => { return ( <ProfilePage />);}} />
+        <Route exact path="/CreateProduct" render={() => { return ( <CreateProduct />);}} />
+
       </Switch>
       <Footer/>
     </>

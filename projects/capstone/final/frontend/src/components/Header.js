@@ -29,7 +29,10 @@ const LogoutButton = () => {
 };
 
 const AuthNav = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
+
+  console.log(isAuthenticated)
+  console.log(user)
 
   return isAuthenticated ? <LogoutButton /> : <LoginButton />;
 };

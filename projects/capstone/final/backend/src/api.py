@@ -13,22 +13,16 @@ from .database.models import db_drop_and_create_all, setup_db, Product
 from .auth.auth import AuthError, requires_auth
 
 
+
+
 app = Flask(__name__) 
 setup_db(app)
 cors = CORS(app)
 
 
-db_drop_and_create_all()
+# db_drop_and_create_all()
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
-
-
-
-# @app.route("/CameraPage", defaults={'path':''})
-# def serve(path):
-#     return send_from_directory(app.static_folder,'index.html')
+app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
 
 
 @app.route('/CameraPage', methods=['GET'])
