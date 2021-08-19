@@ -9,7 +9,7 @@ const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return <button
-    class='logbtn'
+    className='logbtn'
   onClick={() => loginWithRedirect()}>Log In</button>;
 };
 
@@ -18,7 +18,7 @@ const LogoutButton = () => {
 
   return (
     <button
-    class='logbtn'
+    className='logbtn'
     onClick={() => logout({ returnTo: window.location.origin })}>
       Log Out
     </button>
@@ -51,10 +51,10 @@ const Header = () => {
             <li>
             <NavLink to="/FilmPage" > Film </NavLink>
             </li>
-            <li class='btn'>
+            <li className='btn'>
               <a href='/CartPage' > Cart </a>
             </li>
-            <li class='btn'>
+            <li className='btn'>
               <a href='/CheckoutPage' > Checkout </a>
             </li>
             <li>

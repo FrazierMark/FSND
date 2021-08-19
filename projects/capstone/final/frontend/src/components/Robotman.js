@@ -42,9 +42,9 @@ function Robotman(props) {
       onPointerOut={(e) => setHover(false)}>
       
       <Html distanceFactor={40}>
-        <h1>
+        {/* <h1>
         <GlitchText>Price</GlitchText>
-      </h1>
+      </h1> */}
         
         {/* <div class="content">
           hello <br />
