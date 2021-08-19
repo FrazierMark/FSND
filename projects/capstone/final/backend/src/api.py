@@ -34,7 +34,6 @@ def get_current_time():
 @app.route('/CameraPage', methods=['GET'])
 def get_cameras():
     # Retrieves all cameras from the db, no permissions required
-    
     try:
         all_cameras = Product.query.filter_by(category = 'camera')
         cameras = [camera.format() for camera in all_cameras]
@@ -52,7 +51,6 @@ def get_cameras():
 @app.route('/LensPage', methods=['GET'])
 def get_lenses():
     # Retrieves all lenses from the db, no permissions required
-    
     try:
         all_lenses = Product.query.filter_by(category = 'lens')
         lenses = [lens.format() for lens in all_lenses]
@@ -70,7 +68,6 @@ def get_lenses():
 @app.route('/FilmPage', methods=['GET'])
 def get_all_film():
     # Retrieves all film from the db, no permissions required
-    
     try:
         all_film = Product.query.filter_by(category = 'film')
         all_film = [film.format() for film in all_film]
@@ -84,30 +81,15 @@ def get_all_film():
     except AuthError:
         abort(422)
 
-# @app.route('/drinks-detail', methods=['GET'])
-# @requires_auth('get:drinks-detail')
-# def retrieve_long_drinks(payload):
-#     # Retrieves all drinks w/ recipes from db if permission is granted
-#     all_drinks = Drink.query.all()
-#     drinks = [drink.long() for drink in all_drinks]
-#     if (len(drinks) < 1):
-#         abort(404)
-
-#     return jsonify({
-#         "success": True,
-#         "drinks": drinks,
-#     })
-
-
-
 
 
 
 
 @app.route('/CreateProduct', methods=['POST'])
-# @requires_auth('post:cameras')
-def create_new_product(): #<<<<<<<<<Token in function when using @requires_auth
+@requires_auth('post:product')
+def create_new_product(token): #<<<<<<<<<Token in function when using @requires_auth
     """If permission granted, will add Camera will be added to DB."""
+    print(token)
     body = request.get_json()
     if body is None:
         abort(404)

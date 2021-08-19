@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import { Auth0Provider } from "@auth0/auth0-react";
-import LandingPage from './components/LandingPage';
 
 const rootElement = document.getElementById("root");
 const customHistory = createBrowserHistory({

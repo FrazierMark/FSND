@@ -8,6 +8,9 @@ import BlockText from './BlockText';
 import { Particles } from './Particles';
 import Robotman from './Robotman';
 import SkyBox from './SkyBox';
+import { useAuth0 } from "@auth0/auth0-react";
+import { Html } from "@react-three/drei";
+
 
 
 function Jumbo() {
@@ -20,6 +23,25 @@ function Jumbo() {
     </group>
   )
 }
+
+
+const Profile = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+  return (
+    isAuthenticated && (
+      <div>
+        
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div>
+    )
+  );
+};
+
 
 extend({ Text });
 
@@ -52,7 +74,9 @@ const LandingPage = () => {
     <OrbitControls />
     
     
-    
+    <Html>
+    <Profile />
+    </Html>
     
 
     <pointLight position={[1, 11, 11]} />
