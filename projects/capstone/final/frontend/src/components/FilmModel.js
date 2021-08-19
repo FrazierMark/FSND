@@ -1,7 +1,5 @@
 import React, { Suspense, useRef, useState } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
-import { Html, useProgress } from '@react-three/drei';
-import GlitchText from "./GlitchText";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Film = () => {

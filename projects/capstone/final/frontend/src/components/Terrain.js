@@ -23,8 +23,8 @@ function Terrain() {
         <planeBufferGeometry attach="geometry" args={[10000, 10000, 428, 428]} />
         <meshStandardMaterial
           attach="material"
-          color="white"
-          roughness={1}
+          color="#FFC0CB"
+          roughness={5}
           metalness={0}
           wireframe
         />

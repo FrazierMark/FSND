@@ -1,8 +1,6 @@
 import React, { Suspense, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber'
 import { useLoader } from '@react-three/fiber';
-import { Html, useProgress } from '@react-three/drei';
-import GlitchText from "./GlitchText";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 

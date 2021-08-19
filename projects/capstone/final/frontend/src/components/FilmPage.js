@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useRef } from "react";
 import { Canvas } from '@react-three/fiber';
 import FilmModel from './FilmModel';
 import Terrain from './Terrain';

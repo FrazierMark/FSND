@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Button } from 'semantic-ui-react'
-
 
 const GetCameras = () => {
     const [camera, setCamera] = useState([]);
