@@ -25,7 +25,7 @@ export default function App() {
     return <Loading />
   };
   return (
-    <>
+    <div>
     <Header/>
     
     <Switch>
@@ -39,6 +39,6 @@ export default function App() {
 
       </Switch>
       <Footer/>
-    </>
+    </div>
   );
 }
