@@ -80,7 +80,7 @@ def get_all_film():
 
 
 @app.route('/CreateProduct', methods=['POST'])
-@requires_auth('post:product')
+# @requires_auth('post:product')
 def create_new_product(token): #<<<<<<<<<Token in function when using @requires_auth
     """If permission granted, will add Camera will be added to DB."""
     print(token)

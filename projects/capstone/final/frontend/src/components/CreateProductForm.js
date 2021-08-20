@@ -59,7 +59,11 @@ const CreateProductForm = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://127.0.0.1:5000/CreateProduct', values,
+
+        const { name, description, sku, category, price } = values;
+        const newProduct = {name, description, sku, category, price};
+
+        axios.post('http://127.0.0.1:5000/CreateProduct', newProduct,
         // headers: {Authorization: "Bearer" + token}
         )
         .then((res) => {
@@ -69,19 +73,6 @@ const CreateProductForm = () => {
         });
     }
 
-
-
-    //     axios.post('http://127.0.0.1:5000/CreateProduct', productObject,
-    //     // {
-    //     //     headers: {Authorization: "Bearer" + token}
-    //     // }
-    //     )
-    //         .then((res) => {
-    //             console.log(res.data)
-    //         }).catch((error) => {
-    //             console.log(error)
-    //         });
-    // }
 
         return (
             <div className="wrapper">
