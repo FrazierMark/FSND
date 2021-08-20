@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { useAuth0 } from "@auth0/auth0-react";
 
-// create-camera-product
 
-function parseJwt (token) {
-    // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript
-   var base64Url = token.split('.')[1];
-   var base64 = decodeURIComponent(atob(base64Url).split('').map((c)=>{
-       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-   }).join(''));
-
-   return JSON.parse(base64);
-};
 
 export default class CreateNewCartItemForm extends Component {
 
