@@ -9,6 +9,7 @@ import { Text } from "troika-three-text";
 import { Html } from "@react-three/drei";
 import CreateProductForm from "./CreateProductForm";
 import Loader from "./Loader";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 
 extend({ Text });
@@ -75,7 +76,9 @@ const CreateProduct = () => {
 
       
       <Html>
+        <Auth0Provider>
       <CreateProductForm/>
+        </Auth0Provider>
     </Html>
       
     <ambientLight intensity={0.5} />

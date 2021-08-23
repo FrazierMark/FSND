@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withAuth0 } from '@auth0/auth0-react';
+import CreateProduct from './CreateProduct';
 
 // create-camera-product
+const domain = "m-mark-frazier.us.auth0.com";
 
-export default class CreateProductForm extends Component {
+class CreateProductForm extends Component {
 
     constructor(props) {
         super(props)
@@ -23,6 +26,7 @@ export default class CreateProductForm extends Component {
             price: '',
         }
     }
+    
 
     onChangeProductName(e) {
         this.setState({ name: e.target.value })
@@ -44,6 +48,13 @@ export default class CreateProductForm extends Component {
     onSubmit(e) {
         e.preventDefault()
 
+        const { getAccessTokenSilently } = this.props.auth0;
+        const accessToken = getAccessTokenSilently({
+            audience: `https://${domain}/api/v2/`,
+            scope: "read:current_user",
+          }); 
+    
+          console.log(accessToken)
         const productObject = {
             name: this.state.name,
             description: this.state.description,
@@ -53,7 +64,9 @@ export default class CreateProductForm extends Component {
         };
         console.log(productObject)
 
-        axios.post('http://127.0.0.1:5000/CreateProduct', productObject)
+        axios.post('http://127.0.0.1:5000/CreateProduct', productObject,
+            {headers: {'Authorization': `bearer ${accessToken}`}
+        })
             .then((res) => {
                 console.log(res.data)
             }).catch((error) => {
@@ -96,3 +109,5 @@ export default class CreateProductForm extends Component {
         )
     }
 }
+
+export default withAuth0(CreateProductForm)
