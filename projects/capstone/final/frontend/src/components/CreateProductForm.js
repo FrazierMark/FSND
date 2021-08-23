@@ -6,6 +6,8 @@ import CreateProduct from './CreateProduct';
 // create-camera-product
 const domain = "m-mark-frazier.us.auth0.com";
 
+
+
 class CreateProductForm extends Component {
 
     constructor(props) {
@@ -24,6 +26,21 @@ class CreateProductForm extends Component {
             sensor: '',
             mount: '',
             price: '',
+        }
+    }
+
+    getAccessToken() {
+    const { getAccessTokenSilently } = this.props.auth0;
+            
+        
+        try {
+            let accessToken = await getAccessTokenSilently({
+              audience: `https://${domain}/api/v2/`,
+              scope: "read:current_user",
+            });
+            return data;
+        } catch (error) {
+            throw error;
         }
     }
     
@@ -47,12 +64,7 @@ class CreateProductForm extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-
-        const { getAccessTokenSilently } = this.props.auth0;
-        const accessToken = getAccessTokenSilently() 
-    
-        console.log(accessToken)
-
+        
         const productObject = {
             name: this.state.name,
             description: this.state.description,
@@ -63,7 +75,7 @@ class CreateProductForm extends Component {
         console.log(productObject)
 
         axios.post('http://127.0.0.1:5000/CreateProduct', productObject,
-            {headers: {'Authorization': `bearer ${accessToken}`}
+            {headers: {'Authorization': `bearer ${this.getAccessToken()}`}
         })
             .then((res) => {
                 console.log(res.data)

@@ -28,9 +28,9 @@ const CartPage = () => {
     <Particles/>
     <OrbitControls/>
     <SkyBox />
-    <Html >
+    {/* <Html >
           <Content />
-    </Html>
+    </Html> */}
 
     {/* <Html>
       <FormSuccess/>
@@ -41,5 +41,4 @@ const CartPage = () => {
   )
 }
 
-export default CartPage
-;
+export default CartPage;
