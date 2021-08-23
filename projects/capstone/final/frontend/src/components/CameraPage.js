@@ -27,17 +27,7 @@ function Jumbo() {
 
 
 const CameraPage = () => {
-  const [rotation, setRotation] = useState([0, 0, 0, 0]);
-  const [opts, setOpts] = useState({
-    font: "BlinkMacSystemFont",
-    fontSize: 3,
-    color: "#fff",
-    maxWidth: 100,
-    lineHeight: 1,
-    letterSpacing: 0,
-    textAlign: "justify",
-    materialType: "MeshPhongMaterial"
-  });
+  
   return (
     
     
@@ -53,24 +43,6 @@ const CameraPage = () => {
     
     <Jumbo />
     
-     {/* <text
-     position-x={0}
-     position-y={20}
-      position-z={-100}
-      height={10}
-      width={10}
-      rotation={rotation}
-      {...opts}
-      text={text}
-      font={fonts[opts.font]}
-      anchorX="center"
-      anchorY="middle"
-      >
-        
-      {opts.materialType === "MeshPhongMaterial" ? (
-        <meshPhongMaterial attach="material" color={opts.color} />
-      ) : null}
-      </text> */}
       
     <ambientLight intensity={0.5} />
     <pointLight position={[-10, 0, -10]} />

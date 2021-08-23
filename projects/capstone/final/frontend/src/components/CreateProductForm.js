@@ -49,12 +49,10 @@ class CreateProductForm extends Component {
         e.preventDefault()
 
         const { getAccessTokenSilently } = this.props.auth0;
-        const accessToken = getAccessTokenSilently({
-            audience: `https://${domain}/api/v2/`,
-            scope: "read:current_user",
-          }); 
+        const accessToken = getAccessTokenSilently() 
     
-          console.log(accessToken)
+        console.log(accessToken)
+
         const productObject = {
             name: this.state.name,
             description: this.state.description,

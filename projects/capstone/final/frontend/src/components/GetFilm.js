@@ -28,7 +28,7 @@ const GetAllFilm = () => {
     
     return (
 
-      <table class="table-latitude">
+      <table className="table-latitude">
         <thead>
           <tr>
             <th>Name</th>
@@ -42,7 +42,7 @@ const GetAllFilm = () => {
 
         {film.map((item) => {
             return (
-            <tr> {item.index}
+            <tr key="{item.index}">  {item.index}
             
             <td> {item.name} </td>
             <td>{item.description}</td>

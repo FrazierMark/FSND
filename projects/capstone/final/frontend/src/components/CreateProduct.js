@@ -31,17 +31,7 @@ function Jumbo() {
 
 
 const CreateProduct = () => {
-  const [rotation, setRotation] = useState([0, 0, 0, 0]);
-  const [opts, setOpts] = useState({
-    font: "BlinkMacSystemFont",
-    fontSize: 3,
-    color: "#fff",
-    maxWidth: 100,
-    lineHeight: 1,
-    letterSpacing: 0,
-    textAlign: "justify",
-    materialType: "MeshPhongMaterial"
-  });
+  
   return (
     <Canvas
     dpr={[1, 2]}
@@ -52,34 +42,11 @@ const CreateProduct = () => {
 
      <Suspense fallback={<Loader />}>
         <Jumbo />
-    
-     
-    
-     <text
-     position-x={0}
-     position-y={5}
-      position-z={-5}
-      height={10}
-      width={10}
-      rotation={rotation}
-      {...opts}
-      text={text}
-      font={fonts[opts.font]}
-      anchorX="center"
-      anchorY="middle"
-      >
-        
-      {opts.materialType === "MeshPhongMaterial" ? (
-        <meshPhongMaterial attach="material" color={opts.color} />
-      ) : null}
-      </text>
-
+  
       
       <Html>
-        <Auth0Provider>
       <CreateProductForm/>
-        </Auth0Provider>
-    </Html>
+      </Html>
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />

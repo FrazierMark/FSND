@@ -18,8 +18,6 @@ const Film = () => {
 function FilmModel(props) {
   // This reference will give us direct access to the mesh
   const mesh = useRef()
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
@@ -30,9 +28,7 @@ function FilmModel(props) {
       {...props}
       ref={mesh}
       scale={active ? 2 : 1}
-      onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}>
+      onClick={(e) => setActive(!active)}>
       
       <Film />
     </mesh>

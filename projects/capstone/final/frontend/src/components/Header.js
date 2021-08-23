@@ -8,7 +8,9 @@ const LoginButton = () => {
   return (
     <button
       className="btn"
-      onClick={() => loginWithRedirect()}
+      onClick={() => loginWithRedirect({
+        redirect_uri: 'http://localhost:3000/CreateProduct'
+      })}
     >
       Log In
     </button>

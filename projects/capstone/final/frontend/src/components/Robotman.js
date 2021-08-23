@@ -36,9 +36,7 @@ function Robotman(props) {
       {...props}
       ref={mesh}
       scale={active ? 1.5 : 1}
-      onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}>
+      onClick={(e) => setActive(!active)}>
       
       <Html distanceFactor={40}>
         {/* <h1>

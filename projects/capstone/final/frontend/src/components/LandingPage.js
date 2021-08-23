@@ -49,18 +49,7 @@ const text =
   "Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit" ;
 
 const LandingPage = () => {
-  const [rotation, setRotation] = useState([0, 0, 0, 0]);
-  const [opts, setOpts] = useState({
-    font: "Philosopher",
-    fontSize: 5,
-    color: "#99ccff",
-    maxWidth: 300,
-    lineHeight: 1,
-    letterSpacing: 0,
-    textAlign: "justify",
-    materialType: "MeshPhongMaterial"
-  });
-
+  
   return (
     <Canvas
     colorManagement
@@ -85,23 +74,7 @@ const LandingPage = () => {
 
     {/* <FilmModel position={[-29, 2.4, -9.1]}/> */}
     
-    
-    
-         {/* <text
-          position-z={30}
-          rotation={rotation}
-          {...opts}
-          text={text}
-          font={fonts[opts.font]}
-          anchorX="center"
-          anchorY="middle"
-        >
-          {opts.materialType === "MeshPhongMaterial" ? (
-            <meshPhongMaterial attach="material" color={opts.color} />
-          ) : null}
-        </text>  */}
-
-
+  
         {/* <pointLight position={[-100, 0, -160]} /> */}
         
     <Particles/>
