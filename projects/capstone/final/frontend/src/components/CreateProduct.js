@@ -1,21 +1,14 @@
 import { Canvas, extend } from '@react-three/fiber';
-import React, { useRef, useState, Suspense } from "react";
+import React, { useRef, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';
-import fonts from "./fonts";
 import BlockText from './BlockText';
 import { Text } from "troika-three-text";
 import { Html } from "@react-three/drei";
 import CreateProductForm from "./CreateProductForm";
 import Loader from "./Loader";
 import { Auth0Provider } from "@auth0/auth0-react";
-
-
-extend({ Text });
-
-
-const text = "Cameras orem ipsum dolor sit amet, consectetur adipiscing elit, sed do e orem ipsum dolor sit amet, consectetur adipiscing elit, sed do e" ;
 
 
 function Jumbo() {

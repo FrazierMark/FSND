@@ -8,7 +8,7 @@ const Film = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.03, .03, .03}
+    scale={[.03, .03, .03]}
     position={[0, 0, 0]}  />
   </Suspense>
   )};

@@ -1,7 +1,6 @@
-import React, { useState, Suspense, useRef } from "react";
-import { Canvas, extend } from '@react-three/fiber';
+import React, { Suspense, useRef } from "react";
+import { Canvas } from '@react-three/fiber';
 import Terrain from './Terrain';
-import { Text } from "troika-three-text";
 import {OrbitControls } from '@react-three/drei';
 import Loader from './Loader';
 import BlockText from './BlockText';
@@ -42,11 +41,6 @@ const Profile = () => {
   );
 };
 
-
-extend({ Text });
-
-const text =
-  "Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit" ;
 
 const LandingPage = () => {
   

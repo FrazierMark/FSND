@@ -13,7 +13,7 @@ const Model = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.02, .02, .02}  />
+    scale={[.02, .02, .02]}  />
   </Suspense>
   )};
 

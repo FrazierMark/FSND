@@ -2,8 +2,6 @@ import { Canvas } from '@react-three/fiber';
 import Terrain from './Terrain';
 import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
-import { Html } from "@react-three/drei";
-import { Content } from "./Content";
 import React, { Suspense } from "react";
 import Loader from "./Loader"
 import SkyBox from './SkyBox';

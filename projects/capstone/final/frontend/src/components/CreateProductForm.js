@@ -4,7 +4,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import CreateProduct from './CreateProduct';
 
 // create-camera-product
-const domain = "m-mark-frazier.us.auth0.com";
+// const domain = "m-mark-frazier.us.auth0.com";
 
 
 
@@ -29,20 +29,20 @@ class CreateProductForm extends Component {
         }
     }
 
-    getAccessToken() {
-    const { getAccessTokenSilently } = this.props.auth0;
+    // getAccessToken() {
+    // const { getAccessTokenSilently } = this.props.auth0;
             
         
-        try {
-            let accessToken = await getAccessTokenSilently({
-              audience: `https://${domain}/api/v2/`,
-              scope: "read:current_user",
-            });
-            return data;
-        } catch (error) {
-            throw error;
-        }
-    }
+    //     try {
+    //         let accessToken = await getAccessTokenSilently({
+    //           audience: `https://${domain}/api/v2/`,
+    //           scope: "read:current_user",
+    //         });
+    //         return data;
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
     
 
     onChangeProductName(e) {

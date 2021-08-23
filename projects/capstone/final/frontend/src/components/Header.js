@@ -1,34 +1,9 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./login-button";
+import LogoutButton from "./logout-button";
 
-
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-  return (
-    <button
-      className="btn"
-      onClick={() => loginWithRedirect({
-        redirect_uri: 'http://localhost:3000/CreateProduct'
-      })}
-    >
-      Log In
-    </button>
-  );
-};
-
-
-const LogoutButton = () => {
-  const { logout } = useAuth0();
-  return (
-    <button
-      className="logbtn"
-      onClick={() => logout()}
-    >
-      Log Out
-    </button>
-  );
-};
 
 const AuthNav = () => {
   const { isAuthenticated, user } = useAuth0();

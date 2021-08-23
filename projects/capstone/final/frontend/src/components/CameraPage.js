@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import React, { useRef, useState, Suspense } from "react";
+import React, { useRef, Suspense } from "react";
 import CameraModel from './CameraModel';
 import Terrain from './Terrain';
 import {OrbitControls} from '@react-three/drei';
@@ -9,9 +9,6 @@ import GetCameras from "./GetCameras"
 import Loader from './Loader';
 import { Particles } from './Particles';
 import SkyBox from './SkyBox';
-
-
-const text = "Grain Days, Every Day" 
 
 
 function Jumbo() {

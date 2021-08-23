@@ -12,7 +12,7 @@ const Roboman = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.01, .01, .01}
+    scale={[.01, .01, .01]}
     position={[0, 0, 0]}  />
   </Suspense>
   )};
@@ -22,7 +22,6 @@ function Robotman(props) {
   // This reference will give us direct access to the mesh
   const mesh = useRef()
   // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
