@@ -8,6 +8,7 @@ import { Html } from "@react-three/drei";
 import CreateProductForm2 from "./CreateProductForm2";
 import Loader from "./Loader";
 import Auth0ProviderWithHistory from "../auth0-provider-with-history";
+import DeleteProductForm from './DeleteProductForm';
 
 
 function Jumbo() {
@@ -36,7 +37,7 @@ const CreateProduct = () => {
         <Jumbo />
   
       
-      <Html>
+      <Html position={[-8, 0, -15]}>
         <Auth0ProviderWithHistory>
         <CreateProductForm2/>
         </Auth0ProviderWithHistory>
@@ -49,9 +50,15 @@ const CreateProduct = () => {
     <CameraModel position={[-17, 0, -25]} />
     
     <OrbitControls />
+    
+      <Html position={[10, 0, -15]}>
+        <Auth0ProviderWithHistory>
+        <DeleteProductForm />
+        </Auth0ProviderWithHistory>
+      </Html>
+    
+    
     <Terrain/>
-    
-    
 
     </Suspense>
     </Canvas>

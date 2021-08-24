@@ -78,7 +78,6 @@ def get_all_film():
 
 
 
-
 @app.route('/CreateProduct', methods=['POST'])
 @requires_auth('post:product')
 def create_new_product(token): #<<<<<<<<<Token in function when using @requires_auth
@@ -115,34 +114,6 @@ def create_new_product(token): #<<<<<<<<<Token in function when using @requires_
         abort(422)
     
 
-# @app.route('/CreateProduct', methods=['POST'])
-# @requires_auth('post:cameras')
-# def create_new_camera(token):
-#     """If permission granted, will add drink to database."""
-#     body = request.get_json()
-#     if body is None:
-#         abort(404)
-
-#     new_brand = body.get('brand', None)
-#     new_model = body.get('model', None)
-#     new_model = body.get('model', None)
-    
-#     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
-#     new_drank = Drink(title=new_title, recipe=json.dumps(new_recipe))
-
-#     try:
-#         new_drank.insert()
-#         new_drank = Drink.query.filter_by(id=new_drank.id)
-#         formatted_drank = [drink.long() for drink in new_drank]
-
-#         return jsonify({
-#             "success": True,
-#             "drinks": formatted_drank,
-#         })
-#     except AuthError:
-#         abort(422)
-    
-
 
 # @app.route('/drinks/<int:drink_id>', methods=['PATCH'])
 # @requires_auth('patch:drinks')
@@ -176,8 +147,28 @@ def create_new_product(token): #<<<<<<<<<Token in function when using @requires_
 #         print(sys.exc_info)
 #         abort(422)
 
+@app.route('/CreateProduct', methods=['DELETE'])
+@requires_auth('delete:product')
+def delete_product(payload, sku):
+    "API endpoint to delete drink in database if permission granted."
+    try:
+        product_to_delete = Product.query.filter_by(sku = sku).one_or_none()
+        if product_to_delete is None:
+            abort(404)
+
+        product_to_delete.delete()
+
+        return jsonify({
+            "success": True,
+            "delete": sku
+        })
+
+    except AuthError:
+        print(sys.exc_info)
+        abort(422)
+
 # @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
-# @requires_auth('delete:drinks')
+# @requires_auth('delete:product')
 # def delete_drink(payload, drink_id):
 #     "API endpoint to delete drink in database if permission granted."
 #     try:

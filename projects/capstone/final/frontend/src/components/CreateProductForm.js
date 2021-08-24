@@ -21,18 +21,14 @@ class CreateProductForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            brand: '',
-            model: '',
-            sensor: '',
-            mount: '',
+            name: '',
+            description: '',
+            sku: '',
+            category: '',
             price: '',
         }
     }
 
-    // getAccessToken() {
-    // const { getAccessTokenSilently } = this.props.auth0;
-            
-    
 
     onChangeProductName(e) {
         this.setState({ name: e.target.value })
