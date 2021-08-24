@@ -7,7 +7,7 @@ import BlockText from './BlockText';
 import { Html } from "@react-three/drei";
 import CreateProductForm2 from "./CreateProductForm2";
 import Loader from "./Loader";
-import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 
 
 function Jumbo() {
@@ -37,8 +37,11 @@ const CreateProduct = () => {
   
       
       <Html>
-      <CreateProductForm2/>
+        <Auth0ProviderWithHistory>
+        <CreateProductForm2/>
+        </Auth0ProviderWithHistory>
       </Html>
+      
       
     <ambientLight intensity={0.5} />
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />

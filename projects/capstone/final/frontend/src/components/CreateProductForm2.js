@@ -1,46 +1,38 @@
 
+
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 import GetAPItoken from "./getAccessToken";
 import  { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth0Token from './useAuth0Token';
 
-
-// axios.post('http://127.0.0.1:5000/CreateProduct', {newProduct},
-//     {headers: {'Authorization': `bearer ${accessToken}`}
-// })
-
-// const res = axios.post('http://127.0.0.1:5000/CreateProduct', {newProduct},
-//         {headers: {'Authorization': `bearer ${accessToken}`}
 
 const BACKEND_URL = process.env.React_APP_SERVER_URL
 
 const CreateProductForm2 = () => {
-    const [accessToken, setaccessToken] = useState(null);
-    const { getAccessTokenSilently } = useAuth0;
 
+    const [accessToken, setAccessToken] = useState('');
+    const [token, setToken] = useState(null);
+    const { getAccessTokenSilently } = useAuth0();
+    const token2 = useAuth0Token();
+    
     useEffect(() => {
+        const getToken = async () => {
+          try {
+            const accessToken = await getAccessTokenSilently({})
+            setToken(accessToken)
+          } catch (e) {
+            console.log(e.message)
+          }
+        }
+        getToken()
+      }, [getAccessTokenSilently])
 
-        
-        const getAccessToken = async () => {
-            const domain = "m-mark-frazier.us.auth0.com";
-    
-            try {
-              const accessToken = await getAccessTokenSilently({
-                audience: "m-mark-frazier.us.auth0.com",
-                scope: 'read:current_user',
-              });
-    
-              setaccessToken(accessToken);
-            } catch (e) {
-              console.log(e.message);
-            }
-          };
-          getAccessToken();
-        
-      }, [getAccessTokenSilently]);
+    const [results, setResults] = useState(null)
     
     const [values, setValues] = useState({
         name: '',
@@ -53,51 +45,51 @@ const CreateProductForm2 = () => {
     const handleChange = name => e => {
         setValues({ ...values, [name]: e.target.value });
     };
-
-    const { name, description, sku, category, price } = values;
-    const newProduct = {name, description, sku, category, price};
    
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         console.log('submitting');
         e.preventDefault();
-        toast(`You've posted a new product!`, {
-          position: toast.POSITION.TOP_RIGHT,
+        toast("Looks like it worked...", {
+            position:toast.POSITION.TOP_RIGHT,
         });
+        console.log(token)
         postCreateProduct(
-          newProduct
+            values.name,
+            values.description,
+            values.sku,
+            values.category,
+            values.price
         );
-        
+    };
+
+    const postCreateProduct = async(
+        name,
+        description,
+        sku,
+        category,
+        price
+        ) => {
+            console.log(accessToken)
+            // const { name, description, sku, category, price } = values;
+            const newProduct = {name, description, sku, category, price};
+            
+            axios.post('http://127.0.0.1:5000/CreateProduct', newProduct, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+        })
+        .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
       };
 
-    async function postCreateProduct(
-    name,
-    description,
-    sku,
-    category,
-    price
-    ) {
-    try {
-        const res = await fetch(`${BACKEND_URL}/CreateProduct`, {
-            method: 'POST',
-            body: JSON.stringify({
-                name: values.name,
-                description: values.description,
-                sku: values.sku,
-                category: values.category,
-                price: values.price
-            }),
-            headers: {
-            'content-type': 'application/JSON',
-            Authorization: `Bearer ${accessToken}`,
-            },
-        });
-        const data = await res.json();
-    } catch (error) {
-        console.error(error);
-    }
     
         return (
+            
             <div className="wrapper">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -127,6 +119,6 @@ const CreateProductForm2 = () => {
 
             </div>
         )
-}}
+}
 
 export default CreateProductForm2;
