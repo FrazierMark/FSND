@@ -3,12 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import { Auth0Provider } from "@auth0/auth0-react";
-import Auth0ProviderWithHistory from "../auth0-provider-with-history";
-import GetAPItoken from "./getAccessToken";
 import  { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import useAuth0Token from './useAuth0Token';
 
 
 const BACKEND_URL = process.env.React_APP_SERVER_URL
@@ -18,7 +14,6 @@ const CreateProductForm2 = () => {
     const [accessToken, setAccessToken] = useState('');
     const [token, setToken] = useState(null);
     const { getAccessTokenSilently } = useAuth0();
-    const token2 = useAuth0Token();
     
     useEffect(() => {
         const getToken = async () => {
@@ -32,7 +27,7 @@ const CreateProductForm2 = () => {
         getToken()
       }, [getAccessTokenSilently])
 
-    const [results, setResults] = useState(null)
+
     
     const [values, setValues] = useState({
         name: '',

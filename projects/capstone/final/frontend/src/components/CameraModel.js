@@ -3,6 +3,8 @@ import { useFrame, useLoader } from '@react-three/fiber'
 import { Html } from '@react-three/drei';
 import GlitchText from "./GlitchText";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Auth0ProviderWithHistory from "../auth0-provider-with-history";
+import CreateProductForm2 from "./CreateProductForm2";
 
 
 
@@ -39,17 +41,17 @@ function CameraModel(props) {
 
       
       
-      <Html distanceFactor={50}>
-        <h1>
-        <GlitchText>Price</GlitchText>
-      </h1>
+      <Html distanceFactor={70}>
         
+        {/* <h1>
+        <GlitchText>Price</GlitchText>
+      </h1> */}
+        
+        <Auth0ProviderWithHistory>
+        <CreateProductForm2/>
+        </Auth0ProviderWithHistory>
       
 
-        <div className="content">
-          hello <br />
-          world
-        </div>
       </Html>
       
       
@@ -60,3 +62,9 @@ function CameraModel(props) {
   )
 }
 export default CameraModel
+
+
+{/* <div className="content">
+hello <br />
+world
+</div> */}

@@ -14,7 +14,7 @@ function Jumbo() {
   const ref = useRef()
   return (
     <group ref={ref}>
-      <BlockText hAlign="right" position={[-22, 5, -30]} children="Create Product" />
+      <BlockText hAlign="right" position={[-22, 5, -25]} children="Create Product" />
       {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
       {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
@@ -29,7 +29,7 @@ const CreateProduct = () => {
     dpr={[1, 2]}
     colorManagement
     shadowMap
-    camera={{ position: [0, 0, 30], fov: 75 }}>
+    camera={{ position: [0, 0, 30], fov: 50 }}>
      <fog attach="fog" args={['#ff6161', 10, 300]} />
 
      <Suspense fallback={<Loader />}>
@@ -44,10 +44,9 @@ const CreateProduct = () => {
       
       
     <ambientLight intensity={0.5} />
-    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
     <pointLight position={[-10, -10, -10]} />
 
-    <CameraModel position={[-4.2, 0, 0]} />
+    <CameraModel position={[-17, 0, -25]} />
     
     <OrbitControls />
     <Terrain/>
