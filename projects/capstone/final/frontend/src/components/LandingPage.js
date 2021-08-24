@@ -24,27 +24,31 @@ function Jumbo() {
 }
 
 
-const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+// const Profile = () => {
+//   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
-  return (
-    isAuthenticated && (
-      <div>
+//   console.log(isAuthenticated)
+//   console.log(user)
+
+//   if (isLoading) {
+//     return <div>Loading ...</div>;
+//   }
+//   return (
+//     isAuthenticated && (
+//       <div>
         
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-      </div>
-    )
-  );
-};
+//         <h2>{user.name}</h2>
+//         <p>{user.email}</p>
+//       </div>
+//     )
+//   );
+// };
 
 
 const LandingPage = () => {
   
   return (
+    <div>
     <Canvas
     colorManagement
     shadowMap
@@ -57,9 +61,9 @@ const LandingPage = () => {
     <OrbitControls />
     
     
-    <Html>
-    <Profile />
-    </Html>
+   
+    
+    
     
 
     <pointLight position={[1, 11, 11]} />
@@ -76,7 +80,9 @@ const LandingPage = () => {
     <Terrain/>
     </Suspense>
   </Canvas>
+
   
+  </div>
   
   )
 }

@@ -9,6 +9,7 @@ import GetCameras from "./GetCameras"
 import Loader from './Loader';
 import { Particles } from './Particles';
 import SkyBox from './SkyBox';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Jumbo() {
@@ -21,6 +22,15 @@ function Jumbo() {
     </group>
   )
 }
+
+const Profile = () => {
+  const { user } = useAuth0();
+
+  
+  console.log(user)
+
+  return user;
+};
 
 
 const CameraPage = () => {
@@ -54,6 +64,10 @@ const CameraPage = () => {
     <Html position={[-18, 0, 0]} >
       <GetCameras /> 
     </Html>
+
+    <Html>
+      <Profile />
+      </Html>
 
     <Particles/>
     </Suspense>

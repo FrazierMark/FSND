@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./login-button";
 import LogoutButton from "./logout-button";
@@ -8,8 +8,8 @@ import LogoutButton from "./logout-button";
 const AuthNav = () => {
   const { isAuthenticated, user } = useAuth0();
 
-  console.log(isAuthenticated)
-  console.log(user)
+  // console.log(isAuthenticated)
+  // console.log(user)
 
   return isAuthenticated ? <LogoutButton /> : <LoginButton />;
 };
@@ -30,16 +30,16 @@ const Header = () => {
         <nav>
         <ul>
             <li>
-            <NavLink to="/"> Home </NavLink> 
+            <Link to="/"> Home </Link> 
             </li>
             <li>
-              <NavLink to="/CameraPage"> Cameras </NavLink>
+              <Link to="/CameraPage"> Cameras </Link>
             </li>
             <li>
-              <NavLink to="/LensPage"> Lenses </NavLink>
+              <Link to="/LensPage"> Lenses </Link>
             </li>
             <li>
-            <NavLink to="/FilmPage" > Film </NavLink>
+            <Link to="/FilmPage" > Film </Link>
             </li>
             <li className='btn'>
               <a href='/CartPage' > Cart </a>

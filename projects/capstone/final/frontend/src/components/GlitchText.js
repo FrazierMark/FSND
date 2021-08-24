@@ -102,6 +102,6 @@ const Container = styled.div`
   }
 `;
 
-export default Container = ({ children }) => {
+export default ({ children }) => {
   return <Container data-text={children}>{children}</Container>;
 };

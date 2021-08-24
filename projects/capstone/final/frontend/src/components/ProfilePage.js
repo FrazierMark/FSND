@@ -25,11 +25,9 @@ const ProfilePage = () => {
     <pointLight position={[-10, -10, -10]} />
     
     <Html>
-    <Auth0Provider>
       <Profile/>
-    </Auth0Provider>
     </Html>
-    
+
     <Terrain/>
     </Suspense>
 

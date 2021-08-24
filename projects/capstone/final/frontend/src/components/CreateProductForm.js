@@ -32,17 +32,6 @@ class CreateProductForm extends Component {
     // getAccessToken() {
     // const { getAccessTokenSilently } = this.props.auth0;
             
-        
-    //     try {
-    //         let accessToken = await getAccessTokenSilently({
-    //           audience: `https://${domain}/api/v2/`,
-    //           scope: "read:current_user",
-    //         });
-    //         return data;
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // }
     
 
     onChangeProductName(e) {
@@ -120,4 +109,4 @@ class CreateProductForm extends Component {
     }
 }
 
-export default withAuth0(CreateProductForm)
+export default CreateProductForm
