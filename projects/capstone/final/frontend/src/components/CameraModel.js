@@ -46,7 +46,7 @@ function CameraModel(props) {
         
       
 
-        <div class="content">
+        <div className="content">
           hello <br />
           world
         </div>

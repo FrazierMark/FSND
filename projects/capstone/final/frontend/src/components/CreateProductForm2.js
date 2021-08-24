@@ -4,25 +4,28 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Auth0Provider } from "@auth0/auth0-react";
 import GetAPItoken from "./getAccessToken";
-
-const domain = "m-mark-frazier.us.auth0.com";
-
-
+import  { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
-axios.post('http://127.0.0.1:5000/CreateProduct', {newProduct},
-    {headers: {'Authorization': `bearer ${accessToken}`}
-})
+// axios.post('http://127.0.0.1:5000/CreateProduct', {newProduct},
+//     {headers: {'Authorization': `bearer ${accessToken}`}
+// })
 
+// const res = axios.post('http://127.0.0.1:5000/CreateProduct', {newProduct},
+//         {headers: {'Authorization': `bearer ${accessToken}`}
 
-
+const BACKEND_URL = process.env.React_APP_SERVER_URL
 
 const CreateProductForm2 = () => {
+    const [accessToken, setaccessToken] = useState(null);
+    const { getAccessTokenSilently } = useAuth0;
 
     useEffect(() => {
+
         
         const getAccessToken = async () => {
-            const domain = 'dev-ip1x4wr7.eu.auth0.com';
+            const domain = "m-mark-frazier.us.auth0.com";
     
             try {
               const accessToken = await getAccessTokenSilently({
@@ -37,7 +40,7 @@ const CreateProductForm2 = () => {
           };
           getAccessToken();
         
-      }, [user, getAccessTokenSilently]);
+      }, [getAccessTokenSilently]);
     
     const [values, setValues] = useState({
         name: '',
@@ -62,47 +65,38 @@ const CreateProductForm2 = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
         postCreateProduct(
-          values.name,
-          values.description,
-          values.sku,
-          values.category,
-          values.price
+          newProduct
         );
-        setSubmitPost(true);
+        
       };
 
     async function postCreateProduct(
     name,
     description,
     sku,
-    viewVidSource,
-    previewAudioSource
+    category,
+    price
     ) {
     try {
-        const res = await fetch(`${BACKEND_URL}/posts`, {
-        method: 'POST',
-        body: JSON.stringify({
-            user_id: userId,
-            text: text,
-            image: previewImgSource,
-            video: previewVidSource,
-            audio: previewAudioSource,
-            mood: emotion,
-        }),
-        headers: {
+        const res = await fetch(`${BACKEND_URL}/CreateProduct`, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: values.name,
+                description: values.description,
+                sku: values.sku,
+                category: values.category,
+                price: values.price
+            }),
+            headers: {
             'content-type': 'application/JSON',
             Authorization: `Bearer ${accessToken}`,
-        },
+            },
         });
         const data = await res.json();
     } catch (error) {
         console.error(error);
     }
-    // once submted redirect to Journal View Page
-    history.push('/journalview');
-    }
-
-
+    
         return (
             <div className="wrapper">
                 <form onSubmit={handleSubmit}>

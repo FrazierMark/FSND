@@ -42,7 +42,7 @@ const GetAllFilm = () => {
 
         {film.map((item) => {
             return (
-            <tr key="{item.index}">  {item.index}
+            <tr key="{item.index}">  
             
             <td> {item.name} </td>
             <td>{item.description}</td>

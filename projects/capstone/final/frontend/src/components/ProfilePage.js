@@ -6,7 +6,7 @@ import { Particles } from './Particles';
 import { OrbitControls } from "@react-three/drei";
 import { Html } from "@react-three/drei";
 import Profile from "./ProfileContent";
-import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 
 
 const ProfilePage = () => {
@@ -25,7 +25,9 @@ const ProfilePage = () => {
     <pointLight position={[-10, -10, -10]} />
     
     <Html>
+      <Auth0ProviderWithHistory>
       <Profile/>
+      </Auth0ProviderWithHistory>
     </Html>
 
     <Terrain/>

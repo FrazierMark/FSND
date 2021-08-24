@@ -24,25 +24,6 @@ function Jumbo() {
 }
 
 
-// const Profile = () => {
-//   const { user, isAuthenticated, isLoading } = useAuth0();
-
-//   console.log(isAuthenticated)
-//   console.log(user)
-
-//   if (isLoading) {
-//     return <div>Loading ...</div>;
-//   }
-//   return (
-//     isAuthenticated && (
-//       <div>
-        
-//         <h2>{user.name}</h2>
-//         <p>{user.email}</p>
-//       </div>
-//     )
-//   );
-// };
 
 
 const LandingPage = () => {
@@ -59,12 +40,7 @@ const LandingPage = () => {
     <Jumbo/>
     <Robotman />
     <OrbitControls />
-    
-    
-   
-    
-    
-    
+  
 
     <pointLight position={[1, 11, 11]} />
     <pointLight position={[1, 7, 9]} />
@@ -76,7 +52,7 @@ const LandingPage = () => {
         {/* <pointLight position={[-100, 0, -160]} /> */}
         
     <Particles/>
-    <SkyBox />
+    {/* <SkyBox /> */}
     <Terrain/>
     </Suspense>
   </Canvas>

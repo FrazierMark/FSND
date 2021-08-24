@@ -52,7 +52,7 @@ const FilmPage = () => {
     <Jumbo />
     <Terrain/>
     <Particles/>
-    <SkyBox />
+    {/* <SkyBox /> */}
     </Suspense>
       
   </Canvas>
