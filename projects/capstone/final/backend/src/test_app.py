@@ -12,8 +12,8 @@ import hmac
 from functools import wraps
 from hashlib import sha1
 from .database.models import setup_db, Product, Cart
-from flask.ext.principal import Principal, Permission, RoleNeed, Identity, \
-    identity_changed, identity_loaded
+# from flask.ext.principal import Principal, Permission, RoleNeed, Identity, \
+#     identity_changed, identity_loaded
 
 
 def create_app(test_config=None):
@@ -23,7 +23,8 @@ def create_app(test_config=None):
   cors = CORS(app)
   app.debug = True
   app.config.update(SECRET_KEY='secret', TESTING=True)
-  principal = Principal(app)identity_loaded.connect(_on_principal_init)
+#   principal = Principal(app)identity_loaded.connect(_on_principal_init)
+
 
 
 class ProductTestCase(unittest.TestCase):
@@ -56,8 +57,8 @@ class ProductTestCase(unittest.TestCase):
         """Executed after reach test"""
         pass
 
+
     """
-    
     Test for successful operation and for expected errors.
     """
 
@@ -128,104 +129,96 @@ class ProductTestCase(unittest.TestCase):
 
 
 
+# def roles_required(*roles):
+#     """Decorator which specifies that a user must have all the specified roles.
+#     Example::
 
+#         @app.route('/dashboard')
+#         @roles_required('admin', 'editor')
+#         def dashboard():
+#             return 'Dashboard'
 
-    def roles_required(*roles):
-        """Decorator which specifies that a user must have all the specified roles.
-        Example::
+#     The current user must have both the `admin` role and `editor` role in order
+#     to view the page.
 
-            @app.route('/dashboard')
-            @roles_required('admin', 'editor')
-            def dashboard():
-                return 'Dashboard'
+#     :param args: The required roles.
 
-        The current user must have both the `admin` role and `editor` role in order
-        to view the page.
+#     Source: https://github.com/mattupstate/flask-security/
+#     """
 
-        :param args: The required roles.
-
-        Source: https://github.com/mattupstate/flask-security/
-        """
-    
-        def wrapper(fn):
-            @wraps(fn)
-            def decorated_view(*args, **kwargs):
-                perms = [Permission(RoleNeed(role)) for role in roles]
-                for perm in perms:
-                    if not perm.can():
-                        # return _get_unauthorized_view()
-                        flask.abort(403)
-                return fn(*args, **kwargs)
-            return decorated_view
-        return wrapper
-
-
-
-    def roles_accepted(*roles):
-        """Decorator which specifies that a user must have at least one of the
-        specified roles. Example::
-
-            @app.route('/create_post')
-            @roles_accepted('editor', 'author')
-            def create_post():
-                return 'Create Post'
-
-        The current user must have either the `editor` role or `author` role in
-        order to view the page.
-
-        :param args: The possible roles.
-        """
-        def wrapper(fn):
-            @wraps(fn)
-            def decorated_view(*args, **kwargs):
-                perm = Permission(*[RoleNeed(role) for role in roles])
-                if perm.can():
-                    return fn(*args, **kwargs)
-                abort(403)
-            return decorated_view
-        return wrapper
-
-
-    def _on_principal_init(sender, identity):
-        if identity.id == 'admin':
-            identity.provides.add(RoleNeed('admin'))
-        identity.provides.add(RoleNeed('member'))
+#     def wrapper(fn):
+#         @wraps(fn)
+#         def decorated_view(*args, **kwargs):
+#             perms = [Permission(RoleNeed(role)) for role in roles]
+#             for perm in perms:
+#                 if not perm.can():
+#                     # return _get_unauthorized_view()
+#                     abort(403)
+#             return fn(*args, **kwargs)
+#         return decorated_view
+#     return wrapper
 
 
 
+# def roles_accepted(*roles):
+#     """Decorator which specifies that a user must have at least one of the
+#     specified roles. Example::
 
-        @app.before_request
-        def determine_identity():
-            # This is where you get your user authentication information. This can
-            # be done many ways. For instance, you can store user information in the
-            # session from previous login mechanism, or look for authentication
-            # details in HTTP headers, the querystring, etc...
-            identity_changed.send(app._get_current_object(), identity=Identity('admin'))
+#         @app.route('/create_post')
+#         @roles_accepted('editor', 'author')
+#         def create_post():
+#             return 'Create Post'
 
-        @app.route('/')
-        def index():
-            return "OK"
+#     The current user must have either the `editor` role or `author` role in
+#     order to view the page.
 
-        @app.route('/member')
-        @roles_accepted('admin', 'member')
-        def role_needed():
-            return "OK"
-
-        @app.route('/admin')
-        @roles_required('admin')
-        def connect_admin():
-            return "OK"
-
-        @app.route('/admin_b')
-        @admin_permission.require()
-        def connect_admin_alt():
-            return "OK"
-
-        return app
+#     :param args: The possible roles.
+#     """
+#     def wrapper(fn):
+#         @wraps(fn)
+#         def decorated_view(*args, **kwargs):
+#             perm = Permission(*[RoleNeed(role) for role in roles])
+#             if perm.can():
+#                 return fn(*args, **kwargs)
+#             abort(403)
+#         return decorated_view
+#     return wrapper
 
 
-    admin_permission = Permission(RoleNeed('admin'))
+# def _on_principal_init(sender, identity):
+#     if identity.id == 'admin':
+#         identity.provides.add(RoleNeed('admin'))
+#     identity.provides.add(RoleNeed('member'))
 
+#     # @app.before_request
+#     # def determine_identity():
+#     #     # This is where you get your user authentication information. This can
+#     #     # be done many ways. For instance, you can store user information in the
+#     #     # session from previous login mechanism, or look for authentication
+#     # #     # details in HTTP headers, the querystring, etc...
+#     #     identity_changed.send(app._get_current_object(), identity=Identity('administrator'))
+
+#     @app.route('/CameraPage', methods=['GET'])
+#     def index():
+#         return "OK"
+
+#     @app.route('/CreateProduct', methods=['POST'])
+#     @roles_accepted('administrator', 'manager')
+#     def role_needed():
+#         return "OK"
+
+#     @app.route('/CreateProduct', methods=['DELETE'])
+#     @roles_required('administrator')
+#     def connect_admin():
+#         return "OK"
+
+#     @app.route('/CreateProduct', methods=['PATCH'])
+#     @admin_permission.require()
+#     def connect_admin_alt():
+#         return "OK"
+
+
+#     admin_permission = Permission(RoleNeed('admin'))
 
 
 
