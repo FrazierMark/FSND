@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import  { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
 
 
 const BACKEND_URL = process.env.React_APP_SERVER_URL
@@ -45,9 +43,7 @@ const CreateProductForm2 = () => {
     const handleSubmit = async (e) => {
         console.log('submitting');
         e.preventDefault();
-        toast("Looks like it worked...", {
-            position:toast.POSITION.TOP_RIGHT,
-        });
+        alert("New Product Added!");
         console.log(token)
         postCreateProduct(
             values.name,
@@ -55,8 +51,7 @@ const CreateProductForm2 = () => {
             values.sku,
             values.category,
             values.price
-        );
-        setValues(null)        
+        );   
     };
 
     const postCreateProduct = async(
@@ -95,10 +90,10 @@ const CreateProductForm2 = () => {
                         <input type="number" placeholder="Add Product Sku" value={values.sku} onChange={handleChange('sku')} className="form-control" /> 
                         <input type="text" placeholder="Add Product Category" value={values.category} onChange={handleChange('category')} className="form-control" /> 
                         <input type="float" placeholder="Add Product Price" value={values.price} onChange={handleChange('price')} className="form-control" /> 
-                        <input type="button" value="Create Product" className="form-control" />
+                        <input type="submit" value="Create Product" className="form-control" />
                 </form>
 
-                <div class="drops">
+                <div className="drops">
                 {/* <div class="drop drop-1"></div>
                 <div class="drop drop-2"></div>
                 <div class="drop drop-3"></div>

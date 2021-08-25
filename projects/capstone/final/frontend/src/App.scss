@@ -279,7 +279,7 @@ $lfs-grey: #000000;
 $white: rgba(255,255,255,0.3);
 
 body {
-  background: linear-gradient(45deg, #FC466B, #3fa3fb);
+  background: linear-gradient(45deg, #e40e2e, #3f74fb);
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
 }
@@ -305,8 +305,9 @@ form {
   position: relative;
   transition: all 0.2s ease-in-out;
   
+  
   p {
-    font-weight: 300;
+    font-weight: 350;
     color: #fff;
     opacity: 1;
     font-size: 1.2rem;
@@ -360,7 +361,7 @@ form {
       }
     }
     
-    &[type="button"] {
+    &[type="submit"] {
       margin-top: 10px;
       width: 150px;
       font-size: 1rem;
@@ -383,6 +384,7 @@ form {
 ::placeholder {
   font-family: Montserrat, sans-serif;
   font-weight: 400;
+  font-size: 1rem;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
 }

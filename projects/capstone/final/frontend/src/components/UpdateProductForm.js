@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import  { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
 
 
 const BACKEND_URL = process.env.React_APP_SERVER_URL
 
-const DeleteProductForm = () => {
+const UpdateProductForm = () => {
 
     const [accessToken, setAccessToken] = useState('');
     const [token, setToken] = useState(null);
@@ -39,15 +37,15 @@ const DeleteProductForm = () => {
     const handleSubmit = async (e) => {
         console.log('submitting');
         e.preventDefault();
-        alert("Product...no more...");
+        alert("Product Updated!");
         console.log(token)
-        postDeleteProduct(
+        patchUpdateProduct(
         values.sku,
         );
         e.target.reset();
     };
 
-    const postDeleteProduct = async(
+    const patchUpdateProduct = async(
         sku
         ) => {
             console.log(accessToken)
@@ -78,12 +76,16 @@ const DeleteProductForm = () => {
             
             <div className="form1">
                 <form onSubmit={handleSubmit}>
-                        <p>Delete Product by SKU</p>
-                        <input type="number" placeholder="Product SKU to Delete" value={values.sku} onChange={handleChange('sku')} className="form-control" />
-                        <input type="submit" value="Delete Product" className="btn btn-success btn-block" />
+                        <p>Update Product by Sku</p>
+                        <input type="number" placeholder="Product SKU to Update" value={values.sku} onChange={handleChange('sku')} className="form-control" />
+                        <input type="text" placeholder="Update Product Name" value={values.name} onChange={handleChange('name')} className="form-control" /> 
+                        <input type="text" placeholder="Update Product Description" value={values.description} onChange={handleChange('description')} className="form-control" />
+                        <input type="text" placeholder="Update Product Category" value={values.category} onChange={handleChange('category')} className="form-control" /> 
+                        <input type="float" placeholder="Update Product Price" value={values.price} onChange={handleChange('price')} className="form-control" /> 
+                        <input type="submit" value="Update Product" className="btn btn-success btn-block" />
                 </form>
             </div>
         )
 }
 
-export default DeleteProductForm;
+export default UpdateProductForm;
