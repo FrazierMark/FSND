@@ -112,7 +112,54 @@ def create_new_product(token): #<<<<<<<<<Token in function when using @requires_
         })
     except AuthError:
         abort(422)
+
+@app.route('/CreateProduct', methods=['PATCH'])
+@requires_auth('patch:product')
+def edit_product(token):
+    "API endpoint to edit product in database if permission granted."
+    body = request.get_json()
+    if body is None:
+        abort(404)
+
+    print(body)
+
+    sku = body.get('sku', None)
+    print(sku)
     
+    try:
+        product_needs_edit = Product.query.filter_by(sku = sku).one_or_none()
+        if product_needs_edit is None:
+            print('Nothing here....')
+            abort(404)
+         # check if title has been updated from frontend, then update variable
+        if body.get('name'):
+            name = body['name']
+            product_needs_edit.name = name  
+        # check if description has been updated from frontend, then update variable
+        if body.get('description'):
+            description = body['description']
+            product_needs_edit.description = description
+        if body.get('category'):
+            category = body['category']
+            product_needs_edit.category = category
+        if body.get('price'):
+            price = body['price']
+            product_needs_edit.price = price
+
+        # update db
+        product_needs_edit.update()
+        # retrieve edited object and return to frontend
+        updated_product = Product.query.filter_by(sku = sku)
+        print(updated_product)
+        formatted_product = [product.format() for product in updated_product]
+
+        return jsonify({
+            "success": True,
+            "product": formatted_product
+        })
+    except AuthError:
+        print(sys.exc_info)
+        abort(422)
 
 
 # @app.route('/drinks/<int:drink_id>', methods=['PATCH'])
@@ -155,13 +202,9 @@ def delete_product(token):
     if body is None:
         abort(404)
 
-    print(body)
-
     sku = body["deletedProduct"]
     sku = int(sku["sku"])
 
-    print(type(sku))
-    print(sku)
 
     try:
         product_to_delete = Product.query.filter_by(sku = sku).one_or_none()
@@ -180,25 +223,6 @@ def delete_product(token):
         print(sys.exc_info)
         abort(422)
 
-# @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
-# @requires_auth('delete:product')
-# def delete_drink(payload, drink_id):
-#     "API endpoint to delete drink in database if permission granted."
-#     try:
-#         drink_to_delete = Drink.query.filter_by(id = int(drink_id)).one_or_none()
-#         if drink_to_delete is None:
-#             abort(404)
-
-#         drink_to_delete.delete()
-
-#         return jsonify({
-#             "success": True,
-#             "delete": drink_id
-#         })
-
-#     except AuthError:
-#         print(sys.exc_info)
-#         abort(422)
 
 
 @app.errorhandler(404)
