@@ -4,16 +4,12 @@ from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 from sqlalchemy import exc
 from flask_sqlalchemy import SQLAlchemy
-import json
 import sys
 from flask_cors import CORS
-import time
 import json
 
-from .database.models import db_drop_and_create_all, setup_db, Product
+from .database.models import db_drop_and_create_all, setup_db, Product, Cart
 from .auth.auth import AuthError, requires_auth
-
-
 
 
 app = Flask(__name__) 
