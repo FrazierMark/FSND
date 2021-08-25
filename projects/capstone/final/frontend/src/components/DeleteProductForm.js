@@ -46,6 +46,7 @@ const DeleteProductForm = () => {
         postDeleteProduct(
         values.sku,
         );
+        e.target.reset();
     };
 
     const postDeleteProduct = async(
@@ -70,8 +71,9 @@ const DeleteProductForm = () => {
           })
           .catch((err) => {
             console.log(err.message);
+            
           });
-      };
+        };
 
     
         return (

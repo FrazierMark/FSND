@@ -56,6 +56,7 @@ const CreateProductForm2 = () => {
             values.category,
             values.price
         );
+        setValues(null)        
     };
 
     const postCreateProduct = async(
@@ -85,31 +86,44 @@ const CreateProductForm2 = () => {
     
         return (
             
-            <div className="wrapper">
+            <div className="form1">
                 <form onSubmit={handleSubmit}>
+                    <p> Update Product </p>
                     <div className="form-group">
                         <label>Add Product Name</label>
                         <input type="text" value={values.name} onChange={handleChange('name')} className="form-control" />
                     </div>
+
+
                     <div className="form-group">
                         <label>Add Product Description</label>
                         <input type="text" value={values.description} onChange={handleChange('description')} className="form-control" />
                     </div>
+
+
                     <div className="form-group">
                         <label>Add Product Sku</label>
                         <input type="number" value={values.sku} onChange={handleChange('sku')} className="form-control" />
                     </div>
+
+
                     <div className="form-group">
                         <label>Add Product Category</label>
                         <input type="text" value={values.category} onChange={handleChange('category')} className="form-control" />
                     </div>
+
+
                     <div className="form-group">
                         <label>Add Product Price</label>
                         <input type="float" value={values.price} onChange={handleChange('price')} className="form-control" />
                     </div>
+
+
                     <div className="form-group">
-                        <input type="submit" value="Create Product" className="btn btn-success btn-block" />
+                        <input type="submit" value="Create Product" className="button" />
+                        
                     </div>
+                    
                 </form>
 
             </div>

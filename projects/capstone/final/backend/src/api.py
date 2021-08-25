@@ -8,6 +8,7 @@ import json
 import sys
 from flask_cors import CORS
 import time
+import json
 
 from .database.models import db_drop_and_create_all, setup_db, Product
 from .auth.auth import AuthError, requires_auth
@@ -19,7 +20,7 @@ app = Flask(__name__)
 setup_db(app)
 cors = CORS(app)
 
-db_drop_and_create_all()
+# db_drop_and_create_all()
 
 app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
 
@@ -156,17 +157,15 @@ def delete_product(token):
 
     print(body)
 
-    body = body['deletedProduct']
-    sku = ''
-    for value in body:
-        for x in value:
-            sku = x
+    sku = body["deletedProduct"]
+    sku = int(sku["sku"])
 
-    
-    
+    print(type(sku))
     print(sku)
+
     try:
-        product_to_delete = Product.query.filter_by(sku=int(sku))
+        product_to_delete = Product.query.filter_by(sku = sku).one_or_none()
+        # print(product_to_delete)
         if product_to_delete is None:
             abort(404)
 
