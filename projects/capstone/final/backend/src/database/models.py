@@ -34,7 +34,7 @@ class Product(db.Model):
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
     description = Column(String(180), nullable=False)
-    sku = Column(String(180), nullable=False)
+    sku = Column(Integer, nullable=False)
     category = Column(String(180), nullable=False)
     price = Column(Float(), nullable=False)
     cart = Column(Integer, db.ForeignKey('cart.cart_id'), nullable=True)

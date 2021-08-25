@@ -19,8 +19,7 @@ app = Flask(__name__)
 setup_db(app)
 cors = CORS(app)
 
-
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
 
@@ -149,10 +148,25 @@ def create_new_product(token): #<<<<<<<<<Token in function when using @requires_
 
 @app.route('/CreateProduct', methods=['DELETE'])
 @requires_auth('delete:product')
-def delete_product(payload, sku):
+def delete_product(token):
     "API endpoint to delete drink in database if permission granted."
+    body = request.get_json()
+    if body is None:
+        abort(404)
+
+    print(body)
+
+    body = body['deletedProduct']
+    sku = ''
+    for value in body:
+        for x in value:
+            sku = x
+
+    
+    
+    print(sku)
     try:
-        product_to_delete = Product.query.filter_by(sku = sku).one_or_none()
+        product_to_delete = Product.query.filter_by(sku=int(sku))
         if product_to_delete is None:
             abort(404)
 

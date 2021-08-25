@@ -97,7 +97,7 @@ const CreateProductForm2 = () => {
                     </div>
                     <div className="form-group">
                         <label>Add Product Sku</label>
-                        <input type="text" value={values.sku} onChange={handleChange('sku')} className="form-control" />
+                        <input type="number" value={values.sku} onChange={handleChange('sku')} className="form-control" />
                     </div>
                     <div className="form-group">
                         <label>Add Product Category</label>

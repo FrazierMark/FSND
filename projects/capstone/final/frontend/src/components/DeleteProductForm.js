@@ -49,17 +49,21 @@ const DeleteProductForm = () => {
     };
 
     const postDeleteProduct = async(
-        sku,
+        sku
         ) => {
             console.log(accessToken)
             // const { name, description, sku, category, price } = values;
             const deletedProduct = {sku};
             console.log(sku)
             
-            axios.delete('http://127.0.0.1:5000/CreateProduct', deletedProduct, {
+            axios.delete('http://127.0.0.1:5000/CreateProduct', {
+                data: {
+                    deletedProduct: deletedProduct
+                },    
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
+                
         })
         .then((res) => {
             console.log(res);
@@ -76,7 +80,7 @@ const DeleteProductForm = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Delete Product by Sku</label>
-                        <input type="text" value={values.sku} onChange={handleChange('sku')} className="form-control" />
+                        <input type="number" value={values.sku} onChange={handleChange('sku')} className="form-control" />
                     </div>
                     
                     <div className="form-group">
