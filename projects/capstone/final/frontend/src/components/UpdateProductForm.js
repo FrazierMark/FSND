@@ -5,7 +5,7 @@ import axios from "axios";
 
 const UpdateProductForm = () => {
 
-    const [accessToken, setAccessToken] = useState('');
+    const [accessToken] = useState('');
     const [token, setToken] = useState(null);
     const { getAccessTokenSilently } = useAuth0();
     
@@ -27,7 +27,6 @@ const UpdateProductForm = () => {
         sku: '',
         name: '',
         description: '',
-        sku: '',
         category: '',
         price: '',
     })

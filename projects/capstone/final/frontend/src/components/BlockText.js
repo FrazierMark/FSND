@@ -18,7 +18,7 @@ function BlockText({ children, vAlign = 'center', hAlign = 'center', size = 2.5,
     mesh.current.geometry.boundingBox.getSize(size)
     mesh.current.position.x = hAlign === 'center' ? -size.x / 2 : hAlign === 'right' ? 0 : -size.x
     mesh.current.position.y = vAlign === 'center' ? -size.y / 2 : vAlign === 'top' ? 0 : -size.y
-  }, [children])
+  }, )
   return (
     <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
       <mesh ref={mesh}>

@@ -5,11 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 
-const BACKEND_URL = process.env.React_APP_SERVER_URL
-
 const CreateProductForm2 = () => {
 
-    const [accessToken, setAccessToken] = useState('');
+    const [accessToken] = useState('');
     const [token, setToken] = useState(null);
     const { getAccessTokenSilently } = useAuth0();
     

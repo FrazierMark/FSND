@@ -5,7 +5,7 @@ import Terrain from './Terrain';
 import Loader from './Loader';
 import { Particles } from './Particles';
 import { OrbitControls } from "@react-three/drei";
-import SkyBox from "./SkyBox";
+
 import GetLenses from "./GetLenses";
 import { Html } from "@react-three/drei";
 import BlockText from './BlockText';
@@ -44,7 +44,7 @@ const LensPage = () => {
     <Html position={[-18, 0, 0]} >
       <GetLenses /> 
     </Html>
-    <SkyBox />
+    {/* <SkyBox /> */}
     <Jumbo />
     <Particles/>
     </Suspense>

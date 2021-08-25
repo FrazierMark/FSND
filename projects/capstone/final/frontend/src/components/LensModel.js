@@ -11,7 +11,7 @@ const Lens = () => {
   <Suspense fallback={null}>
     <primitive object={gltf.scene} 
     dispose={null}
-    scale={.2, .2, .2} />
+    scale={[.2, .2, .2]} />
   </Suspense>
   )};
 

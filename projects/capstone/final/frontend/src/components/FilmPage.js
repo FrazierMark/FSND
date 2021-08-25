@@ -6,7 +6,6 @@ import Loader from './Loader';
 import { Particles } from './Particles';
 import { OrbitControls } from "@react-three/drei";
 import BlockText from './BlockText';
-import SkyBox from "./SkyBox";
 import { Html } from "@react-three/drei";
 import GetAllFilm from "./GetFilm";
 
@@ -52,7 +51,6 @@ const FilmPage = () => {
     <Jumbo />
     <Terrain/>
     <Particles/>
-    {/* <SkyBox /> */}
     </Suspense>
       
   </Canvas>

@@ -8,7 +8,6 @@ import { Html } from "@react-three/drei";
 import GetCameras from "./GetCameras"
 import Loader from './Loader';
 import { Particles } from './Particles';
-import SkyBox from './SkyBox';
 
 
 
@@ -49,7 +48,6 @@ const CameraPage = () => {
     
     <OrbitControls />
     <Terrain/>
-    {/* <SkyBox /> */}
 
     
     <Html position={[-18, 0, 0]} >

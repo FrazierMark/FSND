@@ -6,7 +6,7 @@ import LogoutButton from "./logout-button";
 
 
 const AuthNav = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated  } = useAuth0();
 
   // console.log(isAuthenticated)
   // console.log(user)

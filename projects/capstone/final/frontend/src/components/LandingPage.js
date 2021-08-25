@@ -6,9 +6,6 @@ import Loader from './Loader';
 import BlockText from './BlockText';
 import { Particles } from './Particles';
 import Robotman from './Robotman';
-import SkyBox from './SkyBox';
-import { useAuth0 } from "@auth0/auth0-react";
-import { Html } from "@react-three/drei";
 
 
 
