@@ -12,8 +12,7 @@ import FilmPage from './components/FilmPage'
 import CartPage from './components/CartPage';
 import ProfilePage from './components/ProfilePage';
 import CreateProduct from './components/CreateProduct';
-import Footer from './components/Footer'
-import Loading from './components/Loading';
+import Footer from './components/Footer';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Loader } from '@react-three/drei';
 

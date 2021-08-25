@@ -1,34 +1,112 @@
-# Coffee Shop Backend
+#### Full Stack Grainy Days Camera Store Backend
+## Grainy Days Specifications
+The Grainy Days Camera Store models a photography e-commerce site that sells cameras, lenses, and film. Through the management page ('/CreateProduct') you can create, update, and delete products that are then listed in the navbar links.
 
-## Getting Started
+## Motivation for this project
+This is the capstone project for Udacity's fullstack nanodegree program. I wanted to create a website from scratch that had full backend and frontend capabilities. Also, I wanted to challenge myself by implementing a frontend user expereince that utilized a 3D space. 
 
-### Installing Dependencies
+### Getting Started
 
-#### Python 3.7
+## Virtual Enviornment
+To setup vurtual environment run the following command
 
+pipenv shell
+
+## Installing Dependencies
+
+
+## Database Setup
+The project uses Postgresql as its database. To update the database and seed run the following :
+
+python manage.py db upgrade
+python manage.py seed
+you may need to change the database url in setup.sh after which you can run
+source setup.sh
+Start server by running
+flask run
+
+
+## Project dependencies
+
+Installing Dependencies
+Python 3.7
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
-#### Virtual Environment
+## pipenv install -r requirements.txt
+This will install all of the required packages within the requirements.txt file.
 
-We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organized. Instructions for setting up a virtual environment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
-#### PIP Dependencies
-
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
-
-```bash
-pip install -r requirements.txt
-```
-
-This will install all of the required packages we selected within the `requirements.txt` file.
-
-##### Key Dependencies
-
+# Key Dependencies
 - [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
+- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py.
+
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server.
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
+
+- [Pycodestyle](https://pypi.org/project/pycodestyle/) - pycodestyle is a tool to check your Python code against some of the style conventions in PEP 8.
+
+
+
+## Authentication
+Authentication is implemented using Auth0, it uses RBAC to assign permissions using roles. 
+
+
+# Auth0 Roles and Permissions
+Currently there are 2 set roles within this Project.
+- Administrator
+- Manager
+
+The Administrator role has the following 3 permissions:
+- post:product
+- delete:product
+- patch:product
+
+The Manager role has 1 permission:
+- post:product
+
+
+To signin as a Manager, click "Log In" and use the following credential information:
+- email address:     manager@123.com
+- password:          Password!123
+
+To signin as an Administrator with full access, click "Log In" and use the following credential information:
+- email address:    admin@123.com
+- password:         Password!123
+
+
+## Testing
+Replace the jwt tokens in test_app.py with the ones generated on the website.
+
+For testing locally, we need to reset database. To reset database, run
+
+python manage.py db downgrade
+python manage.py db upgrade
+python manage.py seed
+
+Error Handling
+401 errors due to RBAC are returned as
+{
+  "code": "unauthorized",
+  "description": "Permission not found."
+}
+Other Errors are returned in the following json format:
+
+{
+  "success": "False",
+  "error": 422,
+  "message": "Unprocessable entity"
+}
+The error codes currently returned are:
+
+400 – bad request
+401 – unauthorized
+404 – resource not found
+422 – unprocessable
+500 – internal server error
+
+
 
 ## Running the server
 
@@ -48,38 +126,7 @@ flask run --reload
 
 The `--reload` flag will detect file changes and restart the server automatically.
 
-## Tasks
 
-### Setup Auth0
 
-1. Create a new Auth0 Account ---- DONE
-2. Select a unique tenant domain -----  m-mark-frazier.us.auth0.com ---- DONE
-3. Create a new, single page web application ----
-4. Create a new API ---- DONE
-   - in API Settings: -----DONE
-     - Enable RBAC ----DONE
-     - Enable Add Permissions in the Access Token ----DONE
-5. Create new API permissions: ---DONE
-   - `get:drinks-detail` --DONE
-   - `post:drinks`--DONE
-   - `patch:drinks`--DONE
-   - `delete:drinks`--DONE
-6. Create new roles for: --DONE
-   - Barista --DONE
-     - can `get:drinks-detail` --DONE
-   - Manager --DONE
-     - can perform all actions--DONE
-7. Test your endpoints with [Postman](https://getpostman.com).
-   - Register 2 users - assign the Barista role to one and Manager role to the other.
-   - Sign into each account and make note of the JWT.
-   - Import the postman collection `./starter_code/backend/udacity-fsnd-udaspicelatte.postman_collection.json`
-   - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
-   - Run the collection and correct any errors.
-   - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
-
-### Implement The Server
-
-There are `@TODO` comments throughout the `./backend/src`. We recommend tackling the files in order and from top to bottom:
-
-1. `./src/auth/auth.py`- DONE
-2. `./src/api.py`
+## Authors
+Mark Frazier

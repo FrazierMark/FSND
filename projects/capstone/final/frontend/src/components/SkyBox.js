@@ -1,6 +1,5 @@
 import { useThree } from '@react-three/fiber';
 import {  CubeTextureLoader } from "three";
-import Loader from './Loader';
 
 import frontImg from "../images/Night Moon 1.png";
 import backImg from "../images/Night Moon 2.png";
