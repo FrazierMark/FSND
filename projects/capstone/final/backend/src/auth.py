@@ -1,6 +1,5 @@
-from flask import Flask, request
 import json
-from flask import request
+from flask import request, _request_ctx_stack, abort
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
@@ -13,55 +12,64 @@ API_AUDIENCE = 'grainy'
 '''
 AuthError Exception
 '''
+
+
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
-        self.status_code = status_code
-
+        self.status_code = status_code 
 
 def get_token_auth_header():
-    """Obtains the access Token from the authorization Header"""
+    '''This function obtains the access token from the Authorization Header
+    '''
     auth = request.headers.get('Authorization', None)
+
     if not auth:
+        print('not auth')
         raise AuthError({
-            'code': 'authorization_header_missing',
-            'description': 'Authorization header is expected.'
-        }, 401)
-    headers_seperated = auth.split()
-    if headers_seperated[0].lower() != 'bearer':
+            'code': 'authorization header_missing',
+            'description': 'Authorization header is expected'}, 401)
+    
+    parts = auth.split()
+
+    if parts[0].lower() != 'bearer':
+        print('no bearer')
+        raise AuthError({
+        'code': 'invalid_header',
+        'description': 'Authorization header must start with Bearer.'}, 
+        401)
+
+    elif len(parts) == 1:
+        print('no token')
         raise AuthError({
             'code': 'invalid_header',
-            'description': 'Authorization header must start with "Bearer".'
-        }, 401)
-    elif len(headers_seperated) == 1:
+            'description': 'Token not found'}, 401)
+    
+    elif len(parts) > 2:
         raise AuthError({
             'code': 'invalid_header',
-            'description': 'Token not found.'
-        }, 401)
-    elif len(headers_seperated) > 2:
-        raise AuthError({
-            'code': 'invalid_header',
-            'description': 'Authorization header must be bearer token.'
-        }, 401)
-    token = headers_seperated[1]
+            'description': 'Authorization header must be bearer token'},
+            401)
+    
+    token = parts[1]
     return token
 
-
 def check_permissions(permission, payload):
+    '''This function checks the permissions that are in the 
+    JWT to see if the request permission is in the request'''
+
     if 'permissions' not in payload:
         raise AuthError({
             'code': 'invalid_claims',
-            'description': 'Permissions not included in JWT.'
-        }, 403)
-
+            'description': 'Permissions not included in JWT.'},
+            400)
+    
     if permission not in payload['permissions']:
         raise AuthError({
             'code': 'unauthorized',
-            'description': 'Permission not found.'
-        }, 403)
-    return True
-
-
+            'description': 'Permission not found.'}, 403)
+    
+    return True 
 
 def verify_decode_jwt(token):
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
@@ -69,10 +77,11 @@ def verify_decode_jwt(token):
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
     if 'kid' not in unverified_header:
+        print('invalid header')
         raise AuthError({
             'code': 'invalid_header',
-            'description': 'Authorization malformed.'
-        }, 401)
+            'description': 'Authorization malformed'}, 401)
+
     for key in jwks['keys']:
         if key['kid'] == unverified_header['kid']:
             rsa_key = {
@@ -82,51 +91,51 @@ def verify_decode_jwt(token):
                 'n': key['n'],
                 'e': key['e']
             }
+    
     if rsa_key:
-        try:
+        try: 
             payload = jwt.decode(
                 token,
                 rsa_key,
-                algorithms=ALGORITHMS,
-                audience=API_AUDIENCE,
-                issuer='https://' + AUTH0_DOMAIN + '/'
+                algorithms = ALGORITHMS,
+                audience = API_AUDIENCE,
+                issuer = 'https://' + AUTH0_DOMAIN + '/'
             )
-
             return payload
 
         except jwt.ExpiredSignatureError:
+            print('expired token')
             raise AuthError({
                 'code': 'token_expired',
-                'description': 'Token expired.'
-            }, 401)
-
+                'description': 'token expired'})
+        
         except jwt.JWTClaimsError:
+            print('incorrect claims')
             raise AuthError({
                 'code': 'invalid_claims',
-                'description': 'Incorrect claims. Please, check the audience and issuer.'
-            }, 401)
+                'description': 'Incorrect claims. Please check the audience and the issuer'
+        }, 401)
+
         except Exception:
             raise AuthError({
                 'code': 'invalid_header',
-                'description': 'Unable to parse authentication token.'
-            }, 400)
+                'description': 'Unable to find the appropiate key'},
+                400)
     raise AuthError({
-                'code': 'invalid_header',
-                'description': 'Unable to find the appropriate key.'
-            }, 400)
+                    'code': 'invalid_header',
+                    'description': 'Unable to find the appropiate key'}, 400)
 
-
-def requires_auth(permission=''):
-    """Gets a auth token from request header, verify the token, and check if the user has the requested permission
-    Returns:
-        the decorator which passes the decoded payload to the decorated method
-    """
+def requires_auth(permissions=''):
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
             token = get_token_auth_header()
-            payload = verify_decode_jwt(token)
-            check_permissions(permission, payload)
+            try:
+                payload = verify_decode_jwt(token)
+            except:
+                print('could not verify_decode_jwt')
+                abort(401)
+            check_permissions(permissions, payload)
             return f(payload, *args, **kwargs)
-        return wrapper
+        return wrapper 
     return requires_auth_decorator

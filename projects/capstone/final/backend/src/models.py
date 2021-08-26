@@ -1,8 +1,5 @@
 import os
-from sqlalchemy import Column, String, Integer
-from flask_sqlalchemy import SQLAlchemy, Column, Integer, String
-from sqlalchemy.sql.sqltypes import Float
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
@@ -27,18 +24,19 @@ def db_drop_and_create_all():
 # Product DB Model
 
 class Product(db.Model):
+    __tablename__ = 'products'
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
-    id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     # String Title
-    name = Column(String(80), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    description = Column(String(180), nullable=False)
-    sku = Column(Integer, nullable=False)
-    category = Column(String(180), nullable=False)
-    price = Column(Float(), nullable=False)
-    cart = Column(Integer, db.ForeignKey('cart.cart_id'), nullable=True)
+    description = db.Column(db.String(180), nullable=False)
+    sku = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(180), nullable=False)
+    price = db.Column(db.Float(), nullable=False)
+    cart = db.Column(db.Integer, db.ForeignKey('cart.cart_id'), nullable=True)
     
 
     def format(self):
@@ -86,9 +84,9 @@ class Product(db.Model):
 class Cart(db.Model):
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
-    cart_id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    cart_id = db.Column(db.Integer, primary_key=True)
     # String Title
-    user_id = Column(String(80), nullable=False)
+    user_id = db.Column(db.String(80), nullable=False)
 
     product_ids = db.relationship('Product', backref='product_num', lazy=True)
 

@@ -1,9 +1,9 @@
 
 from os import name
 from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import MigrateCommand, Migrate
 
-from app import app, db
+from app import app
 from models import db, Product, Cart
 
 migrate = Migrate(app, db)

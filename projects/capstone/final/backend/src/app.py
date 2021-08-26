@@ -1,10 +1,10 @@
 import os
-from flask import Flask, request, jsonify, abort
+import sys
+from models import Product, db, setup_db
+from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-import sys
-from flask_cors import CORS
-from models import setup_db, Product, Cart, db
+
 from auth import AuthError, requires_auth
 
 
@@ -239,3 +239,11 @@ def create_app(test_config=None):
             "message": error.error["description"]
         }), error.status_code
 
+    return app
+
+app = create_app()
+
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)
