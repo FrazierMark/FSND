@@ -1,7 +1,6 @@
 
 from os import name
 from flask_script import Manager
-from sqlalchemy import Column, String, Integer, create_engine
 from flask_migrate import Migrate, MigrateCommand
 
 from app import app, db

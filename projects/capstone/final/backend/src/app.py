@@ -1,24 +1,26 @@
-from itertools import product
 import os
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
-from sqlalchemy import exc
 from flask_sqlalchemy import SQLAlchemy
 import sys
 from flask_cors import CORS
-import json
-from models import setup_db, db_drop_and_create_all, Product, Cart, db
+from models import setup_db, Product, Cart, db
 from auth import AuthError, requires_auth
+
+
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
+    CORS(app, resources={r"/api/": {"origins": "*"}})
     setup_db(app)
-    CORS(app)
+    
 
-# db_drop_and_create_all()
-
-    app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization, true')
+        response.headers.add('Access-Control-Allow-Methods', 'GET, PATCH, POST, DELETE, OPTIONS')
+        return response
 
 
     @app.route('/CameraPage', methods=['GET'])
