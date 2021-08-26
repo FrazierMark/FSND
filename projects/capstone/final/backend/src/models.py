@@ -1,22 +1,22 @@
 import os
 from sqlalchemy import Column, String, Integer
-from flask_sqlalchemy import SQLAlchemy, model, Column, Integer, String
-import json
+from flask_sqlalchemy import SQLAlchemy, Column, Integer, String
 from sqlalchemy.sql.sqltypes import Float
 from app import db
-from sqlalchemy.dialects.postgresql import JSON
+
+db = SQLAlchemy()
 
 # database_path = os.environ['DATABASE_URL']
 database_path = 'postgresql://frazier:Frazier89@localhost:5432/grainydays'
 
 
-
 def setup_db(app):
-    # binds a flask application and a SQLAlchemy service
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.app = app
+    db.init_app(app)
     app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
-    db = SQLAlchemy(app)
+    
     
 
 def db_drop_and_create_all():

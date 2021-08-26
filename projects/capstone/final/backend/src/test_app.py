@@ -1,29 +1,11 @@
-from itertools import product
-import unittest
 import os
-from flask import Flask, request, jsonify, abort
-from flask_cors import CORS
-from sqlalchemy import exc
+import unittest
 from flask_sqlalchemy import SQLAlchemy
-import sys
-from flask_cors import CORS
+from flask import Flask
 import json
-import hmac
-from functools import wraps
-from hashlib import sha1
-from .database.models import setup_db, Product, Cart
-# from flask.ext.principal import Principal, Permission, RoleNeed, Identity, \
-#     identity_changed, identity_loaded
+from app import create_app
+from models import setup_db, Product, Cart, db
 
-
-def create_app(test_config=None):
-  # create and configure the app
-  app = Flask(__name__)
-  setup_db(app)
-  cors = CORS(app)
-  app.debug = True
-  app.config.update(SECRET_KEY='secret', TESTING=True)
-#   principal = Principal(app)identity_loaded.connect(_on_principal_init)
 
 
 
@@ -34,10 +16,8 @@ class ProductTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_name = "product_test"
-        self.project_dir = os.path.dirname(os.path.abspath(__file__))
-        self.database_path = "sqlite:///{}".format(os.path.join(self.project_dir, self.database_filename))
-        setup_db(self.app, self.database_path)
+        setup_db(self.app)
+        db.create_all()
 
         self.new_product = {
             'name': 'Kodak Portra',
@@ -222,6 +202,5 @@ class ProductTestCase(unittest.TestCase):
 
 
 
-# Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()

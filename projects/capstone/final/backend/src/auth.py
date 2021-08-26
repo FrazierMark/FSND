@@ -10,18 +10,14 @@ AUTH0_DOMAIN = 'm-mark-frazier.us.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'grainy'
 
-## AuthError Exception
 '''
 AuthError Exception
-A standardized way to communicate auth failure modes
 '''
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
 
-
-## Auth Header
 
 def get_token_auth_header():
     """Obtains the access Token from the authorization Header"""
@@ -122,8 +118,6 @@ def verify_decode_jwt(token):
 
 def requires_auth(permission=''):
     """Gets a auth token from request header, verify the token, and check if the user has the requested permission
-    Args:
-        string: permission(i.e. 'post:drink')
     Returns:
         the decorator which passes the decoded payload to the decorated method
     """
