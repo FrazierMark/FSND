@@ -1,13 +1,12 @@
 import os
 from sqlalchemy import Column, String, Integer
-from flask_sqlalchemy import SQLAlchemy, model
+from flask_sqlalchemy import SQLAlchemy, model, Column, Integer, String
 import json
-
 from sqlalchemy.sql.sqltypes import Float
+from app import db
+from sqlalchemy.dialects.postgresql import JSON
 
-database_filename = "database.db"
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+database_path = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
 
