@@ -1,10 +1,13 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 
+
 # database_path = os.environ['DATABASE_URL']
-database_path = 'postgresql://frazier:Frazier89@localhost:5432/grainydays'
+database_path = 'postgresql://frazier@localhost:5432/grainydays'
+
 
 
 def setup_db(app):
@@ -13,7 +16,8 @@ def setup_db(app):
     db.app = app
     db.init_app(app)
     app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
-    
+    migrate = Migrate(app, db)
+    migrate.init_app(app, db)
     
 
 def db_drop_and_create_all():
@@ -24,8 +28,7 @@ def db_drop_and_create_all():
 # Product DB Model
 
 class Product(db.Model):
-    __tablename__ = 'products'
-    # Drink, persistent drink entity, extends the base SQLAlchemy Model
+    # Product, persistent product entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
     id = db.Column(db.Integer, primary_key=True)
     # String Title
@@ -121,3 +124,15 @@ class Cart(db.Model):
         'user_id': self.user_id,
         'product_id': self.product_id,
         }
+
+# Product(name='Canon 5D Mark IV', description='Full Frame Camera', sku='123456', category='camera', price= 999.99 ).insert()
+#     Product(name='Nikon D2600', description='Full Frame Camera', sku='123457', category='camera', price= 999.99 ).insert()
+#     Product(name='Leica M10', description='Full Frame Camera', sku='123458', category='camera', price= 9999.99 ).insert()
+
+#     Product(name='Kodak', description='Portra 400', sku='123459', category='film', price= 9.99 ).insert()
+#     Product(name='HP5', description='400 ISO', sku='22348', category='film', price= 19.99 ).insert()
+#     Product(name='CineStill', description='800 ISO', sku='1458', category='film', price= 2.99 ).insert()
+
+#     Product(name='Canon', description='24-70mm Zoom', sku='32145', category='lens', price= 569.99).insert()
+#     Product(name='Leica', description='28mm Summilux Prime', sku='98745', category='lesn', price= 9911.99).insert()
+#     Product(name='Nikon', description='28mm Prime', sku='456987', category='lens', price= 929.99).insert()

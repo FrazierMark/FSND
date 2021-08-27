@@ -5,6 +5,7 @@ from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
+
 from auth import AuthError, requires_auth
 
 
@@ -12,15 +13,16 @@ from auth import AuthError, requires_auth
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
-    CORS(app, resources={r"/api/": {"origins": "*"}})
+    CORS(app)
     setup_db(app)
     
+    
 
-    @app.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization, true')
-        response.headers.add('Access-Control-Allow-Methods', 'GET, PATCH, POST, DELETE, OPTIONS')
-        return response
+    # @app.after_request
+    # def after_request(response):
+    #     response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization, true')
+    #     response.headers.add('Access-Control-Allow-Methods', 'GET, PATCH, POST, DELETE, OPTIONS')
+    #     return response
 
 
     @app.route('/CameraPage', methods=['GET'])
