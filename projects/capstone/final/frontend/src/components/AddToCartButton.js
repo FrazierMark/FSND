@@ -79,19 +79,10 @@ const AddToCartButton = () => {
     
         return (
             
-            <div className="form1">
-                <form onSubmit={handleSubmit}>
-                    <p> Create New Product </p>
-                
-                    <input type="text" placeholder="Add Product Name" value={values.name} onChange={handleChange('name')} className="form-control" /> 
-                        <input type="text" placeholder="Add Product Description" value={values.description} onChange={handleChange('description')} className="form-control" />
-                        <input type="number" placeholder="Add Product SKU" value={values.sku} onChange={handleChange('sku')} className="form-control" /> 
-                        <input type="text" placeholder="Add Product Category" value={values.category} onChange={handleChange('category')} className="form-control" /> 
-                        <input type="float" placeholder="Add Product Price" value={values.price} onChange={handleChange('price')} className="form-control" /> 
-                        <input type="submit" value="Create Product" className="form-control" />
-                </form>
-
-            </div>
+            <button>
+            Add To Cart
+            onSubmit={handleSubmit}
+            </button>
         )
 }
 

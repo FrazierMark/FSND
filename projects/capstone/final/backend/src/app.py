@@ -192,6 +192,37 @@ def create_app(test_config=None):
             abort(422)
 
 
+    # @app.route('/CartPage', methods=['POST'])
+    # def create_new_product(token): #<<<<<<<<<Token in function when using @requires_auth
+    #     """If permission granted, will add Camera will be added to DB."""
+    #     #print(token)
+    #     body = request.get_json()
+    #     if body is None:
+    #         abort(404)
+
+    #     print(body)
+
+    #     new_name = body.get('name', None)
+        
+    #     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
+    #     new_product = Product(name=new_name, description=new_description, sku=new_sku, category=new_category, price=new_price)
+        
+    #     try:
+    #         new_product.insert()
+    #         print(new_product.id)
+    #         new_product = Product.query.filter_by(id= int(new_product.id))
+            
+
+    #         added_product = [product.format() for product in new_product]
+
+    #         return jsonify({
+    #             "success": True,
+    #             "product": added_product,
+    #         })
+    #     except AuthError:
+    #         abort(422)
+
+
 
     @app.errorhandler(404)
     def not_found(error):

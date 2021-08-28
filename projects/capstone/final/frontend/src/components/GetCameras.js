@@ -32,9 +32,9 @@ const GetCameras = () => {
         </thead>
         <tbody>
 
-        {camera.map((item) => {
+        {camera.map((item, num) => {
             return (
-            <tr key="{item.index}">  
+            <tr key="{item.id}">  
             
             <td> {item.name} </td>
             <td>{item.description}</td>
