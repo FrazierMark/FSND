@@ -40,9 +40,9 @@ const GetAllFilm = () => {
         </thead>
         <tbody>
 
-        {film.map((item) => {
+        {film.map((item, id) => {
             return (
-            <tr key="{item.index}">  
+            <tr key={id}>  
             
             <td> {item.name} </td>
             <td>{item.description}</td>

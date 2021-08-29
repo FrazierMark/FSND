@@ -32,15 +32,15 @@ const GetCameras = () => {
         </thead>
         <tbody>
 
-        {camera.map((item, num) => {
+        {camera.map((product, id) => {
             return (
-            <tr key="{item.id}">  
+            <tr key={id}>  
             
-            <td> {item.name} </td>
-            <td>{item.description}</td>
-            <td>{item.sku}</td>
-            <td>{item.category}</td>
-            <td>{item.price}</td>
+            <td>{product.name}</td>
+            <td>{product.description}</td>
+            <td>{product.sku}</td>
+            <td>{product.category}</td>
+            <td>{product.price}</td>
             <td><button >Add To Cart </button></td>
             </tr>
           );

@@ -32,9 +32,9 @@ const GetLenses = () => {
         </thead>
         <tbody>
 
-        {lens.map((item) => {
+        {lens.map((item, id) => {
             return (
-            <tr key="{item.index}">  
+            <tr key={item.id}>  
             
             <td> {item.name} </td>
             <td>{item.description}</td>
