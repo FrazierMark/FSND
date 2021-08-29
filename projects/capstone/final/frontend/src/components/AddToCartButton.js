@@ -27,15 +27,9 @@ const AddToCartButton = () => {
     
     const [values, setValues] = useState({
         name: '',
-        description: '',
-        sku: '',
-        category: '',
-        price: '',
+        
     })
 
-    const handleChange = name => e => {
-        setValues({ ...values, [name]: e.target.value });
-    };
    
 
     const handleSubmit = async (e) => {
@@ -44,11 +38,7 @@ const AddToCartButton = () => {
         alert("New Product Added!");
         console.log(token)
         addToCart(
-            values.name,
-            values.description,
-            values.sku,
-            values.category,
-            values.price
+            values.id,
         );   
     };
 
