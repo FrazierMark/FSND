@@ -60,7 +60,6 @@ const CreateProductForm2 = () => {
         price
         ) => {
             console.log(accessToken)
-            // const { name, description, sku, category, price } = values;
             const newProduct = {name, description, sku, category, price};
             
             axios.post('http://127.0.0.1:5000/CreateProduct', newProduct, {
