@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 
 
-const GetAllFilm = () => {
+const GetCartInfo = () => {
 
 
   const [accessToken] = useState('');
@@ -107,4 +107,4 @@ const GetAllFilm = () => {
 
 
 
-export default GetAllFilm;
+export default GetCartInfo;

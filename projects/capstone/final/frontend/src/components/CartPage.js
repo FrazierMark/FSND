@@ -4,7 +4,6 @@ import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
 import React, { Suspense } from "react";
 import Loader from "./Loader"
-import SkyBox from './SkyBox';
 
 const CartPage = () => {
   return (
@@ -25,14 +24,10 @@ const CartPage = () => {
     <Terrain/>
     <Particles/>
     <OrbitControls/>
-    <SkyBox />
     {/* <Html >
           <Content />
     </Html> */}
 
-    {/* <Html>
-      <FormSuccess/>
-    </Html> */}
   </Suspense>
   </Canvas>
  

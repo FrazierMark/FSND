@@ -91,18 +91,18 @@ class Cart(db.Model):
     # String Title
     user_id = db.Column(db.String(80), nullable=False)
 
-    product_ids = db.relationship('Product', backref='product_num', lazy=True)
+    product_id = db.relationship('Product', backref='product_num', lazy=True)
 
     def format(self):
         return{
-            'id': self.id,
+            'cart_id': self.cart_id,
             'user_id': self.user_id,
             'product_id': self.product_id
             
         }
 
     def __init__(self, user_id, product_id):
-        self.user_id = user_id,
+        self.user_id = user_id
         self.product_id: product_id
         
     
@@ -120,7 +120,7 @@ class Cart(db.Model):
 
     def format(self):
         return {
-        'id': self.id,
+        'cart_id': self.cart_id,
         'user_id': self.user_id,
         'product_id': self.product_id,
         }

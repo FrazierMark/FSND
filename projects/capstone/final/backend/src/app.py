@@ -193,6 +193,7 @@ def create_app(test_config=None):
 
 
     @app.route('/CartPage', methods=['POST'])
+    @requires_auth('post:cart')
     def create_new_cart_item(token): #<<<<<<<<<Token in function when using @requires_auth
         """If permission granted, will add product to cart db."""
         #print(token)
@@ -200,17 +201,17 @@ def create_app(test_config=None):
         if body is None:
             abort(404)
 
-        print(body)
-
-        user = body.get('user', None)
+        user = token.get('sub', None)
+        product_id = body.get('id', None)
+        
         
         # json.dumps() method that converts dictionary objects of Python into JSON string data format.
-        new_cart_item = Cart(user_id=user, product_id=id)
+        new_cart_item = Cart(user_id=user, product_id=product_id)
         
         try:
             new_cart_item.insert()
-            print(new_cart_item.id)
-            new_cart_item = Cart.query.filter_by(id= int(new_cart_item.id))
+            print(new_cart_item.user_id)
+            new_cart_item = Cart.query.filter_by(user_id= new_cart_item.user_id)
             
 
             added_item_to_cart = [item.format() for item in new_cart_item]
