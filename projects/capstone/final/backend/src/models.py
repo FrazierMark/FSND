@@ -1,6 +1,7 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -28,9 +29,10 @@ def db_drop_and_create_all():
 # Product DB Model
 
 class Product(db.Model):
+    __tablename__ = 'Product'
     # Product, persistent product entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
     # String Title
     name = db.Column(db.String(80), nullable=False)
     # the ingredients blob - this stores a lazy json blob
@@ -39,8 +41,8 @@ class Product(db.Model):
     sku = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(180), nullable=False)
     price = db.Column(db.Float(), nullable=False)
-    cart = db.Column(db.Integer, db.ForeignKey('cart.cart_id'), nullable=True)
-    
+    # cart = db.Column(db.Integer, db.ForeignKey('cart.cart_id'), nullable=True)
+    cart = db.relationship("Cart", backref="product")
 
     def format(self):
         return{
@@ -85,13 +87,14 @@ class Product(db.Model):
 
 
 class Cart(db.Model):
+    __tablename__ = 'Cart'
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
     cart_id = db.Column(db.Integer, primary_key=True)
     # String Title
     user_id = db.Column(db.String(80), nullable=False)
 
-    product_id = db.relationship('Product', backref='product_num', lazy=True)
+    product_id = db.Column(db.Integer, db.ForeignKey("Product.id"), nullable=True)
 
     def format(self):
         return{

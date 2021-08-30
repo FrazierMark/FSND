@@ -80,7 +80,6 @@ def create_app(test_config=None):
     @requires_auth('get:cart_details')
     def get_cart_info(token):
 
-        
         user = token.get('sub', None)
         print(user)
 
