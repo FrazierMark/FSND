@@ -4,6 +4,9 @@ import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
 import React, { Suspense } from "react";
 import Loader from "./Loader"
+import GetCartInfo from './GetCartInfo';
+import Auth0ProviderWithHistory from "../auth0-provider-with-history";
+import { Html } from "@react-three/drei";
 
 const CartPage = () => {
   return (
@@ -24,6 +27,14 @@ const CartPage = () => {
     <Terrain/>
     <Particles/>
     <OrbitControls/>
+
+    <Html position={[-18, 0, 0]} >
+    <Auth0ProviderWithHistory>
+      <GetCartInfo />
+    </Auth0ProviderWithHistory> 
+    </Html>
+
+
     {/* <Html >
           <Content />
     </Html> */}

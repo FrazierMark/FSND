@@ -76,6 +76,28 @@ def create_app(test_config=None):
             abort(422)
 
 
+    @app.route('/CartPage', methods=['GET'])
+    @requires_auth('get:cart_details')
+    def get_cart_info(token):
+
+        
+        user = token.get('sub', None)
+        print(user)
+
+
+        try:
+            cart_info = Cart.query.filter_by(user_id = user)
+            cart_products = [cart.format() for cart in cart_info]
+            print(cart_products)
+            if cart_products is None:
+                abort(404)
+            return jsonify({
+            "success": True,
+            "cart_products": cart_products,
+        })
+        except AuthError:
+            abort(422)
+
 
 
     @app.route('/CreateProduct', methods=['POST'])
