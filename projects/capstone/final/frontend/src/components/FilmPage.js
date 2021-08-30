@@ -8,6 +8,7 @@ import { OrbitControls } from "@react-three/drei";
 import BlockText from './BlockText';
 import { Html } from "@react-three/drei";
 import GetAllFilm from "./GetFilm";
+import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 
 function Jumbo() {
   const ref = useRef()
@@ -46,8 +47,13 @@ const FilmPage = () => {
 
 
     <Html position={[-18, 0, 0]} >
-      <GetAllFilm /> 
+    <Auth0ProviderWithHistory>
+      <GetAllFilm />
+    </Auth0ProviderWithHistory> 
     </Html>
+
+   
+
     <Jumbo />
     <Terrain/>
     <Particles/>

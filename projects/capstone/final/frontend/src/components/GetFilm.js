@@ -23,12 +23,40 @@ const GetAllFilm = () => {
     }, [getAccessTokenSilently])
 
 
-    const [film, setFilm] = useState([]);
+    const { isAuthenticated, user } = useAuth0();
+    const [userMetadata, setUserMetadata] = useState(null);
 
-    // const addToCart = (product) => {
-    //     console.log('we are in addtocart')
-    //     setCart([...cart, product]); //using array destructering to append product to cart array
-    // };
+    useEffect(() => {
+        const getUserMetadata = async () => {
+          const domain = "m-mark-frazier.us.auth0.com";
+      
+          try {
+            const accessToken = await getAccessTokenSilently({
+              audience: `https://${domain}/api/v2/`,
+              scope: "read:current_user",
+            });
+      
+            const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
+      
+            const metadataResponse = await fetch(userDetailsByIdUrl, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            });
+      
+            const { user_metadata } = await metadataResponse.json();
+      
+            setUserMetadata(user_metadata);
+          } catch (e) {
+            console.log(e.message);
+          }
+        };
+      
+        getUserMetadata();
+      }, [getAccessTokenSilently, user?.sub]);
+
+
+    const [film, setFilm] = useState([]);
 
     const getFilmData = async () => {
         try {
@@ -45,14 +73,12 @@ const GetAllFilm = () => {
     }, []);
 
 
-    const handleSubmit = async (e) => {
-      console.log('submitting');
-      e.preventDefault();
-      alert("New Product Added!");
-      console.log(token)
-      addToCart(
-          item.id,
-      );   
+    const handleSubmit = (id) => {
+      console.log(id)
+      // e.preventDefault();
+      // alert("New Product Added!");
+      // console.log(token)
+      addToCart(id);   
   };
 
   const addToCart = async(
@@ -60,9 +86,9 @@ const GetAllFilm = () => {
       ) => {
           console.log(accessToken)
           
-          const newProduct = {id};
+          const newProduct = {id, userMetadata};
           
-          axios.post('http://127.0.0.1:5000/CreateProduct', newProduct, {
+          axios.post('http://127.0.0.1:5000/CartPage', newProduct, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -100,8 +126,8 @@ const GetAllFilm = () => {
             <td>{item.sku}</td>
             <td>{item.category}</td>
             <td>{item.price}</td>
-            <td><button> Add To Cart
-            onSubmit={handleSubmit(item.id)} </button></td>
+            <td><button onClick={() => handleSubmit(item.id)}> Add To Cart
+             </button></td>
             </tr>
           );
         })}

@@ -1,6 +1,6 @@
 import os
 import sys
-from models import Product, db, setup_db
+from models import Product, Cart, db, setup_db
 from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -192,35 +192,35 @@ def create_app(test_config=None):
             abort(422)
 
 
-    # @app.route('/CartPage', methods=['POST'])
-    # def create_new_product(token): #<<<<<<<<<Token in function when using @requires_auth
-    #     """If permission granted, will add Camera will be added to DB."""
-    #     #print(token)
-    #     body = request.get_json()
-    #     if body is None:
-    #         abort(404)
+    @app.route('/CartPage', methods=['POST'])
+    def create_new_cart_item(token): #<<<<<<<<<Token in function when using @requires_auth
+        """If permission granted, will add product to cart db."""
+        #print(token)
+        body = request.get_json()
+        if body is None:
+            abort(404)
 
-    #     print(body)
+        print(body)
 
-    #     new_name = body.get('name', None)
+        user = body.get('user', None)
         
-    #     # json.dumps() method that converts dictionary objects of Python into JSON string data format.
-    #     new_product = Product(name=new_name, description=new_description, sku=new_sku, category=new_category, price=new_price)
+        # json.dumps() method that converts dictionary objects of Python into JSON string data format.
+        new_cart_item = Cart(user_id=user, product_id=id)
         
-    #     try:
-    #         new_product.insert()
-    #         print(new_product.id)
-    #         new_product = Product.query.filter_by(id= int(new_product.id))
+        try:
+            new_cart_item.insert()
+            print(new_cart_item.id)
+            new_cart_item = Cart.query.filter_by(id= int(new_cart_item.id))
             
 
-    #         added_product = [product.format() for product in new_product]
+            added_item_to_cart = [item.format() for item in new_cart_item]
 
-    #         return jsonify({
-    #             "success": True,
-    #             "product": added_product,
-    #         })
-    #     except AuthError:
-    #         abort(422)
+            return jsonify({
+                "success": True,
+                "cart_item": added_item_to_cart,
+            })
+        except AuthError:
+            abort(422)
 
 
 

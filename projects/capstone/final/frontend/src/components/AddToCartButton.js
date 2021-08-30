@@ -27,7 +27,6 @@ const AddToCartButton = () => {
     
     const [values, setValues] = useState({
         name: '',
-        
     })
 
    
@@ -38,16 +37,12 @@ const AddToCartButton = () => {
         alert("New Product Added!");
         console.log(token)
         addToCart(
-            values.id,
+            item.id,
         );   
     };
 
     const addToCart = async(
-        name,
-        description,
-        sku,
-        category,
-        price
+        id,
         ) => {
             console.log(accessToken)
             // const { name, description, sku, category, price } = values;
