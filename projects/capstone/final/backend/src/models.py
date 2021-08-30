@@ -54,14 +54,14 @@ class Product(db.Model):
         }
 
     def __init__(self, name, description, sku, category, price):
-        self.name = name
-        self.description = description
-        self.sku = sku
-        self.category = category
+        self.name = name,
+        self.description = description,
+        self.sku = sku,
+        self.category = category,
         self.price = price
     
     def insert(self):
-        db.session.add(self)
+        db.session.add(self),
         db.session.commit()
 
 
@@ -69,7 +69,7 @@ class Product(db.Model):
         db.session.commit()
 
     def delete(self):
-        db.session.delete(self)
+        db.session.delete(self),
         db.session.commit()
 
     def format(self):
@@ -93,7 +93,7 @@ class Cart(db.Model):
     # String Title
     user_id = db.Column(db.String(80), nullable=False)
 
-    product_id = db.Column(db.Integer, nullable=False)
+    product_id = db.Column(db.Integer(), nullable=False)
 
     def format(self):
         return{
@@ -103,13 +103,13 @@ class Cart(db.Model):
             
         }
 
+  
     def __init__(self, user_id, product_id):
-        self.user_id = user_id
-        self.product_id: product_id
-        
+        self.user_id = user_id,
+        self.product_id = product_id
     
     def insert(self):
-        db.session.add(self)
+        db.session.add(self),
         db.session.commit()
 
 
@@ -117,12 +117,12 @@ class Cart(db.Model):
         db.session.commit()
 
     def delete(self):
-        db.session.delete(self)
+        db.session.delete(self),
         db.session.commit()
 
     def format(self):
         return {
         'cart_id': self.cart_id,
         'user_id': self.user_id,
-        'product_id': self.product_id,
+        'product_id': self.product_id
         }

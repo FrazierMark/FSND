@@ -223,20 +223,16 @@ def create_app(test_config=None):
 
         user = token.get('sub', None)
         item_id = body.get('id', None)
-        
-        
-        print(item_id)
-        print(item_id)
-        
-        new_cart_item = Cart(user_id=user, product_id=int(item_id))
+        int_item = int(item_id)
 
-        print(new_cart_item)
+        new_product = Cart(user_id=user, product_id=int_item)
+
         
         try:
             
-            new_cart_item.insert()
+            new_product.insert()
             
-            new_cart_item = Cart.query.filter_by(user_id= new_cart_item.user_id)
+            new_cart_item = Cart.query.filter_by(user_id=new_product.user_id)
             
 
             added_item_to_cart = [item.format() for item in new_cart_item]
