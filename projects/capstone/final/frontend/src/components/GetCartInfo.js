@@ -101,8 +101,7 @@ const GetCartInfo = () => {
 
 
     
-    return (cartInfo&&
-
+    return (
       <table className="table-latitude">
         <thead>
           <tr>
