@@ -82,8 +82,7 @@ def create_app(test_config=None):
 
         user = token.get('sub', None)
         print(user)
-
-
+        
         try:
             cart_info = Cart.query.filter_by(user_id = user)
             cart_products = [cart.format() for cart in cart_info]
@@ -223,15 +222,20 @@ def create_app(test_config=None):
             abort(404)
 
         user = token.get('sub', None)
-        product_id = body.get('id', None)
+        item_id = body.get('id', None)
         
         
-        # json.dumps() method that converts dictionary objects of Python into JSON string data format.
-        new_cart_item = Cart(user_id=user, product_id=product_id)
+        print(item_id)
+        print(item_id)
+        
+        new_cart_item = Cart(user_id=user, product_id=int(item_id))
+
+        print(new_cart_item)
         
         try:
+            
             new_cart_item.insert()
-            print(new_cart_item.user_id)
+            
             new_cart_item = Cart.query.filter_by(user_id= new_cart_item.user_id)
             
 

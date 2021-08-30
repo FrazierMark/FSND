@@ -101,7 +101,7 @@ const GetCartInfo = () => {
 
 
     
-    return (token && 
+    return (cartInfo&&
 
       <table className="table-latitude">
         <thead>
@@ -124,7 +124,7 @@ const GetCartInfo = () => {
             <td>{item.sku}</td>
             <td>{item.category}</td>
             <td>{item.price}</td>
-            <td><button > Add To Cart
+            <td><button > Remove Item
              </button></td>
             </tr>
           );

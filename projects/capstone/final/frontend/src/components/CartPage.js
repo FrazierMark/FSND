@@ -28,7 +28,7 @@ const CartPage = () => {
     <Particles/>
     <OrbitControls/>
 
-    <Html position={[-18, 0, 0]} >
+    <Html >
     <Auth0ProviderWithHistory>
       <GetCartInfo />
     </Auth0ProviderWithHistory> 

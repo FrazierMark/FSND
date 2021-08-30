@@ -41,8 +41,7 @@ class Product(db.Model):
     sku = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(180), nullable=False)
     price = db.Column(db.Float(), nullable=False)
-    # cart = db.Column(db.Integer, db.ForeignKey('cart.cart_id'), nullable=True)
-    cart = db.relationship("Cart", backref="product")
+    
 
     def format(self):
         return{
@@ -90,11 +89,11 @@ class Cart(db.Model):
     __tablename__ = 'Cart'
     # Drink, persistent drink entity, extends the base SQLAlchemy Model
     # Autoincrementing, unique primary key
-    cart_id = db.Column(db.Integer, primary_key=True)
+    cart_id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
     # String Title
     user_id = db.Column(db.String(80), nullable=False)
 
-    product_id = db.Column(db.Integer, db.ForeignKey("Product.id"), nullable=True)
+    product_id = db.Column(db.Integer, nullable=False)
 
     def format(self):
         return{
