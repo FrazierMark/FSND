@@ -86,6 +86,7 @@ def create_app(test_config=None):
         try:
             cart_info = Cart.query.filter_by(user_id = user)
             cart_products = [cart.format() for cart in cart_info]
+
             print(cart_products)
             if cart_products is None:
                 abort(404)

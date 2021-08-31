@@ -4,7 +4,7 @@ import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
 import React, { Suspense } from "react";
 import Loader from "./Loader"
-import GetCartInfo from './GetCartInfo';
+import GetCartInfo from './CartForm';
 import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 import { Html } from "@react-three/drei";
 
@@ -16,28 +16,26 @@ const CartPage = () => {
     shadowMap
     camera={{ position: [0, 0, 60], fov: 50 }}>
     <fog attach="fog" args={['#ff6161', 1, 600]} />
-
-    <Suspense fallback={<Loader />}>
-      
-    <ambientLight intensity={0.5} />
-    <pointLight position={[-10, -10, -10]} />
+    <Html position={[-18, 0, 0]} >
     
-
-
-    <Terrain/>
-    <Particles/>
-    <OrbitControls/>
-
-    <Html >
     <Auth0ProviderWithHistory>
       <GetCartInfo />
     </Auth0ProviderWithHistory> 
     </Html>
 
+    <Suspense fallback={<Loader />}>
+    
+    
+      
+    <ambientLight intensity={0.5} />
+    <pointLight position={[-10, -10, -10]} />
+    
 
-    {/* <Html >
-          <Content />
-    </Html> */}
+    <Terrain/>
+    <Particles/>
+    <OrbitControls/>
+
+    
 
   </Suspense>
   </Canvas>
