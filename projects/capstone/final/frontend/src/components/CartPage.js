@@ -1,14 +1,16 @@
+import GetCartInfo from './CartForm';
 import { Canvas } from '@react-three/fiber';
 import Terrain from './Terrain';
 import { Particles } from './Particles';
 import {OrbitControls} from '@react-three/drei';
 import React, { Suspense } from "react";
 import Loader from "./Loader"
-import GetCartInfo from './CartForm';
+
 import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 import { Html } from "@react-three/drei";
 
 const CartPage = () => {
+
   return (
     
     <Canvas
