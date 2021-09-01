@@ -11,55 +11,71 @@ const GetCartInfo = () => {
   const [cartInfo, setCartInfo] = useState([]);
 
      
-  useEffect(() => { 
-    const getToken = async () => {
-      try {
-        const accessToken = await getAccessTokenSilently({})
-        console.log(accessToken)
-        setToken(accessToken)
-      } catch (e) {
-        console.log(e.message)
-      }
-    }
+  useEffect(() => {
     getToken()
-  }, [getAccessTokenSilently])
+  }, [])
 
+  const getToken = async () => {
+    try {
+      const accessToken = await getAccessTokenSilently({})
+      
+      setToken(accessToken)
+    } catch (e) {
+
+      console.log(e.message)
+    }
+    return (1)
+  }
 
   useEffect(() => {
     getCartData();
   }, []);
 
 
-  const getCartData = async () => {
-              console.log(accessToken)
-                            
-               await axios.get('http://127.0.0.1:5000/CartPage', {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
+
+    const getCartData = async () => {
+      console.log(token)
+      try {
+          const data = await axios.get('http://127.0.0.1:5000/CartPage', {
+              headers: {
+                  Authorization: `Bearer ${token}`,
                   },
-          })
-          .then((res) => {
-            const cartInfo = res.data.cart_products;
-            console.log(cartInfo)
-            setCartInfo(cartInfo);
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log(err.message);
-            });
+          });
+      console.log(data.data.cart_products);
+      setCartInfo(data.data.cart_products);
+  } catch (e){
+      console.log(e);
+  }}
+
+  // const getCartData = async () => {
+  //             var token2 = await Promise.all(getToken())
+  //             console.log(token2)
+                            
+  //              await axios.get('http://127.0.0.1:5000/CartPage', {
+  //                 headers: {
+  //                   Authorization: `Bearer ${token2}`,
+  //                 },
+  //         })
+  //         .then((res) => {
+  //           const cartInfo = res.data.cart_products;
+  //           console.log(cartInfo)
+  //           setCartInfo(cartInfo);
+  //             console.log(res);
+  //           })
+  //           .catch((err) => {
+  //             console.log(err.message);
+  //           });
             
-        };
+  //       };
     
 
         return (
           <table className="table-latitude">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Sku</th>
-                <th>Category</th>
-                <th>Price</th>
+                <th>Cart</th>
+                <th>User</th>
+                <th>Product</th>
               </tr>
             </thead>
             <tbody>
@@ -68,11 +84,10 @@ const GetCartInfo = () => {
                 return (
                 <tr key={id}>  
                 
-                <td> {item.name} </td>
-                <td>{item.description}</td>
-                <td>{item.sku}</td>
-                <td>{item.category}</td>
-                <td>{item.price}</td>
+                <td> {item.cart_id} </td>
+                <td>{item.user_id}</td>
+                <td>{item.product_id}</td>
+                
                 <td><button > Remove Item
                  </button></td>
                 </tr>
