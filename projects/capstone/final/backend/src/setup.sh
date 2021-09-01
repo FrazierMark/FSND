@@ -1,4 +1,4 @@
-export SECRET="password123"
+export SECRET="rvsGOWWl6WmNns6nOiHNCM2qoQJiJuA91OYfblvWqNAxJRLWRgV8_7u2hbHBp1nf"
 export AUTH0_DOMAIN='m-mark-frazier.us.auth0.com'
 export API_AUDIENCE='grainy'
 export ALGORITHMS=['RS256']
