@@ -8,7 +8,7 @@ const GetCartInfo = () => {
   const [accessToken] = useState('');
   const [token, setToken] = useState(null);
   const { getAccessTokenSilently } = useAuth0();
-  const [cartInfo, setCartInfo] = useState([]);
+  const [cartInfo, setCartInfo] = useState('');
 
 
      
@@ -26,62 +26,33 @@ const GetCartInfo = () => {
   }, [getAccessTokenSilently])
 
 
+  useEffect(() => {
+    getCartData();
+  }, []);
 
 
-
-
-  useEffect(() =>  {
-    const getCartData = async () => {
-      console.log(token)
-      try {
-          const data = await Promise.all(axios.get('http://127.0.0.1:5000/CartPage', {
-              headers: {
-                  Authorization: `Bearer ${token}`,
+  const getCartData = async () => {
+              console.log(accessToken)
+                            
+              axios.get('http://127.0.0.1:5000/CartPage', {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
                   },
-          }));
-      console.log(data.data.cart_products);
-      setCartInfo(data.data.cart_products);
-  } catch (e){
-      console.log(e);
-  }
-};
-  getCartData();
-  console.log(cartInfo)
-  }, [getAccessTokenSilently]); 
-
-
+          })
+          .then((res) => {
+            const cartInformation = res.data.cart_products;
+            setCartInfo(cartInformation);
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
+            return (
+              < ItemsInCart cartInfo={cartInfo} />
+            )
+        };
     
-   
-
-
-
-
-
-    const getCartData = async () => {
-      try {
-        console.log(token)
-        
-         const data = await Promise.all(axios.get('http://127.0.0.1:5000/CartPage', {
-              headers: {
-                  Authorization: `Bearer ${token}`,
-                  }
-          }))
-    .then(async data =>{
-      setCartInfo(data.data.cart_products)
-      if(data.status === 200){
-          return await data.data
-      }
-      return null;
-      
-  })}
-  
-  catch(error){
-      return error
-  }
-};
-
-
-
+    
 
 
 //   const addToCart = async(
