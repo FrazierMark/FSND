@@ -1,40 +1,41 @@
 # Full Stack Grainy Days Camera Store Backend
 ## Grainy Days Specifications
-The Grainy Days Camera Store models a photography e-commerce site that sells cameras, lenses, and film. Through the management page ('/CreateProduct') you can create, update, and delete products that are then listed in the navbar links.
+The Grainy Days Camera Store models a photography e-commerce site that sells cameras, lenses, and film. Through the management page ('/CreateProduct') you can create, update, and delete products that are then listed on their respective pages.
 
 ## Motivation for this project
 This is the capstone project for Udacity's fullstack nanodegree program. I wanted to create a website from scratch that had full backend and frontend capabilities. Also, I wanted to challenge myself by implementing a frontend user expereince that utilized a 3D space. 
 
-### Getting Started
-
-## Virtual Enviornment
-To setup vurtual environment run the following command
-
-pipenv shell
-
-## Installing Dependencies
+## Grainy Days App Hosted on Heroku
+### https://grainydayz.herokuapp.com/
 
 
-## Database Setup
-The project uses Postgresql as its database. To update the database and seed run the following :
+## Authentication
+### Auth0 Roles and Permissions
+Authentication is implemented using Auth0, it uses RBAC to assign permissions using roles.
 
-python manage.py db upgrade
-python manage.py seed
-you may need to change the database url in setup.sh after which you can run
-source setup.sh
-Start server by running
-flask run
+Currently there are 2 set roles within this Project.
+- Administrator
+- Manager
+
+The Administrator role has the following 3 permissions:
+- post:product
+- delete:product
+- patch:product
+
+The Manager role has 1 permission:
+- post:product
+
+### To signin as a Manager, click "Log In" and use the following credential information:
+- email address:     manager@123.com
+- password:          Password!123
+
+### To signin as an Administrator with full access, click "Log In" and use the following credential information:
+- email address:    admin@123.com
+- password:         Password!123
 
 
-## Project dependencies
 
-Installing Dependencies
-Python 3.7
-Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
-
-## pipenv install -r requirements.txt
-This will install all of the required packages within the requirements.txt file.
-
+## Getting Started
 
 # Key Dependencies
 - [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
@@ -48,32 +49,28 @@ This will install all of the required packages within the requirements.txt file.
 - [Pycodestyle](https://pypi.org/project/pycodestyle/) - pycodestyle is a tool to check your Python code against some of the style conventions in PEP 8.
 
 
+### Installing Dependencies - Backend/Server
+Navigate to /backend/src
 
-## Authentication
-Authentication is implemented using Auth0, it uses RBAC to assign permissions using roles. 
+pip install -r requirements.txt
 
+To run the server locally...
 
-# Auth0 Roles and Permissions
-Currently there are 2 set roles within this Project.
-- Administrator
-- Manager
-
-The Administrator role has the following 3 permissions:
-- post:product
-- delete:product
-- patch:product
-
-The Manager role has 1 permission:
-- post:product
+export FLASK_APP=app
 
 
-To signin as a Manager, click "Log In" and use the following credential information:
-- email address:     manager@123.com
-- password:          Password!123
 
-To signin as an Administrator with full access, click "Log In" and use the following credential information:
-- email address:    admin@123.com
-- password:         Password!123
+### Database Setup
+The project uses Postgresql as its database. To update the database and seed run the following :
+
+## Project dependencies
+
+Installing Dependencies
+Python 3.7
+Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
+
+## pipenv install -r requirements.txt
+This will install all of the required packages within the requirements.txt file.
 
 
 ## Testing
