@@ -67,7 +67,7 @@ const GetLenses = () => {
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <th>Sku</th>
+            <th>SKU</th>
             <th>Category</th>
             <th>Price</th>
           </tr>

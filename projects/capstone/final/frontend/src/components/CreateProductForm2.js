@@ -78,7 +78,7 @@ const CreateProductForm2 = () => {
     
         return (
             
-            <div className="form1">
+            <div className="form">
                 <form onSubmit={handleSubmit}>
                     <p> Create New Product </p>
                 

@@ -19,7 +19,7 @@ const CartPage = () => {
     return (
       <group ref={ref}>
         <BlockText hAlign="right" position={[-10, 16, -8]} children="Need" />
-        <BlockText hAlign="right" position={[-4, 10, -8]} children="TO" /> */}
+        <BlockText hAlign="right" position={[-4, 10, -8]} children="TO" /> 
         <BlockText hAlign="right" position={[-4, 4, -8]} children="FIX" />
       </group>
     )

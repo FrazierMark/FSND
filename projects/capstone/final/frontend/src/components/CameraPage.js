@@ -32,7 +32,7 @@ const CameraPage = () => {
     
     colorManagement
     shadowMap
-    camera={{ position: [0, 0, 30], fov: 50 }}>
+    camera={{ position: [0, 0, 40], fov: 50 }}>
 
     <Suspense fallback={<Loader />}>
 
@@ -50,7 +50,7 @@ const CameraPage = () => {
     <Terrain/>
 
     
-    <Html position={[-10, 0, 0]} >
+    <Html position={[-25, 0, -40]} >
       <GetCameras /> 
     </Html>
 

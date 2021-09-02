@@ -50,6 +50,9 @@ const Header = () => {
             <li>
               <AuthNav />              
             </li>
+            <li className='logbtn'>
+              <a href='/CreateProduct' > Manage </a>
+            </li>
             
           </ul>
         </nav>

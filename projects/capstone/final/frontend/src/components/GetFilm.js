@@ -71,13 +71,13 @@ const GetAllFilm = () => {
 
     
     return (
-
-      <table className="table-latitude">
+      <div className="form-control">
+      <table>
         <thead>
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <th>Sku</th>
+            <th>SKU</th>
             <th>Category</th>
             <th>Price</th>
           </tr>
@@ -100,7 +100,7 @@ const GetAllFilm = () => {
         })}
         </tbody>
       </table>
-    
+    </div>
     );
 };
 

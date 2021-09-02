@@ -63,7 +63,7 @@ const GetCameras = () => {
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <th>Sku</th>
+            <th>SKU</th>
             <th>category</th>
             <th>Price</th>
           </tr>

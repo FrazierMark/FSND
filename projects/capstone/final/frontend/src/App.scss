@@ -77,36 +77,48 @@ header {
         display: flex;
         li {
           list-style: none;
-          margin: 0 20px;
+          margin: 0 15px;
           &.btn {
             a {
               color: #fff;
               font-weight: 600;
               background: #3fb7d2;
-              padding: 15px 28px;
+              padding: 10px 24px;
               border-radius: 10px;
             }
           }
-          a {
-            text-transform: capitalize;
-            text-decoration: none;
-            color: #fff;
-          }
+          
         }
       }
     }
   }
 }
+a {
+  opacity: .9;
+  text-transform: capitalize;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: capitalize;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.1rem;
+  
+  cursor: pointer;
+}
 
 .logbtn{
-  list-style: none;
-  margin: 5px;
-  color: #fff;
-  text-transform: capitalize;
-  font-weight: 600;
+  opacity: .9;
+  margin: 2px;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
   background: #ff6161;
-  padding: 5px 15px;
-  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0.2rem;
+  margin: 0.1rem;
+  border-radius: 0.5rem;
   text-decoration: none;
 }
 
@@ -159,6 +171,7 @@ header {
   transform: scaleX(1);
 }
 button {
+  opacity: .9;
   font-size: 1rem;
   padding: 0.2rem;
   margin: 0.1rem;
@@ -166,15 +179,18 @@ button {
   border: 0.1rem #3fb7d2;
   background-color: #ff6161;
   width: 100%;
+  color: #fff;
   cursor: pointer;
 }
 button.add {
   background-color: aqua;
   width: 1.5rem;
+  color: #fff;
 }
 button.remove {
   background-color: crimson;
   width: 1.5rem;
+  color: #fff;
 }
 button.badge {
   background-color: crimson;
@@ -228,53 +244,127 @@ footer {
   }
 }
 
-$background: #efefef;
-$lfs-blue: #ff6161;
-$lfs-yellow: #fab700;
-$lfs-grey: #000000;
+// $background: #efefef;
+// $lfs-blue: #ff6161;
+// $lfs-yellow: #fab700;
+// $lfs-grey: #000000;
 
-.table-latitude {
+// .table-latitude {
     
-    position: absolute;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: $lfs-grey;
-    text-align: center;
+//     position: absolute;
+//     text-transform: uppercase;
+//     font-weight: bold;
+//     color: $lfs-grey;
+//     text-align: center;
   
-    thead {
-        font-size: 1.1rem;
-        font-weight: 600;
-        border-top: 2px solid $lfs-yellow;
-        border-bottom: 2px solid $lfs-yellow;
-        th {
-          gap: 5em;
-          width: 100%;
-          padding-top: .5em;
-          position: relative;
-          text-transform: uppercase;
-          text-align: center;
-          padding: 50px;
-          color: $lfs-grey;
-          border: 2px solid #F1F1F1;
-        }
-    }
-    tbody {
-        tr {
-            border-bottom: 10px solid #F1F1F1;
-            color: $lfs-grey;
-            td {
-                padding: 10px;
-                border: 2px solid #F1F1F1;
-                font-weight: bold;
-                text-align: center;
-            }
-            th {
-                padding-left: 10px;
-                border: 2px solid #F1F1F1;
-            }
-        }
-    }
+//     thead {
+//         font-size: 1.1rem;
+//         font-weight: 600;
+//         border-top: 2px solid $lfs-yellow;
+//         border-bottom: 2px solid $lfs-yellow;
+//         th {
+//           gap: 5em;
+//           width: 100%;
+//           padding-top: .5em;
+//           position: relative;
+//           text-transform: uppercase;
+//           text-align: center;
+//           padding: 50px;
+//           color: $lfs-grey;
+//           border: 2px solid #F1F1F1;
+//         }
+//     }
+//     tbody {
+//         tr {
+//             border-bottom: 10px solid #F1F1F1;
+//             color: $lfs-grey;
+//             td {
+//                 padding: 10px;
+//                 border: 2px solid #F1F1F1;
+//                 font-weight: bold;
+//                 text-align: center;
+//             }
+//             th {
+//                 padding-left: 10px;
+//                 border: 2px solid #F1F1F1;
+//             }
+//         }
+//     }
+// }
+
+html,
+body {
+	height: 100%;
 }
+
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	  background: transparent;
+    opacity: .8;
+    width: 280px;
+    padding: .6em;
+    margin-bottom: 1em;
+    border: none;
+    border-radius: 5000px;
+    backdrop-filter: blur(5px);
+    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+th {
+	text-align: center;
+}
+
+thead {
+	th {
+		background-color: #37a5d8;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
+
 
 $white: rgba(255,255,255,0.3);
 
