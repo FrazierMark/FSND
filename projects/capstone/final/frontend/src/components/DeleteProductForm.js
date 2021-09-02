@@ -51,7 +51,7 @@ const DeleteProductForm = () => {
             const deletedProduct = {sku};
             console.log(sku)
             
-            axios.delete('http://127.0.0.1:5000/CreateProduct', {
+            axios.delete('https://grainydays.herokuapp.com/CreateProduct', {
                 data: {
                     deletedProduct: deletedProduct
                 },    

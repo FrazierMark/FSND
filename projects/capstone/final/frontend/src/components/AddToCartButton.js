@@ -48,7 +48,7 @@ const AddToCartButton = () => {
             // const { name, description, sku, category, price } = values;
             const newProduct = {name, description, sku, category, price};
             
-            axios.post('http://127.0.0.1:5000/CreateProduct', newProduct, {
+            axios.post('https://grainydays.herokuapp.com/CreateProduct', newProduct, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },

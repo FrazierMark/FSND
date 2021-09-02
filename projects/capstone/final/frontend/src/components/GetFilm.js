@@ -27,7 +27,7 @@ const GetAllFilm = () => {
 
     const getFilmData = async () => {
         try {
-            const data = await axios.get('http://127.0.0.1:5000/FilmPage');
+            const data = await axios.get('https://grainydays.herokuapp.com/FilmPage');
         console.log(data.data.all_film);
         setFilm(data.data.all_film);
     } catch (e){
@@ -55,7 +55,7 @@ const GetAllFilm = () => {
           
           const newProduct = {id};
           
-          axios.post('http://127.0.0.1:5000/CartPage', newProduct, {
+          axios.post('https://grainydays.herokuapp.com/CartPage', newProduct, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },

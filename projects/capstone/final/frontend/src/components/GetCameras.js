@@ -7,7 +7,7 @@ const GetCameras = () => {
 
     const getCameraData = async () => {
         try {
-            const data = await axios.get('http://127.0.0.1:5000/CameraPage');
+            const data = await axios.get('https://grainydays.herokuapp.com/CameraPage');
         console.log(data.data.cameras);
         setCamera(data.data.cameras);
     } catch (e){

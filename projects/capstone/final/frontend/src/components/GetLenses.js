@@ -7,7 +7,7 @@ const GetLenses = () => {
 
     const getLensData = async () => {
         try {
-            const data = await axios.get('http://127.0.0.1:5000/LensPage');
+            const data = await axios.get('https://grainydays.herokuapp.com/LensPage');
         console.log(data.data.lenses);
         setLens(data.data.lenses);
     } catch (e){

@@ -59,7 +59,7 @@ class CreateProductForm extends Component {
         };
         console.log(productObject)
 
-        axios.post('http://127.0.0.1:5000/CreateProduct', productObject,
+        axios.post('https://grainydays.herokuapp.com/CreateProduct', productObject,
             {headers: {'Authorization': `bearer ${this.getAccessToken()}`}
         })
             .then((res) => {

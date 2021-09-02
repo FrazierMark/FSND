@@ -36,7 +36,7 @@ const GetCartInfo = () => {
     const getCartData = async () => {
       console.log(token)
       try {
-          const data = await axios.get('http://127.0.0.1:5000/CartPage', {
+          const data = await axios.get('https://grainydays.herokuapp.com//CartPage', {
               headers: {
                   Authorization: `Bearer ${token}`,
                   },
@@ -51,7 +51,7 @@ const GetCartInfo = () => {
   //             var token2 = await Promise.all(getToken())
   //             console.log(token2)
                             
-  //              await axios.get('http://127.0.0.1:5000/CartPage', {
+  //              await axios.get('https://grainydays.herokuapp.com/CartPage', {
   //                 headers: {
   //                   Authorization: `Bearer ${token2}`,
   //                 },

@@ -61,7 +61,7 @@ const UpdateProductForm = () => {
             const updatedProduct = {sku, name, description, category, price};
             console.log(updatedProduct)
             
-            axios.patch('http://127.0.0.1:5000/CreateProduct', updatedProduct, {
+            axios.patch('https://grainydays.herokuapp.com/CreateProduct', updatedProduct, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                   },
