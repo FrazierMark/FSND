@@ -41,7 +41,7 @@ The Manager role has 1 permission:
 
 # Key Dependencies
 
--[three.js](https://threejs.org/) is a cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser using WebGL.
+-[Three.js](https://threejs.org/) is a cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser using WebGL.
 
 - [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
@@ -63,58 +63,6 @@ Navigate to /backend/src
 pip install -r requirements.txt
 ```
 
-To run the server locally...
-
-```
-export FLASK_APP=app
-```
-
-```
-flask run --reload
-```
-
-### Install Dependencies - Frontend/Client
-Navigate to /frontend
-
-```
-npm install
-```
-
-```
-npm start
-```
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.
-
-## Testing
-Replace the jwt tokens in test_app.py with the ones generated on the website.
-
-Error Handling
-401 errors due to RBAC are returned as
-{
-  "code": "unauthorized",
-  "description": "Permission not found."
-}
-Other Errors are returned in the following json format:
-
-{
-  "success": "False",
-  "error": 422,
-  "message": "Unprocessable entity"
-}
-The error codes currently returned are:
-
-400 – bad request
-401 – unauthorized
-404 – resource not found
-422 – unprocessable
-500 – internal server error
-
-
-
-## Running the server
-
-From within the `./src` directory first ensure you are working using your created virtual environment.
-
 Each time you open a new terminal session, run:
 
 ```bash
@@ -128,6 +76,20 @@ flask run --reload
 ```
 
 The `--reload` flag will detect file changes and restart the server automatically.
+
+### Install Dependencies - Frontend/Client
+Navigate to /frontend
+
+```
+npm install
+```
+
+```
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.
+
+
 
 
 ## Endpoints
@@ -314,6 +276,29 @@ Response:
 
 ## Tests
 To run the tests, run python3 tests.py.
+
+
+Error Handling
+401 errors due to RBAC are returned as
+{
+  "code": "unauthorized",
+  "description": "Permission not found."
+}
+Other Errors are returned in the following json format:
+
+{
+  "success": "False",
+  "error": 422,
+  "message": "Unprocessable entity"
+}
+The error codes currently returned are:
+
+400 – bad request
+401 – unauthorized
+404 – resource not found
+422 – unprocessable
+500 – internal server error
+
 
 ## Authors
 Mark Frazier
