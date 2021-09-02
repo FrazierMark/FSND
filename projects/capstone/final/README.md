@@ -1,12 +1,14 @@
-# Full Stack Grainy Days Camera Store Backend
+# Grainy Days Camera Store App
+## Full Stack Web Application w/ CRUD capablilites
 ## Grainy Days Specifications
 The Grainy Days Camera Store models a photography e-commerce site that sells cameras, lenses, and film. Through the management page ('/CreateProduct') you can create, update, and delete products that are then listed on their respective pages.
 
 ## Motivation for this project
-This is the capstone project for Udacity's fullstack nanodegree program. I wanted to create a website from scratch that had full backend and frontend capabilities. Also, I wanted to challenge myself by implementing a frontend user expereince that utilized a 3D space. 
+This is the capstone project for Udacity's fullstack nanodegree program. I wanted to create a website from scratch that had full backend and frontend capabilities. Also, I wanted to challenge myself by implementing a frontend user expereince that utilized 3D assests. The library I used to achieve this was, @react-three-fiber (an abstraction from Three.js).
 
 ## Grainy Days App Hosted on Heroku
 ### https://grainydayz.herokuapp.com/
+(Loading is a bit slow, so please be patient.)
 
 
 ## Authentication
@@ -38,6 +40,9 @@ The Manager role has 1 permission:
 ## Getting Started
 
 # Key Dependencies
+
+-[three.js](https://threejs.org/) is a cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser using WebGL.
+
 - [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
 - [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py.
