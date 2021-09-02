@@ -1,4 +1,4 @@
-#### Full Stack Grainy Days Camera Store Backend
+# Full Stack Grainy Days Camera Store Backend
 ## Grainy Days Specifications
 The Grainy Days Camera Store models a photography e-commerce site that sells cameras, lenses, and film. Through the management page ('/CreateProduct') you can create, update, and delete products that are then listed in the navbar links.
 
