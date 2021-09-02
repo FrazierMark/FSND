@@ -43,7 +43,7 @@ const GetAllFilm = () => {
     const handleSubmit = (id) => {
       console.log(id)
       // e.preventDefault();
-      alert("New Product Added!");
+      alert("Product Added to Cart!");
       console.log(token)
       addToCart(id);   
   };

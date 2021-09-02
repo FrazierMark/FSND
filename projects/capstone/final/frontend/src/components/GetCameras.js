@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const GetCameras = () => {
-    const [camera, setCamera] = useState([]);
+
+  const [accessToken] = useState('');
+  const [token, setToken] = useState(null);
+  const { getAccessTokenSilently } = useAuth0();
+  const [camera, setCamera] = useState([]);
 
     const getCameraData = async () => {
         try {
@@ -18,6 +23,39 @@ const GetCameras = () => {
     useEffect(() => {
         getCameraData();
     }, []);
+
+
+
+    const handleSubmit = (id) => {
+      console.log(id)
+      // e.preventDefault();
+      alert("Product Added to Cart!");
+      console.log(token)
+      addToCart(id);   
+  };
+
+  const addToCart = async(
+      id,
+      ) => {
+          console.log(accessToken)
+          
+          const newProduct = {id};
+          
+          axios.post('https://grainydays.herokuapp.com/CartPage', newProduct, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+      })
+      .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    };
+
+
+
     return (
 
       <table className="table-latitude">
@@ -41,7 +79,8 @@ const GetCameras = () => {
             <td>{product.sku}</td>
             <td>{product.category}</td>
             <td>{product.price}</td>
-            <td><button >Add To Cart </button></td>
+            <td><button onClick={() => handleSubmit(product.id)}> Add To Cart
+             </button></td>
             </tr>
           );
         })}

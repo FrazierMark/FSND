@@ -238,7 +238,7 @@ $lfs-grey: #000000;
     position: absolute;
     text-transform: uppercase;
     font-weight: bold;
-    color: $lfs-yellow;
+    color: $lfs-grey;
     text-align: center;
   
     thead {
@@ -254,7 +254,7 @@ $lfs-grey: #000000;
           text-transform: uppercase;
           text-align: center;
           padding: 50px;
-          color: $lfs-blue;
+          color: $lfs-grey;
           border: 2px solid #F1F1F1;
         }
     }

@@ -50,7 +50,7 @@ const CameraPage = () => {
     <Terrain/>
 
     
-    <Html position={[-18, 0, 0]} >
+    <Html position={[-10, 0, 0]} >
       <GetCameras /> 
     </Html>
 

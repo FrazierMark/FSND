@@ -46,7 +46,7 @@ const FilmPage = () => {
     <FilmModel position={[-14, 4, -8]}  />
 
 
-    <Html position={[-18, 0, 0]} >
+    <Html position={[-10, 0, 0]} >
     <Auth0ProviderWithHistory>
       <GetAllFilm />
     </Auth0ProviderWithHistory> 
