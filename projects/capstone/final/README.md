@@ -131,5 +131,9 @@ The `--reload` flag will detect file changes and restart the server automaticall
 
 
 
+
+## Tests
+To run the tests, run python3 tests.py.
+
 ## Authors
 Mark Frazier
