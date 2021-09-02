@@ -39,7 +39,7 @@ const CreateProduct = () => {
         <Jumbo />
   
       
-      <Html position={[-12, 3, -15]}>
+      <Html position={[-17, 3, -15]}>
         <Auth0ProviderWithHistory>
         <CreateProductForm2/>
         </Auth0ProviderWithHistory>
@@ -49,17 +49,17 @@ const CreateProduct = () => {
     <ambientLight intensity={0.5} />
     <pointLight position={[-12, -10, -10]} />
 
-    <CameraModel position={[-19, 2, -25]} />
+    <CameraModel position={[-23, 5, -25]} />
     
     <OrbitControls />
     
-      <Html position={[12, 3, -15]}>
+      <Html position={[14, 3, -15]}>
         <Auth0ProviderWithHistory>
         <DeleteProductForm />
         </Auth0ProviderWithHistory>
       </Html>
 
-      <Html position={[0, 3, -15]}>
+      <Html position={[-2, 3, -15]}>
         <Auth0ProviderWithHistory>
         <UpdateProductForm />
         </Auth0ProviderWithHistory>
