@@ -130,6 +130,196 @@ flask run --reload
 The `--reload` flag will detect file changes and restart the server automatically.
 
 
+## Endpoints
+GET /CameraPage
+Gets all cameras from the db.
+
+Response:
+
+{
+  "cameras": [
+    {
+      "id": 1,
+      "name": "Canon 5D Mark IV",
+      "description": "Full Frame Camera",
+      "sku": "6548458",
+      "category": "camera",
+      "price": "2000.00"
+    },
+    {
+      "name": "Nikon 2600",
+      "description": "Full Frame Camera",
+      "sku": "6458458",
+      "category": "camera",
+      "price": "1000.00"
+    }
+  ],
+  "success": true
+}
+
+GET /LensPage
+Gets all cameras from the db.
+
+Response:
+{
+  "lens": [
+    {
+      "id": 3,
+      "name": "Nikon 24-70mm",
+      "description": "N-Mount Lens",
+      "sku": "6544558",
+      "category": "lens",
+      "price": "2300.00"
+    },
+    {
+      "id": 4,
+      "name": "Leica",
+      "description": "Summilux 35mm",
+      "sku": "452458",
+      "category": "lens",
+      "price": "1000.00"
+    }
+  ],
+  "success": true
+}
+
+GET /FilmPage
+Gets all cameras from the db.
+
+Response:
+{
+  "lens": [
+    {
+      "id": 5,
+      "name": "Portra",
+      "description": "ISO 400",
+      "sku": "6544548",
+      "category": "film",
+      "price": "23.00"
+    },
+    {
+      "id": 6,
+      "name": "Ilford",
+      "description": "B&W ISO 400",
+      "sku": "4524845",
+      "category": "film",
+      "price": "10.00"
+    }
+  ],
+  "success": true
+}
+
+POST /movies
+Adds a new movie to the db.
+
+Data:
+
+{
+  "title": "title",
+  "release_date": "release_date"
+}
+Response:
+
+{
+  'success': true,
+  'movie': 'title'
+}
+PATCH /movies/<int:id>
+Edit data on a movie in the db.
+
+Data:
+
+{
+  "title": "new title",
+  "release_date": "2021-02-02"
+}
+Response:
+
+{
+  'success': true,
+  'movie': {
+              "id": 1,
+              "movies": "all acted movies here",
+              "release_date": "2021-02-02",
+              "title": "new title"
+            }
+}
+DELETE /movies/<int:id>
+Delete a movie from the db.
+
+Response:
+
+{
+  'success': true,
+  'delete': 1
+}
+GET /actors
+Gets all actors from the db.
+
+Response:
+
+{
+  "actors": [
+    {
+      "gender": "M",
+      "id": 1,
+      "movies": "all acted movies here",
+      "name": "actor"
+    },
+    {
+      "gender": "F",
+      "id": 2,
+      "movies": "all acted movies here",
+      "name": "ewwe"
+    }
+  ],
+  "success": true
+}
+POST /actors
+Adds a new actor to the db.
+
+Data:
+
+{
+  "name": "name",
+  "gender": "F"
+}
+Response:
+
+{
+  'success': true,
+  'actor': 'name'
+}
+PATCH /actors/<int:id>
+Edit data on a actor in the db.
+
+Data:
+
+{
+  "name": "new name",
+  "gender": "M"
+}
+Response:
+
+{
+  'success': true,
+  'actor': {
+              "gender": "M",
+              "id": 1,
+              "movies": "all acted movies here",
+              "name": "new name"
+            }
+}
+DELETE /actors/<int:id>
+Delete a actor from the db.
+
+Response:
+
+{
+  'success': true,
+  'delete': 1
+}
+
 
 
 ## Tests
