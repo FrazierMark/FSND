@@ -132,10 +132,10 @@ The `--reload` flag will detect file changes and restart the server automaticall
 
 ## Endpoints
 GET /CameraPage
-Gets all cameras from the db.
+Gets all camera products from the db.
 
 Response:
-
+```
 {
   "cameras": [
     {
@@ -156,13 +156,15 @@ Response:
   ],
   "success": true
 }
+```
 
 GET /LensPage
-Gets all cameras from the db.
+Gets all lens products from the db.
 
 Response:
+```
 {
-  "lens": [
+  "lenses": [
     {
       "id": 3,
       "name": "Nikon 24-70mm",
@@ -182,13 +184,15 @@ Response:
   ],
   "success": true
 }
+```
 
 GET /FilmPage
-Gets all cameras from the db.
+Gets all film products from the db.
 
+```
 Response:
 {
-  "lens": [
+  "all_film": [
     {
       "id": 5,
       "name": "Portra",
@@ -208,119 +212,105 @@ Response:
   ],
   "success": true
 }
+```
 
-POST /movies
-Adds a new movie to the db.
 
+
+POST /CreateProduct
+Adds new product to the db.
+
+```
 Data:
 
 {
-  "title": "title",
-  "release_date": "release_date"
+  "name": "Portra",
+  "description": "ISO 400",
+  "sku": "6544548",
+  "category": "film",
+  "price": "23.00"
 }
+```
+
+```
 Response:
 
 {
   'success': true,
-  'movie': 'title'
-}
-PATCH /movies/<int:id>
-Edit data on a movie in the db.
+  'product': {
+                "name": "Portra",
+                "description": "ISO 400",
+                "sku": "6544548",
+                "category": "film",
+                "price": "23.00"
+           }
+  }
+```
 
+PATCH /CreateProducts
+Edit product data in the db.
+
+```
 Data:
 
 {
-  "title": "new title",
-  "release_date": "2021-02-02"
+  "name": "Portra",
+  "description": "ISO 400",
+  "sku": "6544548",
+  "category": "film",
+  "price": "23.00"
 }
+```
+
+```
 Response:
 
 {
   'success': true,
-  'movie': {
-              "id": 1,
-              "movies": "all acted movies here",
-              "release_date": "2021-02-02",
-              "title": "new title"
+  'product': {
+              "name": "Portra",
+              "description": "ISO 400",
+              "sku": "6544548",
+              "category": "film",
+              "price": "23.00"
             }
 }
-DELETE /movies/<int:id>
-Delete a movie from the db.
+```
 
+
+DELETE /CreateProduct
+Delete a movie from the db.
+```
+Data:
+{
+  "sku": "6544548",
+}
+```
+```
 Response:
 
 {
   'success': true,
-  'delete': 1
+  'deleted_product': 6544548
 }
-GET /actors
-Gets all actors from the db.
+```
 
+
+GET /CartPage
+Gets all products from cart table by user.
+
+```
 Response:
-
 {
-  "actors": [
+  "cart_products": [
     {
-      "gender": "M",
-      "id": 1,
-      "movies": "all acted movies here",
-      "name": "actor"
-    },
-    {
-      "gender": "F",
-      "id": 2,
-      "movies": "all acted movies here",
-      "name": "ewwe"
+      "id": 7,
+      "user_id": "",
+      "product_id": "ISO 400"
     }
   ],
   "success": true
 }
-POST /actors
-Adds a new actor to the db.
-
-Data:
-
-{
-  "name": "name",
-  "gender": "F"
-}
-Response:
-
-{
-  'success': true,
-  'actor': 'name'
-}
-PATCH /actors/<int:id>
-Edit data on a actor in the db.
-
-Data:
-
-{
-  "name": "new name",
-  "gender": "M"
-}
-Response:
-
-{
-  'success': true,
-  'actor': {
-              "gender": "M",
-              "id": 1,
-              "movies": "all acted movies here",
-              "name": "new name"
-            }
-}
-DELETE /actors/<int:id>
-Delete a actor from the db.
-
-Response:
-
-{
-  'success': true,
-  'delete': 1
-}
-
-
+```
 
 ## Tests
 To run the tests, run python3 tests.py.
