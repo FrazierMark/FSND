@@ -46,41 +46,42 @@ The Manager role has 1 permission:
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
 
+Python 3.7
+Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
+
 - [Pycodestyle](https://pypi.org/project/pycodestyle/) - pycodestyle is a tool to check your Python code against some of the style conventions in PEP 8.
 
 
 ### Installing Dependencies - Backend/Server
 Navigate to /backend/src
-
+```
 pip install -r requirements.txt
+```
 
 To run the server locally...
 
+```
 export FLASK_APP=app
+```
 
+```
+flask run --reload
+```
 
+### Install Dependencies - Frontend/Client
+Navigate to /frontend
 
-### Database Setup
-The project uses Postgresql as its database. To update the database and seed run the following :
+```
+npm install
+```
 
-## Project dependencies
-
-Installing Dependencies
-Python 3.7
-Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
-
-## pipenv install -r requirements.txt
-This will install all of the required packages within the requirements.txt file.
-
+```
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.
 
 ## Testing
 Replace the jwt tokens in test_app.py with the ones generated on the website.
-
-For testing locally, we need to reset database. To reset database, run
-
-python manage.py db downgrade
-python manage.py db upgrade
-python manage.py seed
 
 Error Handling
 401 errors due to RBAC are returned as
