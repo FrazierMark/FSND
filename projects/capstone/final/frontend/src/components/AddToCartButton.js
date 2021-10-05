@@ -11,7 +11,6 @@ const AddToCartButton = () => {
     const { getAccessTokenSilently } = useAuth0();
     
   useEffect(() => {
-      
         const getToken = async () => {
           try {
             const accessToken = await getAccessTokenSilently({})
@@ -23,8 +22,6 @@ const AddToCartButton = () => {
         getToken()
       }, [getAccessTokenSilently])
 
-
-    
     const [values, setValues] = useState({
         name: '',
     })

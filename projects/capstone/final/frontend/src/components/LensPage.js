@@ -4,13 +4,13 @@ import LensModel from './LensModel';
 import Terrain from './Terrain';
 import Loader from './Loader';
 import { Particles } from './Particles';
-import { OrbitControls, Text } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import GetLenses from "./GetLenses";
 import { Html } from "@react-three/drei";
 import BlockText from './BlockText';
 
 
-
+// 3D Jumbo Text (Lenses)
 function Jumbo() {
   const ref = useRef()
   return (
@@ -21,18 +21,6 @@ function Jumbo() {
 }
 
 const LensPage = () => {
-
-  const opts = {
-    font: "Comfortaa",
-    fontSize: 9,
-    color: "#000000",
-    maxWidth: 260,
-    lineHeight: 1,
-    letterSpacing: 0,
-    textAlign: "justify"
-  };
-
-
 
   return (
     
@@ -55,7 +43,7 @@ const LensPage = () => {
 
     <Html position={[-10, 0, -100]} >
       <GetLenses /> 
-        </Html>
+    </Html>
 
 
     <Jumbo />
