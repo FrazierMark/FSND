@@ -9,7 +9,9 @@ import rightImg from "../images/Night Moon 4.png";
 import leftImg from "../images/Night Moon 3.png";
 
 
+// Currently not being used. 
 
+//
 const SkyBox = () => {
     const { scene } = useThree();
     // scene.rotation.y = Math.PI/2.1;

@@ -5,6 +5,8 @@ import { useFrame } from '@react-three/fiber';
 
 const GROUND_HEIGHT = -30;
 
+
+// Grid-like moving terrain
 function Terrain() {
     const terrain = useRef();
   

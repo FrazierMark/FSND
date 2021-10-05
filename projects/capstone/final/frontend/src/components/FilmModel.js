@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useState } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+// Loads film model
 const Film = () => {
   const gltf = useLoader(GLTFLoader, "portra400.glb");
   return (
@@ -19,7 +20,7 @@ function FilmModel(props) {
   // This reference will give us direct access to the mesh
   const mesh = useRef()
   const [active, setActive] = useState(false)
-  // Rotate mesh every frame, this is outside of React without overhead
+  // Rotate Film-mesh every frame, this is outside of React without overhead
   useFrame(() => {
     mesh.current.rotation.y += .01 
   })

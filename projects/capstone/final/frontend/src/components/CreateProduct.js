@@ -16,6 +16,7 @@ import UpdateProductForm from './UpdateProductForm';
 function Jumbo() {
   const ref = useRef()
   return (
+    // 3D Jumbo Text (Create Product)
     <group ref={ref}>
       <BlockText hAlign="right" position={[-22, 10, -23]} children="Create Product" />
       {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}

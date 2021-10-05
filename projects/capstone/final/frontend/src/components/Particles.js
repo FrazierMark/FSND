@@ -1,6 +1,8 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
+
+//Box particles
 export const Particles = ({ count = 3000 }) => {
   const ref = useRef(null);
   const positionArray = new Float32Array(count * 3);

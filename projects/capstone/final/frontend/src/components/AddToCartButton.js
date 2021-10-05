@@ -6,12 +6,12 @@ import axios from "axios";
 
 
 const AddToCartButton = () => {
-
     const [accessToken] = useState('');
     const [token, setToken] = useState(null);
     const { getAccessTokenSilently } = useAuth0();
     
-    useEffect(() => {
+  useEffect(() => {
+      
         const getToken = async () => {
           try {
             const accessToken = await getAccessTokenSilently({})
@@ -30,7 +30,6 @@ const AddToCartButton = () => {
     })
 
    
-
     const handleSubmit = async (e) => {
         console.log('submitting');
         e.preventDefault();
@@ -41,6 +40,7 @@ const AddToCartButton = () => {
         );   
     };
 
+  
     const addToCart = async(
         id,
         ) => {

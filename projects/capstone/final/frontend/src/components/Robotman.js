@@ -4,8 +4,7 @@ import { Html } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
-
-
+// Main page Robot Model, created in C4D
 const Roboman = () => {
   const gltf = useLoader(GLTFLoader, "roboman.glb");
   return (
@@ -38,16 +37,7 @@ function Robotman(props) {
       onClick={(e) => setActive(!active)}>
       
       <Html distanceFactor={40}>
-        {/* <h1>
-        <GlitchText>Price</GlitchText>
-      </h1> */}
-        
-        {/* <div class="content">
-          hello <br />
-          world
-        </div> */}
       </Html>
-      
       
       <Roboman  />
       

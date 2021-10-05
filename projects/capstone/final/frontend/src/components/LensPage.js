@@ -4,24 +4,36 @@ import LensModel from './LensModel';
 import Terrain from './Terrain';
 import Loader from './Loader';
 import { Particles } from './Particles';
-import { OrbitControls } from "@react-three/drei";
-
+import { OrbitControls, Text } from "@react-three/drei";
 import GetLenses from "./GetLenses";
 import { Html } from "@react-three/drei";
 import BlockText from './BlockText';
+
+
 
 function Jumbo() {
   const ref = useRef()
   return (
     <group ref={ref}>
       <BlockText hAlign="right" position={[-10, 5, -8]} children="Lenses" />
-      {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
-      {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
   )
 }
 
 const LensPage = () => {
+
+  const opts = {
+    font: "Comfortaa",
+    fontSize: 9,
+    color: "#000000",
+    maxWidth: 260,
+    lineHeight: 1,
+    letterSpacing: 0,
+    textAlign: "justify"
+  };
+
+
+
   return (
     
     <Canvas
@@ -41,10 +53,11 @@ const LensPage = () => {
     <Terrain/>
 
 
-    <Html position={[-10, 0, 0]} >
+    <Html position={[-10, 0, -100]} >
       <GetLenses /> 
-    </Html>
-    {/* <SkyBox /> */}
+        </Html>
+
+
     <Jumbo />
     <Particles/>
     </Suspense>

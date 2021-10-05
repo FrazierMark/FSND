@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 
-
+// Retrieves all Camera Products from db and maps to table
 const GetCameras = () => {
 
   const [accessToken] = useState('');
@@ -53,7 +53,6 @@ const GetCameras = () => {
           console.log(err.message);
         });
     };
-
 
 
     return (

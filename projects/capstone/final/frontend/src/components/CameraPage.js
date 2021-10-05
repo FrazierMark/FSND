@@ -14,10 +14,9 @@ import { Particles } from './Particles';
 function Jumbo() {
   const ref = useRef()
   return (
+    // Jumbo 3D Text (CAMERAS)
     <group ref={ref}>
       <BlockText hAlign="right" position={[-10, 5, -20]} children="CAMERAS" />
-      {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
-      {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
   )
 }
@@ -49,8 +48,7 @@ const CameraPage = () => {
     <OrbitControls />
     <Terrain/>
 
-    
-    <Html position={[-25, 0, -40]} >
+    <Html position={[-25, 0, -240]} >
       <GetCameras /> 
     </Html>
 

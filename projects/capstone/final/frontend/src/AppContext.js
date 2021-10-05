@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
+// From Auth0
+
 //Backend URL
 const BACKEND_URL = process.env.REACT_APP_SERVER_URL;
 

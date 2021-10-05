@@ -1,10 +1,7 @@
 import React from 'react';
 import Header from "./components/Header";
 import './App.scss'
-import {
-  Route,
-  Switch
-} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import CameraPage from './components/CameraPage';
 import LensPage from './components/LensPage';
 import LandingPage from './components/LandingPage';

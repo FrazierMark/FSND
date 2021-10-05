@@ -4,7 +4,7 @@ import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
-
+// Loads 3D Lens Model 
 const Lens = () => {
   const gltf = useLoader(GLTFLoader, "nikon_lens.glb");
   return (

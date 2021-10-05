@@ -47,27 +47,6 @@ const GetCartInfo = () => {
       console.log(e);
   }}
 
-  // const getCartData = async () => {
-  //             var token2 = await Promise.all(getToken())
-  //             console.log(token2)
-                            
-  //              await axios.get('https://grainydays.herokuapp.com/CartPage', {
-  //                 headers: {
-  //                   Authorization: `Bearer ${token2}`,
-  //                 },
-  //         })
-  //         .then((res) => {
-  //           const cartInfo = res.data.cart_products;
-  //           console.log(cartInfo)
-  //           setCartInfo(cartInfo);
-  //             console.log(res);
-  //           })
-  //           .catch((err) => {
-  //             console.log(err.message);
-  //           });
-            
-  //       };
-    
 
         return (
           <table className="table-latitude">

@@ -11,7 +11,8 @@ const CreateProductForm2 = () => {
     const [token, setToken] = useState(null);
     const { getAccessTokenSilently } = useAuth0();
     
-    useEffect(() => {
+  useEffect(() => {
+      // Get AccessToken to later confirm if perissions are satisfied in order to POST
         const getToken = async () => {
           try {
             const accessToken = await getAccessTokenSilently({})
@@ -20,11 +21,12 @@ const CreateProductForm2 = () => {
             console.log(e.message)
           }
         }
-        getToken()
+    getToken()
+    // If accessToken changes, trigger refresh
       }, [getAccessTokenSilently])
 
 
-    
+    // Initial form values
     const [values, setValues] = useState({
         name: '',
         description: '',
@@ -52,6 +54,7 @@ const CreateProductForm2 = () => {
         );   
     };
 
+    // Product Created if Admin privilege are satisfied
     const postCreateProduct = async(
         name,
         description,
@@ -89,15 +92,6 @@ const CreateProductForm2 = () => {
                         <input type="float" placeholder="Add Product Price" value={values.price} onChange={handleChange('price')} className="form-control" /> 
                         <input type="submit" value="Create Product" className="form-control" />
                 </form>
-
-                <div className="drops">
-                {/* <div class="drop drop-1"></div>
-                <div class="drop drop-2"></div>
-                <div class="drop drop-3"></div>
-                <div class="drop drop-4"></div>
-                <div class="drop drop-5"></div> */}
-            
-                </div>
             </div>
         )
 }

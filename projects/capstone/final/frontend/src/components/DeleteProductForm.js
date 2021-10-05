@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 
+// Deletes Product by SKU value
 const DeleteProductForm = () => {
 
     const [accessToken] = useState('');
@@ -43,6 +44,7 @@ const DeleteProductForm = () => {
         e.target.reset();
     };
 
+    // Product Deleteded if Admin privilege are satisfied
     const postDeleteProduct = async(
         sku
         ) => {

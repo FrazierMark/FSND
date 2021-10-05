@@ -10,6 +10,7 @@ import { Html } from "@react-three/drei";
 import GetAllFilm from "./GetFilm";
 import Auth0ProviderWithHistory from "../auth0-provider-with-history";
 
+// Jumbo 3D text (FILM)
 function Jumbo() {
   const ref = useRef()
   return (
@@ -64,5 +65,4 @@ const FilmPage = () => {
   )
 }
 
-export default FilmPage
-;
+export default FilmPage;

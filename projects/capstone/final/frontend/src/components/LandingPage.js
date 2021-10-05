@@ -14,8 +14,6 @@ function Jumbo() {
   return (
     <group ref={ref}>
       <BlockText hAlign="right" position={[-16, 5, 6]} children="Welcome" />
-      {/* <BlockText hAlign="right" position={[-4, 0, 0]} children="THREE" /> */}
-      {/* <BlockText hAlign="right" position={[-4, -7.5, 0]} children="FIBER" /> */}
     </group>
   )
 }
@@ -43,11 +41,7 @@ const LandingPage = () => {
     <pointLight position={[1, 7, 9]} />
     <pointLight position={[1, 4, 10]} />
 
-    {/* <FilmModel position={[-29, 2.4, -9.1]}/> */}
-    
   
-        {/* <pointLight position={[-100, 0, -160]} /> */}
-        
     <Particles/>
     {/* <SkyBox /> */}
     <Terrain/>

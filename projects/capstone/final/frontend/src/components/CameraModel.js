@@ -39,13 +39,7 @@ function CameraModel(props) {
       
       
       <Html distanceFactor={70}>
-        {/* <h1>
-        <GlitchText>Price</GlitchText>
-      </h1> */}
         
-        {/* <Auth0ProviderWithHistory>
-        <CreateProductForm2/>
-        </Auth0ProviderWithHistory> */}
       </Html>
     
       <Model />
